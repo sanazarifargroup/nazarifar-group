@@ -2,51 +2,49 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0a09" />
     <meta
       name="description"
-      content="Nazarifar Group — Architecture, Supply, Services, and Custom Machines."
+      content="Nazarifar Group — Architecture, Supply, Services and Custom Machines"
     />
-    <meta name="theme-color" content="#15120e" />
     <title>Nazarifar Group</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="site-shell">
-      <section class="hero" aria-labelledby="page-title">
-        <h1 id="page-title" class="sr-only">Nazarifar Group</h1>
+    <main class="cinematic" aria-label="Nazarifar Group">
+      <div class="scene" aria-hidden="true">
+        <img id="scene-image" class="scene__image" alt="" />
+        <div class="scene__shade"></div>
+      </div>
 
-        <img
-          class="hero__image"
-          src="hero-architecture.jpg"
-          alt="Nazarifar Group interior project"
-          fetchpriority="high"
-          decoding="async"
-        />
+      <a class="brand" href="#holding" data-scene="holding" aria-label="Nazarifar Group home">
+        <span class="brand__logo-frame">
+          <img
+            class="brand__logo"
+            src="na-logo-transparent.png"
+            alt="Nazarifar Group"
+            width="1403"
+            height="1121"
+          />
+        </span>
+        <span class="brand__name">Nazarifar Group</span>
+      </a>
 
-        <div class="hero__shade" aria-hidden="true"></div>
+      <nav class="scene-nav" aria-label="Business units and information">
+        <button type="button" data-scene="architecture">Architecture</button>
+        <button type="button" data-scene="supply">Supply</button>
+        <button type="button" data-scene="services">Services</button>
+        <button type="button" data-scene="custom-machines">Custom Machines</button>
+        <button type="button" data-scene="about">About</button>
+        <button type="button" data-scene="contact">Contact</button>
+      </nav>
 
-        <div class="brand-lockup" aria-label="Nazarifar Group">
-          <div class="brand-mark" aria-hidden="true"></div>
-          <span class="brand-name">Nazarifar Group</span>
-        </div>
-
-        <div class="hero__content">
-          <ul class="business-units" aria-label="Business units">
-            <li>Architecture</li>
-            <li>Supply</li>
-            <li>Services</li>
-            <li>Custom Machines</li>
-          </ul>
-
-          <nav class="secondary-links" aria-label="Company information">
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
-      </section>
+      <div class="loading" aria-hidden="true"></div>
+      <p class="status" role="status" aria-live="polite"></p>
     </main>
 
+    <noscript>This website requires JavaScript.</noscript>
     <script src="script.js"></script>
   </body>
 </html>
