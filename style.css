@@ -238,28 +238,8 @@ a {
       linear-gradient(90deg, rgba(7, 6, 5, 0.16) 0%, transparent 68%);
   }
 
-  html[data-scene="holding"] .scene__image {
-    object-position: 58% center;
-  }
-
-  html[data-scene="architecture"] .scene__image {
-    object-position: 54% center;
-  }
-
-  html[data-scene="supply"] .scene__image {
-    object-position: 50% center;
-  }
-
-  html[data-scene="services"] .scene__image {
-    object-position: 48% center;
-  }
-
-  html[data-scene="about"] .scene__image {
-    object-position: 57% center;
-  }
-
-  html[data-scene="contact"] .scene__image {
-    object-position: 58% center;
+  .scene__image {
+    object-position: center;
   }
 }
 

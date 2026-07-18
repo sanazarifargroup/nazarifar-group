@@ -3,36 +3,43 @@ const scenes = [
     id: "holding",
     label: "Holding",
     image: "holding.jpg",
+    mobileImage: "holding-mobile.jpg",
   },
   {
     id: "architecture",
     label: "Architecture",
     image: "hero-architecture.jpg",
+    mobileImage: "hero-architecture-mobile.jpg",
   },
   {
     id: "supply",
     label: "Supply",
     image: "supply.jpg",
+    mobileImage: "supply-mobile.jpg",
   },
   {
     id: "services",
     label: "Services",
     image: "services.jpg",
+    mobileImage: "services-mobile.jpg",
   },
   {
     id: "custom-machines",
     label: "Custom Machines",
     image: null,
+    mobileImage: null,
   },
   {
     id: "about",
     label: "About",
     image: "about.jpg",
+    mobileImage: "about-mobile.jpg",
   },
   {
     id: "contact",
     label: "Contact",
     image: "contact.jpg",
+    mobileImage: "contact-mobile.jpg",
   },
 ];
 
@@ -40,6 +47,7 @@ const image = document.querySelector("#scene-image");
 const loading = document.querySelector(".loading");
 const status = document.querySelector(".status");
 const controls = [...document.querySelectorAll("[data-scene]")];
+const mobileMedia = window.matchMedia("(max-width: 780px)");
 
 let currentIndex = 0;
 let changing = false;
@@ -47,11 +55,16 @@ let touchStartY = 0;
 
 const wait = (duration) => new Promise((resolve) => setTimeout(resolve, duration));
 
+function sceneSource(scene) {
+  return mobileMedia.matches ? scene.mobileImage : scene.image;
+}
+
 function preloadScenes() {
   scenes.forEach((scene) => {
-    if (!scene.image) return;
+    const source = sceneSource(scene);
+    if (!source) return;
     const preload = new Image();
-    preload.src = scene.image;
+    preload.src = source;
   });
 }
 
@@ -77,13 +90,13 @@ async function loadImage(source) {
   });
 }
 
-async function showScene(index, { initial = false } = {}) {
+async function showScene(index, { initial = false, force = false } = {}) {
   if (changing && !initial) return;
 
   const nextIndex = Math.max(0, Math.min(index, scenes.length - 1));
   const scene = scenes[nextIndex];
 
-  if (!initial && nextIndex === currentIndex) return;
+  if (!initial && !force && nextIndex === currentIndex) return;
 
   changing = true;
   loading.classList.add("is-active");
@@ -99,7 +112,9 @@ async function showScene(index, { initial = false } = {}) {
   status.textContent = scene.label;
   history.replaceState(null, "", `#${scene.id}`);
 
-  if (!scene.image) {
+  const source = sceneSource(scene);
+
+  if (!source) {
     image.removeAttribute("src");
     image.classList.remove("is-visible");
     loading.classList.remove("is-active");
@@ -108,7 +123,7 @@ async function showScene(index, { initial = false } = {}) {
   }
 
   try {
-    await loadImage(scene.image);
+    await loadImage(source);
     requestAnimationFrame(() => image.classList.add("is-visible"));
   } catch {
     image.removeAttribute("src");
@@ -173,6 +188,10 @@ window.addEventListener(
   },
   { passive: true },
 );
+
+mobileMedia.addEventListener("change", () => {
+  showScene(currentIndex, { force: true });
+});
 
 const initialId = location.hash.slice(1);
 showScene(sceneIndex(initialId), { initial: true });
