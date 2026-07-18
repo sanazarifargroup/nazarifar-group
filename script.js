@@ -94,6 +94,7 @@ async function showScene(index, { initial = false } = {}) {
   }
 
   currentIndex = nextIndex;
+  document.documentElement.dataset.scene = scene.id;
   updateControls(scene);
   status.textContent = scene.label;
   history.replaceState(null, "", `#${scene.id}`);
