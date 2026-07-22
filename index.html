@@ -31,13 +31,22 @@
         <span class="brand__name">Nazarifar Group</span>
       </a>
 
+      <button class="language-toggle" type="button" aria-label="Switch language">
+        <span data-language-label>FA</span>
+      </button>
+
+      <section class="section-panel" aria-live="polite" aria-hidden="true">
+        <h1 class="section-panel__title"></h1>
+        <div class="section-panel__items"></div>
+      </section>
+
       <nav class="scene-nav" aria-label="Business units and information">
-        <button type="button" data-scene="architecture">Architecture</button>
-        <button type="button" data-scene="supply">Supply</button>
-        <button type="button" data-scene="services">Services</button>
-        <button type="button" data-scene="custom-machines">Custom Machines</button>
-        <button type="button" data-scene="about">About</button>
-        <button type="button" data-scene="contact">Contact</button>
+        <button type="button" data-scene="architecture" data-nav-key="architecture">Architecture</button>
+        <button type="button" data-scene="supply" data-nav-key="supply">Supply</button>
+        <button type="button" data-scene="services" data-nav-key="services">Services</button>
+        <button type="button" data-scene="custom-machines" data-nav-key="customMachines">Custom Machines</button>
+        <button type="button" data-scene="about" data-nav-key="about">About</button>
+        <button type="button" data-scene="contact" data-nav-key="contact">Contact</button>
       </nav>
 
       <div class="loading" aria-hidden="true"></div>
