@@ -444,9 +444,10 @@ a {
   }
 
   .section-copy {
-    top: 27%;
+    top: 50%;
     left: 4.5%;
     width: 88%;
+    transform: translateY(-50%);
   }
 
   .section-title {
@@ -466,7 +467,7 @@ a {
   }
 
   .section-copy--supply {
-    top: 18%;
+    top: 50%;
     width: 92%;
   }
 
@@ -475,9 +476,9 @@ a {
   }
 
   .section-copy--services {
-    top: 14%;
+    top: 50%;
     width: 92%;
-    transform: none;
+    transform: translateY(-50%);
   }
 
   .section-copy--services .section-title {
@@ -584,16 +585,8 @@ a {
 }
 
 @media (max-width: 700px) and (max-height: 700px) {
-  .section-copy--supply {
-    top: 16%;
-  }
-
   .section-copy--supply .section-list {
     gap: 4px;
-  }
-
-  .section-copy--services {
-    top: 12%;
   }
 
   .section-copy--services .section-title {
