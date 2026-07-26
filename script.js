@@ -118,6 +118,8 @@ let language = "en";
 let activeScene = "holding";
 let scrollLocked = false;
 let touchStartY = 0;
+let parallaxFrame = 0;
+let parallaxResetTimer = 0;
 const sceneOrder = ["holding", "architecture", "supply", "services"];
 
 function renderSection(sectionName) {
@@ -130,10 +132,11 @@ function renderSection(sectionName) {
   title.textContent = section.title;
   list.className = "section-list";
 
-  section.items.forEach((item) => {
+  section.items.forEach((item, index) => {
     const row = document.createElement("li");
     row.textContent = item.label;
     row.dataset.level = item.level;
+    row.style.setProperty("--item-index", index);
     list.append(row);
   });
 
@@ -154,6 +157,9 @@ function renderLanguage() {
 
 function showScene(sceneName, updateHash = true) {
   if (!availableScenes.has(sceneName)) return;
+  const previousIndex = sceneOrder.indexOf(activeScene);
+  const nextIndex = sceneOrder.indexOf(sceneName);
+  site.dataset.motion = nextIndex >= previousIndex ? "forward" : "backward";
   activeScene = sceneName;
 
   scenes.forEach((scene) => {
@@ -176,7 +182,12 @@ function stepScene(direction) {
   const currentIndex = sceneOrder.indexOf(activeScene);
   const nextIndex = Math.max(0, Math.min(sceneOrder.length - 1, currentIndex + direction));
   if (nextIndex !== currentIndex) {
+    window.clearTimeout(parallaxResetTimer);
+    site.style.setProperty("--parallax-y", `${direction * -8}px`);
     showScene(sceneOrder[nextIndex]);
+    parallaxResetTimer = window.setTimeout(() => {
+      site.style.setProperty("--parallax-y", "0px");
+    }, 80);
   }
 }
 
@@ -199,10 +210,13 @@ window.addEventListener("hashchange", () => {
 });
 
 document.addEventListener("keydown", (event) => {
+  if (event.repeat) return;
   if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "PageDown") {
+    event.preventDefault();
     stepScene(1);
   }
   if (event.key === "ArrowLeft" || event.key === "ArrowUp" || event.key === "PageUp") {
+    event.preventDefault();
     stepScene(-1);
   }
 });
@@ -216,7 +230,7 @@ window.addEventListener(
     scrollLocked = true;
     window.setTimeout(() => {
       scrollLocked = false;
-    }, 900);
+    }, 1050);
   },
   { passive: false },
 );
@@ -239,6 +253,21 @@ window.addEventListener(
   },
   { passive: true },
 );
+
+if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      if (parallaxFrame) return;
+      parallaxFrame = window.requestAnimationFrame(() => {
+        const centeredY = event.clientY / window.innerHeight - 0.5;
+        site.style.setProperty("--parallax-y", `${centeredY * -5}px`);
+        parallaxFrame = 0;
+      });
+    },
+    { passive: true },
+  );
+}
 
 renderLanguage();
 showScene(location.hash.slice(1) || "holding", false);

@@ -9,22 +9,39 @@
       content="Nazarifar Group — Architecture, Supply, Services and Custom Machines."
     />
     <title>Nazarifar Group</title>
-    <link rel="stylesheet" href="style.css?v=20260726-2" />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/hero-cinematic-desktop.webp"
+      media="(min-width: 701px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/hero-cinematic-mobile.webp"
+      media="(max-width: 700px)"
+    />
+    <link rel="stylesheet" href="style.css?v=20260726-3" />
   </head>
   <body>
     <main class="site" aria-live="polite">
       <section class="scene is-active" id="holding" data-scene="holding" aria-hidden="false">
         <picture class="scene__picture">
-          <source media="(max-width: 700px)" srcset="assets/hero-mobile.png" />
-          <img src="assets/hero-desktop.png" alt="" />
+          <source media="(max-width: 700px)" srcset="assets/hero-cinematic-mobile.webp" />
+          <img
+            src="assets/hero-cinematic-desktop.webp"
+            alt=""
+            fetchpriority="high"
+            decoding="async"
+          />
         </picture>
         <div class="scene__shade scene__shade--holding"></div>
       </section>
 
       <section class="scene" id="architecture" data-scene="architecture" aria-hidden="true">
         <picture class="scene__picture">
-          <source media="(max-width: 700px)" srcset="assets/architecture-mobile.png" />
-          <img src="assets/architecture-desktop.png" alt="" />
+          <source media="(max-width: 700px)" srcset="assets/architecture-mobile.webp" />
+          <img src="assets/architecture-desktop.webp" alt="" loading="lazy" decoding="async" />
         </picture>
         <div class="scene__shade"></div>
         <div class="section-copy" data-copy="architecture"></div>
@@ -32,8 +49,8 @@
 
       <section class="scene" id="supply" data-scene="supply" aria-hidden="true">
         <picture class="scene__picture">
-          <source media="(max-width: 700px)" srcset="assets/supply-mobile.png" />
-          <img src="assets/supply-desktop.png" alt="" />
+          <source media="(max-width: 700px)" srcset="assets/supply-mobile.webp" />
+          <img src="assets/supply-desktop.webp" alt="" loading="lazy" decoding="async" />
         </picture>
         <div class="scene__shade"></div>
         <div class="section-copy section-copy--supply" data-copy="supply"></div>
@@ -41,8 +58,8 @@
 
       <section class="scene" id="services" data-scene="services" aria-hidden="true">
         <picture class="scene__picture">
-          <source media="(max-width: 700px)" srcset="assets/services-mobile.png" />
-          <img src="assets/services-desktop.png" alt="" />
+          <source media="(max-width: 700px)" srcset="assets/services-mobile.webp" />
+          <img src="assets/services-desktop.webp" alt="" loading="lazy" decoding="async" />
         </picture>
         <div class="scene__shade"></div>
         <div class="section-copy section-copy--services" data-copy="services"></div>
@@ -50,7 +67,7 @@
 
       <a class="brand" href="#holding" aria-label="Nazarifar Group home">
         <span class="brand__mark-frame">
-          <img class="brand__mark" src="assets/na-logo-transparent.png" alt="NA" />
+          <img class="brand__mark" src="na-logo-locked.svg" alt="NA" />
         </span>
         <span class="brand__name">Nazarifar Group</span>
       </a>
@@ -65,6 +82,6 @@
         <button class="language" type="button" data-language>FA</button>
       </nav>
     </main>
-    <script src="script.js?v=20260726-1"></script>
+    <script src="script.js?v=20260726-3"></script>
   </body>
 </html>
