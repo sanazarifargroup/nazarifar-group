@@ -165,16 +165,16 @@ a {
 }
 
 .section-copy--services {
-  top: 55%;
-  width: min(56%, 650px);
-  transform: translateY(-45%);
+  top: 50%;
+  width: min(50%, 520px);
+  transform: translateY(-50%);
 }
 
 .section-copy--services .section-list {
-  grid-template-columns: repeat(2, max-content);
-  grid-template-rows: repeat(7, auto);
-  grid-auto-flow: column;
-  gap: 8px 36px;
+  grid-template-columns: 1fr;
+  grid-template-rows: none;
+  grid-auto-flow: row;
+  gap: 5px;
 }
 
 .section-copy--services .section-list li {
@@ -413,9 +413,16 @@ a {
   .navigation button {
     display: flex;
     align-items: flex-end;
+    justify-content: flex-start;
     padding: 4px 0 5px;
     font-size: 11px;
     letter-spacing: 0.025em;
+  }
+
+  [data-lang="fa"] .navigation button:not(.language) {
+    direction: ltr;
+    text-align: left;
+    justify-content: flex-start;
   }
 
   .navigation button:nth-child(1),
