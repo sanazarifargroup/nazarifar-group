@@ -116,6 +116,9 @@ const languageButton = document.querySelector("[data-language]");
 const site = document.querySelector(".site");
 let language = "en";
 let activeScene = "holding";
+let scrollLocked = false;
+let touchStartY = 0;
+const sceneOrder = ["holding", "architecture", "supply", "services"];
 
 function renderSection(sectionName) {
   const target = document.querySelector(`[data-copy="${sectionName}"]`);
@@ -169,6 +172,14 @@ function showScene(sceneName, updateHash = true) {
   }
 }
 
+function stepScene(direction) {
+  const currentIndex = sceneOrder.indexOf(activeScene);
+  const nextIndex = Math.max(0, Math.min(sceneOrder.length - 1, currentIndex + direction));
+  if (nextIndex !== currentIndex) {
+    showScene(sceneOrder[nextIndex]);
+  }
+}
+
 document.addEventListener("click", (event) => {
   const navigationButton = event.target.closest("[data-target]");
   if (navigationButton) {
@@ -188,15 +199,46 @@ window.addEventListener("hashchange", () => {
 });
 
 document.addEventListener("keydown", (event) => {
-  const order = ["holding", "architecture", "supply", "services"];
-  const currentIndex = order.indexOf(activeScene);
-  if (event.key === "ArrowRight" && currentIndex < order.length - 1) {
-    showScene(order[currentIndex + 1]);
+  if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "PageDown") {
+    stepScene(1);
   }
-  if (event.key === "ArrowLeft" && currentIndex > 0) {
-    showScene(order[currentIndex - 1]);
+  if (event.key === "ArrowLeft" || event.key === "ArrowUp" || event.key === "PageUp") {
+    stepScene(-1);
   }
 });
+
+window.addEventListener(
+  "wheel",
+  (event) => {
+    if (Math.abs(event.deltaY) < 20 || scrollLocked) return;
+    event.preventDefault();
+    stepScene(event.deltaY > 0 ? 1 : -1);
+    scrollLocked = true;
+    window.setTimeout(() => {
+      scrollLocked = false;
+    }, 900);
+  },
+  { passive: false },
+);
+
+window.addEventListener(
+  "touchstart",
+  (event) => {
+    touchStartY = event.changedTouches[0].clientY;
+  },
+  { passive: true },
+);
+
+window.addEventListener(
+  "touchend",
+  (event) => {
+    const distance = touchStartY - event.changedTouches[0].clientY;
+    if (Math.abs(distance) >= 45) {
+      stepScene(distance > 0 ? 1 : -1);
+    }
+  },
+  { passive: true },
+);
 
 renderLanguage();
 showScene(location.hash.slice(1) || "holding", false);
