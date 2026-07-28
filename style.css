@@ -778,8 +778,10 @@ a {
 
   .section-title {
     margin-bottom: 16px;
+    color: rgba(255, 251, 245, 0.98);
     font-size: clamp(24px, 7.4vw, 32px);
     letter-spacing: 0.015em;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.58);
   }
 
   .section-list {
@@ -787,9 +789,19 @@ a {
   }
 
   .section-list li {
+    color: rgba(255, 251, 245, 0.92);
     font-size: 11.5px;
     line-height: 1.48;
     letter-spacing: 0.035em;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.62);
+  }
+
+  .section-list li[data-level="1"] {
+    color: rgba(255, 251, 245, 0.86);
+  }
+
+  .section-list li[data-level="2"] {
+    color: rgba(255, 251, 245, 0.78);
   }
 
   .section-copy--supply {
@@ -809,18 +821,18 @@ a {
 
   .section-copy--custom-machines {
     top: 50%;
-    left: 50%;
-    width: 86%;
-    text-align: center;
-    transform: translate(-50%, -50%);
+    left: 4.5%;
+    width: 88%;
+    text-align: left;
+    transform: translateY(-50%);
   }
 
   .section-copy--about {
-    top: 48%;
-    left: 50%;
-    width: 86%;
-    text-align: center;
-    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 4.5%;
+    width: 88%;
+    text-align: left;
+    transform: translateY(-50%);
   }
 
   .section-copy--about .section-title {
@@ -828,7 +840,7 @@ a {
   }
 
   .section-copy--about .section-list {
-    justify-items: center;
+    justify-items: start;
   }
 
   .section-copy--about .section-list li {
@@ -838,11 +850,11 @@ a {
   }
 
   .section-copy--contact {
-    top: 44%;
-    left: 50%;
-    width: 86%;
-    text-align: center;
-    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 4.5%;
+    width: 88%;
+    text-align: left;
+    transform: translateY(-50%);
   }
 
   .section-copy--contact .section-title {
@@ -858,7 +870,7 @@ a {
 
   .section-copy--contact .section-list {
     width: min(100%, 360px);
-    margin: 0 auto;
+    margin: 0;
     text-align: left;
   }
 
@@ -869,10 +881,12 @@ a {
   }
 
   .contact-label {
+    color: rgba(255, 251, 245, 0.76);
     font-size: 8.5px;
   }
 
   .contact-value {
+    color: rgba(255, 251, 245, 0.96);
     font-size: inherit;
   }
 
@@ -909,30 +923,30 @@ a {
   }
 
   .section-copy--custom-machines .section-list {
-    justify-items: center;
+    justify-items: start;
   }
 
   [data-lang="fa"] .section-copy--custom-machines,
   [data-lang="fa"] .section-copy--custom-machines > * {
     direction: rtl;
-    text-align: center;
+    text-align: left;
   }
 
   [data-lang="fa"] .section-copy--about,
   [data-lang="fa"] .section-copy--about > * {
     direction: rtl;
-    text-align: center;
+    text-align: left;
   }
 
   [data-lang="fa"] .section-copy--contact,
   [data-lang="fa"] .section-copy--contact > * {
     direction: rtl;
-    text-align: center;
+    text-align: left;
   }
 
   [data-lang="fa"] .section-copy--contact .section-list {
     direction: rtl;
-    text-align: right;
+    text-align: left;
   }
 
   .section-copy--services .section-title {
@@ -983,8 +997,10 @@ a {
     align-items: flex-end;
     justify-content: flex-start;
     padding: 5px 0 8px;
+    color: rgba(255, 251, 245, 0.86);
     font-size: 11px;
     letter-spacing: 0.04em;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.66);
   }
 
   [data-lang="fa"] .navigation button:not(.language) {
