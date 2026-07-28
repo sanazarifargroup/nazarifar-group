@@ -380,6 +380,7 @@ a {
 
 .section-copy {
   position: absolute;
+  z-index: 3;
   top: 34%;
   left: 4.2%;
   width: min(40%, 470px);
@@ -798,6 +799,10 @@ a {
 [data-lang="fa"] .navigation button {
   direction: rtl;
   text-align: right;
+}
+
+[data-lang="fa"] .navigation {
+  direction: rtl;
 }
 
 @media (hover: hover) and (pointer: fine) {
