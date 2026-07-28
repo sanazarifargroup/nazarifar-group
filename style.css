@@ -713,48 +713,69 @@ a {
 [data-lang="fa"] .section-copy,
 [data-lang="fa"] .section-copy > * {
   direction: rtl;
-  text-align: left;
+  text-align: right;
+}
+
+[data-lang="fa"] .scene__picture {
+  transform: scaleX(-1);
+}
+
+[data-lang="fa"] .scene__shade {
+  transform: scaleX(-1);
+}
+
+[data-lang="fa"] .brand {
+  right: 4.2%;
+  left: auto;
+  align-items: flex-end;
+  text-align: right;
+}
+
+[data-lang="fa"] .section-copy {
+  right: 4.2%;
+  left: auto;
 }
 
 [data-lang="fa"] .section-list li[data-level="1"] {
-  padding-right: 0;
-  padding-left: 18px;
+  padding-right: 18px;
+  padding-left: 0;
 }
 
 [data-lang="fa"] .section-list li[data-level="2"] {
-  padding-right: 0;
-  padding-left: 36px;
+  padding-right: 36px;
+  padding-left: 0;
 }
 
 [data-lang="fa"] .section-copy--about .section-list li {
   direction: rtl;
   width: 100%;
-  justify-self: start;
-  text-align: justify;
-  text-align-last: left;
+  justify-self: stretch;
+  text-align: right;
+  text-align-last: right;
 }
 
 [data-lang="fa"] .section-copy--about .section-list {
-  direction: ltr;
+  direction: rtl;
   width: 100%;
   justify-items: stretch;
 }
 
 [data-lang="fa"] .section-copy--contact .section-list {
-  direction: ltr;
+  direction: rtl;
   width: 100%;
   margin: 0;
-  text-align: left;
+  text-align: right;
 }
 
 [data-lang="fa"] .section-copy--contact .contact-label {
   direction: rtl;
-  text-align: left;
+  text-align: right;
 }
 
 [data-lang="fa"] .section-copy--contact .contact-value {
   direction: ltr;
-  text-align: left;
+  justify-self: start;
+  text-align: right;
 }
 
 [data-lang="fa"] .navigation button {
@@ -806,6 +827,13 @@ a {
     top: 4.5%;
     left: 4.5%;
     width: 90px;
+  }
+
+  [data-lang="fa"] .brand {
+    right: 4.5%;
+    left: auto;
+    align-items: flex-end;
+    text-align: right;
   }
 
   .brand__mark-frame {
@@ -992,27 +1020,27 @@ a {
   [data-lang="fa"] .section-copy--custom-machines,
   [data-lang="fa"] .section-copy--custom-machines > * {
     direction: rtl;
-    text-align: left;
+    text-align: right;
   }
 
   [data-lang="fa"] .section-copy--custom-machines .section-list {
-    direction: ltr;
+    direction: rtl;
     justify-items: stretch;
   }
 
   [data-lang="fa"] .section-copy--custom-machines .section-list li {
     direction: rtl;
-    text-align: left;
+    text-align: right;
   }
 
   [data-lang="fa"] .section-copy--about,
   [data-lang="fa"] .section-copy--about > * {
     direction: rtl;
-    text-align: left;
+    text-align: right;
   }
 
   [data-lang="fa"] .section-copy--about .section-list {
-    direction: ltr;
+    direction: rtl;
     width: 100%;
     justify-items: stretch;
   }
@@ -1020,20 +1048,27 @@ a {
   [data-lang="fa"] .section-copy--about .section-list li {
     direction: rtl;
     width: 100%;
-    text-align: justify;
-    text-align-last: left;
+    text-align: right;
+    text-align-last: right;
   }
 
   [data-lang="fa"] .section-copy--contact,
   [data-lang="fa"] .section-copy--contact > * {
     direction: rtl;
-    text-align: left;
+    text-align: right;
   }
 
   [data-lang="fa"] .section-copy--contact .section-list {
-    direction: ltr;
+    direction: rtl;
     width: 100%;
-    text-align: left;
+    margin-right: 0;
+    margin-left: auto;
+    text-align: right;
+  }
+
+  [data-lang="fa"] .section-copy {
+    right: 4.5%;
+    left: auto;
   }
 
   .section-copy--services .section-title {
@@ -1060,13 +1095,13 @@ a {
   }
 
   [data-lang="fa"] .section-copy--services .section-list li[data-level="1"] {
-    padding-right: 0;
-    padding-left: 14px;
+    padding-right: 14px;
+    padding-left: 0;
   }
 
   [data-lang="fa"] .section-copy--services .section-list li[data-level="2"] {
-    padding-right: 0;
-    padding-left: 30px;
+    padding-right: 30px;
+    padding-left: 0;
   }
 
   .navigation {
@@ -1091,9 +1126,9 @@ a {
   }
 
   [data-lang="fa"] .navigation button:not(.language) {
-    direction: ltr;
-    text-align: left;
-    justify-content: flex-start;
+    direction: rtl;
+    text-align: right;
+    justify-content: flex-end;
   }
 
   .navigation button:nth-child(1),
