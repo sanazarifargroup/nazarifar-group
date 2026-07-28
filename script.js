@@ -189,25 +189,31 @@ const copy = {
   },
 };
 
-const availableScenes = new Set([
-  "holding",
-  "architecture",
-  "supply",
-  "services",
-  "custom-machines",
-  "about",
-  "contact",
-]);
+const routeByScene = {
+  holding: "/",
+  architecture: "/architecture/",
+  supply: "/supply/",
+  services: "/services/",
+  "custom-machines": "/custom-machines/",
+  about: "/about/",
+  contact: "/contact/",
+};
+const availableScenes = new Set(Object.keys(routeByScene));
 const scenes = [...document.querySelectorAll("[data-scene]")];
 const navigationButtons = [...document.querySelectorAll("[data-target]")];
 const languageButton = document.querySelector("[data-language]");
 const site = document.querySelector(".site");
 let language = "en";
-let activeScene = "holding";
+try {
+  const savedLanguage = window.localStorage.getItem("nazarifar-language");
+  if (savedLanguage === "fa" || savedLanguage === "en") language = savedLanguage;
+} catch {}
+let activeScene = site.dataset.page || "holding";
 let scrollLocked = false;
 let touchStartY = 0;
 let parallaxFrame = 0;
 let parallaxResetTimer = 0;
+let navigationLocked = false;
 const sceneOrder = [
   "holding",
   "architecture",
@@ -221,6 +227,7 @@ const sceneOrder = [
 function renderSection(sectionName) {
   const target = document.querySelector(`[data-copy="${sectionName}"]`);
   const section = copy[language][sectionName];
+  if (!target || !section) return;
   const title = document.createElement("h1");
   const intro = section.intro ? document.createElement("p") : null;
   const list = document.createElement("ul");
@@ -271,9 +278,7 @@ function renderLanguage() {
     button.textContent = copy[language].navigation[button.dataset.target];
   });
 
-  ["architecture", "supply", "services", "custom-machines", "about", "contact"].forEach(
-    renderSection,
-  );
+  scenes.forEach((scene) => renderSection(scene.dataset.scene));
   languageButton.textContent = language === "en" ? "FA" : "EN";
 }
 
@@ -293,28 +298,26 @@ async function loadSceneImage(scene) {
   }
 }
 
-function showScene(sceneName, updateHash = true) {
-  if (!availableScenes.has(sceneName)) return;
-  const previousIndex = sceneOrder.indexOf(activeScene);
-  const nextIndex = sceneOrder.indexOf(sceneName);
-  site.dataset.motion = nextIndex >= previousIndex ? "forward" : "backward";
-  activeScene = sceneName;
-
+function showCurrentScene() {
   scenes.forEach((scene) => {
-    const active = scene.dataset.scene === sceneName;
+    const active = scene.dataset.scene === activeScene;
     scene.classList.toggle("is-active", active);
     scene.setAttribute("aria-hidden", String(!active));
     if (active) loadSceneImage(scene);
   });
 
   navigationButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.target === sceneName);
+    button.classList.toggle("is-active", button.dataset.target === activeScene);
   });
+}
 
-  if (updateHash) {
-    const nextHash = sceneName === "holding" ? "#holding" : `#${sceneName}`;
-    history.replaceState(null, "", nextHash);
-  }
+function navigateToScene(sceneName) {
+  if (!availableScenes.has(sceneName) || navigationLocked || sceneName === activeScene) return;
+  navigationLocked = true;
+  const currentIndex = sceneOrder.indexOf(activeScene);
+  const nextIndex = sceneOrder.indexOf(sceneName);
+  site.dataset.motion = nextIndex >= currentIndex ? "forward" : "backward";
+  window.location.assign(routeByScene[sceneName]);
 }
 
 function stepScene(direction) {
@@ -323,29 +326,29 @@ function stepScene(direction) {
   if (nextIndex !== currentIndex) {
     window.clearTimeout(parallaxResetTimer);
     site.style.setProperty("--parallax-y", `${direction * -8}px`);
-    showScene(sceneOrder[nextIndex]);
-    parallaxResetTimer = window.setTimeout(() => {
-      site.style.setProperty("--parallax-y", "0px");
-    }, 80);
+    navigateToScene(sceneOrder[nextIndex]);
   }
 }
 
 document.addEventListener("click", (event) => {
   const navigationButton = event.target.closest("[data-target]");
   if (navigationButton) {
-    showScene(navigationButton.dataset.target);
+    navigateToScene(navigationButton.dataset.target);
     return;
   }
 
   if (event.target.closest("[data-language]")) {
     language = language === "en" ? "fa" : "en";
+    try {
+      window.localStorage.setItem("nazarifar-language", language);
+    } catch {}
     renderLanguage();
   }
 });
 
 window.addEventListener("hashchange", () => {
   const requested = location.hash.slice(1) || "holding";
-  showScene(requested, false);
+  if (availableScenes.has(requested)) navigateToScene(requested);
 });
 
 document.addEventListener("keydown", (event) => {
@@ -408,5 +411,10 @@ if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
   );
 }
 
-renderLanguage();
-showScene(location.hash.slice(1) || "holding", false);
+const legacyHash = location.hash.slice(1);
+if (activeScene === "holding" && legacyHash && availableScenes.has(legacyHash)) {
+  window.location.replace(routeByScene[legacyHash]);
+} else {
+  renderLanguage();
+  showCurrentScene();
+}
