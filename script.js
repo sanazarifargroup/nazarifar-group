@@ -52,6 +52,42 @@ const copy = {
         { label: "Facility Management", level: 1 },
       ],
     },
+    "custom-machines": {
+      title: "Custom Machines",
+      items: [
+        { label: "Laboratory Equipment", level: 0 },
+        { label: "Vending Machines", level: 0 },
+        { label: "Amalgam Recycling Machine", level: 0 },
+        { label: "3D Scanner", level: 0 },
+      ],
+    },
+    about: {
+      title: "Distinct Expertise, One Shared Vision",
+      items: [
+        {
+          label:
+            "Nazarifar Group is a multidisciplinary group that brings independent expertise together with a long-term perspective to create precise, integrated and enduring solutions.",
+          level: 0,
+        },
+      ],
+    },
+    contact: {
+      title: "Contact Nazarifar Group",
+      items: [
+        {
+          label: "Email",
+          value: "info@nazarifargroup.com",
+          href: "mailto:info@nazarifargroup.com",
+        },
+        { label: "Office", value: "07136334523", href: "tel:+987136334523" },
+        { label: "Mobile", value: "09177033810", href: "tel:+989177033810" },
+        {
+          label: "Instagram",
+          value: "@nazarifargroup",
+          href: "https://www.instagram.com/nazarifargroup/",
+        },
+      ],
+    },
   },
   fa: {
     navigation: {
@@ -106,10 +142,62 @@ const copy = {
         { label: "مدیریت و نگهداری ساختمان", level: 1 },
       ],
     },
+    "custom-machines": {
+      title: "\u0645\u0627\u0634\u06cc\u0646\u200c\u0622\u0644\u0627\u062a \u0633\u0641\u0627\u0631\u0634\u06cc",
+      items: [
+        { label: "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647\u06cc", level: 0 },
+        { label: "\u062f\u0633\u062a\u06af\u0627\u0647\u200c\u0647\u0627\u06cc \u0641\u0631\u0648\u0634 \u062e\u0648\u062f\u06a9\u0627\u0631", level: 0 },
+        { label: "\u062f\u0633\u062a\u06af\u0627\u0647 \u0628\u0627\u0632\u06cc\u0627\u0641\u062a \u0622\u0645\u0627\u0644\u06af\u0627\u0645", level: 0 },
+        { label: "\u062f\u0633\u062a\u06af\u0627\u0647 \u0627\u0633\u06a9\u0646\u0631 \u0633\u0647\u200c\u0628\u0639\u062f\u06cc", level: 0 },
+      ],
+    },
+    about: {
+      title: "\u062a\u062e\u0635\u0635\u200c\u0647\u0627\u06cc \u0645\u062a\u0645\u0627\u06cc\u0632\u060c \u06cc\u06a9 \u0686\u0634\u0645\u200c\u0627\u0646\u062f\u0627\u0632 \u0645\u0634\u062a\u0631\u06a9",
+      items: [
+        {
+          label:
+            "\u0646\u0638\u0631\u06cc\u200c\u0641\u0631 \u06af\u0631\u0648\u067e \u0645\u062c\u0645\u0648\u0639\u0647\u200c\u0627\u06cc \u0686\u0646\u062f\u0631\u0634\u062a\u0647\u200c\u0627\u06cc \u0627\u0633\u062a \u06a9\u0647 \u0628\u0627 \u0646\u06af\u0627\u0647\u06cc \u0628\u0644\u0646\u062f\u0645\u062f\u062a\u060c \u062a\u062e\u0635\u0635\u200c\u0647\u0627\u06cc \u0645\u0633\u062a\u0642\u0644 \u0631\u0627 \u0628\u0631\u0627\u06cc \u062e\u0644\u0642 \u0631\u0627\u0647\u200c\u062d\u0644\u200c\u0647\u0627\u06cc \u062f\u0642\u06cc\u0642\u060c \u06cc\u06a9\u067e\u0627\u0631\u0686\u0647 \u0648 \u0645\u0627\u0646\u062f\u06af\u0627\u0631 \u06a9\u0646\u0627\u0631 \u0647\u0645 \u0642\u0631\u0627\u0631 \u0645\u06cc\u200c\u062f\u0647\u062f.",
+          level: 0,
+        },
+      ],
+    },
+    contact: {
+      title: "\u062a\u0645\u0627\u0633 \u0628\u0627 \u0646\u0638\u0631\u06cc\u200c\u0641\u0631 \u06af\u0631\u0648\u067e",
+      items: [
+        {
+          label: "\u0631\u0627\u06cc\u0627\u0646\u0627\u0645\u0647",
+          value: "info@nazarifargroup.com",
+          href: "mailto:info@nazarifargroup.com",
+        },
+        {
+          label: "\u062a\u0644\u0641\u0646 \u062b\u0627\u0628\u062a",
+          value: "07136334523",
+          href: "tel:+987136334523",
+        },
+        {
+          label: "\u062a\u0644\u0641\u0646 \u0647\u0645\u0631\u0627\u0647",
+          value: "09177033810",
+          href: "tel:+989177033810",
+        },
+        {
+          label: "\u0627\u06cc\u0646\u0633\u062a\u0627\u06af\u0631\u0627\u0645",
+          value: "@nazarifargroup",
+          href: "https://www.instagram.com/nazarifargroup/",
+        },
+      ],
+    },
   },
 };
 
-const availableScenes = new Set(["holding", "architecture", "supply", "services"]);
+const availableScenes = new Set([
+  "holding",
+  "architecture",
+  "supply",
+  "services",
+  "custom-machines",
+  "about",
+  "contact",
+]);
 const scenes = [...document.querySelectorAll("[data-scene]")];
 const navigationButtons = [...document.querySelectorAll("[data-target]")];
 const languageButton = document.querySelector("[data-language]");
@@ -120,27 +208,59 @@ let scrollLocked = false;
 let touchStartY = 0;
 let parallaxFrame = 0;
 let parallaxResetTimer = 0;
-const sceneOrder = ["holding", "architecture", "supply", "services"];
+const sceneOrder = [
+  "holding",
+  "architecture",
+  "supply",
+  "services",
+  "custom-machines",
+  "about",
+  "contact",
+];
 
 function renderSection(sectionName) {
   const target = document.querySelector(`[data-copy="${sectionName}"]`);
   const section = copy[language][sectionName];
   const title = document.createElement("h1");
+  const intro = section.intro ? document.createElement("p") : null;
   const list = document.createElement("ul");
 
   title.className = "section-title";
   title.textContent = section.title;
   list.className = "section-list";
 
+  if (intro) {
+    intro.className = "section-intro";
+    intro.textContent = section.intro;
+  }
+
   section.items.forEach((item, index) => {
     const row = document.createElement("li");
-    row.textContent = item.label;
     row.dataset.level = item.level;
     row.style.setProperty("--item-index", index);
+
+    if (item.value) {
+      const label = document.createElement("span");
+      const value = document.createElement("a");
+      label.className = "contact-label";
+      label.textContent = item.label;
+      value.className = "contact-value";
+      value.textContent = item.value;
+      value.href = item.href;
+      value.dir = "ltr";
+      if (item.href.startsWith("http")) {
+        value.target = "_blank";
+        value.rel = "noreferrer";
+      }
+      row.append(label, value);
+    } else {
+      row.textContent = item.label;
+    }
+
     list.append(row);
   });
 
-  target.replaceChildren(title, list);
+  target.replaceChildren(...[title, intro, list].filter(Boolean));
 }
 
 function renderLanguage() {
@@ -151,8 +271,26 @@ function renderLanguage() {
     button.textContent = copy[language].navigation[button.dataset.target];
   });
 
-  ["architecture", "supply", "services"].forEach(renderSection);
+  ["architecture", "supply", "services", "custom-machines", "about", "contact"].forEach(
+    renderSection,
+  );
   languageButton.textContent = language === "en" ? "FA" : "EN";
+}
+
+async function loadSceneImage(scene) {
+  const image = scene.querySelector("[data-image-source]");
+  if (!image || image.dataset.imageState) return;
+
+  image.dataset.imageState = "loading";
+
+  try {
+    const response = await fetch(image.dataset.imageSource);
+    if (!response.ok) throw new Error("Image source unavailable");
+    image.src = (await response.text()).trim();
+    image.dataset.imageState = "ready";
+  } catch {
+    delete image.dataset.imageState;
+  }
 }
 
 function showScene(sceneName, updateHash = true) {
@@ -166,6 +304,7 @@ function showScene(sceneName, updateHash = true) {
     const active = scene.dataset.scene === sceneName;
     scene.classList.toggle("is-active", active);
     scene.setAttribute("aria-hidden", String(!active));
+    if (active) loadSceneImage(scene);
   });
 
   navigationButtons.forEach((button) => {
