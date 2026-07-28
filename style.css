@@ -1146,6 +1146,10 @@ a {
     text-shadow: 0 2px 16px rgba(0, 0, 0, 0.66);
   }
 
+  [data-lang="fa"] .navigation {
+    direction: ltr;
+  }
+
   [data-lang="fa"] .navigation button:not(.language) {
     direction: rtl;
     text-align: right;
