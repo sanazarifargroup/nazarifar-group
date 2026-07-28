@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/Vazirmatn-Variable-font-face.css");
+
 :root {
   color-scheme: dark;
   --ivory: #f4eee5;
@@ -468,16 +470,6 @@ a {
   transform: translateY(-50%);
 }
 
-.section-copy--custom-machines .section-title {
-  color: #fffaf3;
-}
-
-.section-copy--custom-machines .section-list li {
-  color: rgba(255, 250, 243, 0.96);
-  font-weight: 400;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.72);
-}
-
 .section-copy--about {
   top: 50%;
   width: min(36%, 520px);
@@ -713,6 +705,31 @@ a {
 [data-lang="fa"] .section-copy,
 [data-lang="fa"] .section-copy > * {
   direction: rtl;
+  text-align: right;
+}
+
+[data-lang="fa"] .section-copy,
+[data-lang="fa"] .navigation button:not(.language) {
+  font-family: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+  letter-spacing: 0;
+}
+
+[data-lang="fa"] .section-title {
+  font-weight: 350;
+  line-height: 1.22;
+}
+
+[data-lang="fa"] .section-list {
+  direction: rtl;
+  width: 100%;
+  justify-items: stretch;
+}
+
+[data-lang="fa"] .section-list li {
+  width: 100%;
+  justify-self: stretch;
+  font-weight: 350;
+  line-height: 1.65;
   text-align: right;
 }
 
@@ -1013,7 +1030,6 @@ a {
 
   .section-copy--custom-machines .section-list li {
     width: 100%;
-    color: #fffaf3;
     text-align: left;
   }
 
