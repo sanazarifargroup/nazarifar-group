@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="style.css?v=20260728-11" />
   </head>
   <body>
-    <main class="site" aria-live="polite">
+    <main class="site" data-page="holding" aria-live="polite">
       <section class="scene is-active" id="holding" data-scene="holding" aria-hidden="false">
         <picture class="scene__picture">
           <source media="(max-width: 700px)" srcset="assets/hero-cinematic-mobile.webp" />
@@ -38,81 +38,7 @@
         <div class="scene__shade scene__shade--holding"></div>
       </section>
 
-      <section class="scene" id="architecture" data-scene="architecture" aria-hidden="true">
-        <picture class="scene__picture">
-          <source media="(max-width: 700px)" srcset="assets/architecture-mobile.webp" />
-          <img src="assets/architecture-desktop.webp" alt="" loading="lazy" decoding="async" />
-        </picture>
-        <div class="scene__shade"></div>
-        <div class="section-copy" data-copy="architecture"></div>
-      </section>
-
-      <section class="scene" id="supply" data-scene="supply" aria-hidden="true">
-        <picture class="scene__picture">
-          <source media="(max-width: 700px)" srcset="assets/supply-mobile.webp" />
-          <img src="assets/supply-desktop.webp" alt="" loading="lazy" decoding="async" />
-        </picture>
-        <div class="scene__shade"></div>
-        <div class="section-copy section-copy--supply" data-copy="supply"></div>
-      </section>
-
-      <section class="scene" id="services" data-scene="services" aria-hidden="true">
-        <picture class="scene__picture">
-          <source media="(max-width: 700px)" srcset="assets/services-mobile.webp" />
-          <img src="assets/services-desktop.webp" alt="" loading="lazy" decoding="async" />
-        </picture>
-        <div class="scene__shade"></div>
-        <div class="section-copy section-copy--services" data-copy="services"></div>
-      </section>
-
-      <section
-        class="scene scene--custom-machines"
-        id="custom-machines"
-        data-scene="custom-machines"
-        aria-hidden="true"
-      >
-        <picture class="scene__picture scene__picture--custom-machines">
-          <img
-            data-image-source="assets/custom-machines-approved.b64"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-        <div class="scene__shade scene__shade--machine"></div>
-        <div
-          class="section-copy section-copy--custom-machines"
-          data-copy="custom-machines"
-        ></div>
-      </section>
-
-      <section class="scene scene--about" id="about" data-scene="about" aria-hidden="true">
-        <picture class="scene__picture scene__picture--about">
-          <img
-            data-image-source="assets/about-approved.b64"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-        <div class="scene__shade scene__shade--about"></div>
-        <div class="section-copy section-copy--about" data-copy="about"></div>
-      </section>
-
-      <section class="scene scene--contact" id="contact" data-scene="contact" aria-hidden="true">
-        <picture class="scene__picture scene__picture--contact">
-          <img
-            data-image-source="assets/contact-approved.b64"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-        <div class="scene__shade scene__shade--contact"></div>
-        <div class="section-copy section-copy--contact" data-copy="contact"></div>
-      </section>
-
-      <a class="brand" href="#holding" aria-label="Nazarifar Group home">
+      <a class="brand" href="/" aria-label="Nazarifar Group home">
         <span class="brand__mark-frame">
           <img class="brand__mark" src="assets/na-logo-transparent.png" alt="NA" />
         </span>
@@ -129,6 +55,6 @@
         <button class="language" type="button" data-language>FA</button>
       </nav>
     </main>
-    <script src="script.js?v=20260728-10"></script>
+    <script src="script.js?v=20260728-11"></script>
   </body>
 </html>
