@@ -62,7 +62,7 @@ const copy = {
       ],
     },
     about: {
-      title: "Distinct Expertise, One Shared Vision",
+      title: "Synergy of Expertise",
       items: [
         {
           label:
@@ -152,7 +152,7 @@ const copy = {
       ],
     },
     about: {
-      title: "\u062a\u062e\u0635\u0635\u200c\u0647\u0627\u06cc \u0645\u062a\u0645\u0627\u06cc\u0632\u060c \u06cc\u06a9 \u0686\u0634\u0645\u200c\u0627\u0646\u062f\u0627\u0632 \u0645\u0634\u062a\u0631\u06a9",
+      title: "هم‌افزایی تخصص‌ها",
       items: [
         {
           label:
