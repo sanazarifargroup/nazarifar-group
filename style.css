@@ -1158,13 +1158,13 @@ a {
     width: max-content;
     grid-template-columns: minmax(150px, max-content);
     grid-template-rows: repeat(7, 24px);
-    justify-items: end;
+    justify-items: right;
     gap: 0;
   }
 
   [data-lang="fa"] .navigation button {
-    justify-self: end;
-    justify-content: flex-end;
+    justify-self: right;
+    justify-content: flex-start;
   }
 
   .navigation button:nth-child(1),
@@ -1211,7 +1211,7 @@ a {
   [data-lang="fa"] .navigation .language {
     grid-column: 1;
     grid-row: 7;
-    justify-self: end;
+    justify-self: right;
   }
 
   [data-lang="fa"] .navigation button:nth-child(1) {
