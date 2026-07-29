@@ -833,6 +833,10 @@ a {
 }
 
 @media (max-width: 700px) {
+  .scene__picture {
+    transform: scaleX(-1);
+  }
+
   .scene__shade {
     background:
       linear-gradient(90deg, rgba(4, 3, 2, 0.82) 0%, rgba(4, 3, 2, 0.58) 56%, transparent 94%),
@@ -973,11 +977,11 @@ a {
   .section-copy--contact .section-list {
     width: min(100%, 360px);
     margin: 0;
-    padding: 3px 8px;
-    border-radius: 10px;
-    background: rgba(6, 5, 4, 0.36);
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
     text-align: left;
-    backdrop-filter: blur(7px);
+    backdrop-filter: none;
   }
 
   .section-copy--contact .section-list li {
@@ -1008,7 +1012,7 @@ a {
   }
 
   .scene__picture--contact img {
-    object-position: 70% center;
+    object-position: 58% center;
     filter: saturate(0.78) contrast(1.04) brightness(0.72);
   }
 
@@ -1077,6 +1081,11 @@ a {
   [data-lang="fa"] .section-copy--contact > * {
     direction: rtl;
     text-align: right;
+  }
+
+  [data-lang="en"] .section-copy--contact {
+    left: 12%;
+    width: 84%;
   }
 
   [data-lang="fa"] .section-copy--contact .section-list {
