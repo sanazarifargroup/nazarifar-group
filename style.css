@@ -1022,6 +1022,12 @@ a {
       linear-gradient(90deg, rgba(5, 4, 3, 0.16), transparent 76%);
   }
 
+  [data-lang="en"] .scene__shade--contact {
+    background:
+      linear-gradient(90deg, rgba(30, 20, 12, 0.82) 0%, rgba(27, 18, 11, 0.68) 54%, rgba(18, 12, 8, 0.3) 76%, transparent 100%),
+      linear-gradient(180deg, rgba(5, 4, 3, 0.28), transparent 38%, rgba(5, 4, 3, 0.76));
+  }
+
   .scene__shade--machine {
     background:
       linear-gradient(180deg, rgba(5, 4, 3, 0.48), rgba(5, 4, 3, 0.38) 42%, rgba(5, 4, 3, 0.72));
