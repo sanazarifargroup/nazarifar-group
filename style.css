@@ -1,4 +1,10 @@
-@import url("https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/Vazirmatn-Variable-font-face.css");
+@font-face {
+  font-family: "Estedad";
+  src: url("./assets/estedad-arabic-wght-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
 
 :root {
   color-scheme: dark;
@@ -711,13 +717,18 @@ a {
 
 [data-lang="fa"] .section-copy,
 [data-lang="fa"] .navigation button:not(.language) {
-  font-family: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+  font-family: "Estedad", "Segoe UI", Tahoma, sans-serif;
   letter-spacing: 0;
 }
 
 [data-lang="fa"] .section-title {
+  font-size: clamp(28px, calc(2.8vw - 2px), 44px);
   font-weight: 350;
   line-height: 1.22;
+}
+
+[data-lang="fa"] .section-intro {
+  font-size: clamp(11px, calc(0.95vw - 2px), 13px);
 }
 
 [data-lang="fa"] .section-list {
@@ -729,9 +740,14 @@ a {
 [data-lang="fa"] .section-list li {
   width: 100%;
   justify-self: stretch;
+  font-size: clamp(11px, calc(0.96vw - 2px), 13px);
   font-weight: 350;
   line-height: 1.65;
   text-align: right;
+}
+
+[data-lang="fa"] .contact-label {
+  font-size: 8px;
 }
 
 [data-lang="fa"] .scene__picture {
@@ -799,6 +815,10 @@ a {
 [data-lang="fa"] .navigation button {
   direction: rtl;
   text-align: right;
+}
+
+[data-lang="fa"] .navigation button:not(.language) {
+  font-size: 10.5px;
 }
 
 [data-lang="fa"] .navigation {
@@ -887,6 +907,10 @@ a {
     text-shadow: 0 2px 18px rgba(0, 0, 0, 0.58);
   }
 
+  [data-lang="fa"] .section-title {
+    font-size: clamp(22px, calc(7.4vw - 2px), 30px);
+  }
+
   .section-list {
     gap: 10px;
   }
@@ -897,6 +921,10 @@ a {
     line-height: 1.48;
     letter-spacing: 0.035em;
     text-shadow: 0 2px 16px rgba(0, 0, 0, 0.62);
+  }
+
+  [data-lang="fa"] .section-list li {
+    font-size: 9.5px;
   }
 
   .section-list li[data-level="1"] {
@@ -974,6 +1002,10 @@ a {
     line-height: 1.6;
   }
 
+  [data-lang="fa"] .section-copy--contact .section-intro {
+    font-size: 9.5px;
+  }
+
   .section-copy--contact .section-list {
     width: min(100%, 360px);
     margin: 0;
@@ -993,6 +1025,10 @@ a {
   .contact-label {
     color: rgba(255, 251, 245, 0.76);
     font-size: 8.5px;
+  }
+
+  [data-lang="fa"] .contact-label {
+    font-size: 6.5px;
   }
 
   .contact-value {
@@ -1188,6 +1224,7 @@ a {
 
   [data-lang="fa"] .navigation button:not(.language) {
     direction: rtl;
+    font-size: 9px;
     text-align: right;
     justify-content: flex-start;
   }
