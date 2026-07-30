@@ -833,7 +833,7 @@ a {
 }
 
 @media (max-width: 700px) {
-  .scene__picture {
+  .scene__picture--contact {
     transform: scaleX(-1);
   }
 
