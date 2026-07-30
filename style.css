@@ -1033,6 +1033,24 @@ a {
     filter: saturate(0.8) contrast(1.08) brightness(0.78);
   }
 
+  .scene__shade--contact::after {
+    position: absolute;
+    top: -2%;
+    bottom: -2%;
+    left: 45%;
+    width: 120px;
+    background: transparent;
+    backdrop-filter: blur(60px);
+    content: "";
+    mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent);
+    transform: translateX(-50%);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent);
+  }
+
+  [data-lang="fa"] .scene__shade--contact::after {
+    left: 89%;
+  }
+
   .scene__shade--machine {
     background:
       linear-gradient(180deg, rgba(5, 4, 3, 0.48), rgba(5, 4, 3, 0.38) 42%, rgba(5, 4, 3, 0.72));
