@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f1ed" />
+    <title>پروژه‌ها — گروه نظری‌فر</title>
+    <link rel="stylesheet" href="archive.css?v=3" />
+  </head>
+  <body data-lang="fa">
+    <header class="header">
+      <a class="brand" href="/architecture/" aria-label="بازگشت به معماری">
+        <span class="brand__crop"><img src="../../../assets/na-logo-transparent.png" alt="NA" /></span>
+        <span>Nazarifar Group</span>
+      </a>
+      <div class="header__side">
+        <a href="/architecture/" data-copy="back">معماری</a>
+        <button type="button" data-language>EN</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p data-copy="archive">آرشیو پروژه‌ها</p>
+          <h1 id="page-title" data-copy="title">دکوراسیون، بازسازی و تجهیز</h1>
+        </div>
+        <div class="categories" role="group" aria-label="دسته‌بندی پروژه‌ها">
+          <button class="is-active" type="button" data-category="residential" aria-pressed="true" data-copy="residential">مسکونی</button>
+          <button type="button" data-category="office" aria-pressed="false" data-copy="office">اداری</button>
+        </div>
+      </section>
+
+      <section class="project-list" aria-label="نمونه پروژه‌ها" data-projects></section>
+    </main>
+
+    <footer>
+      <span>NA / ARCHIVE</span>
+      <span data-copy="footer">پروژه‌های منتخب</span>
+    </footer>
+    <script src="archive.js?v=3"></script>
+  </body>
+</html>

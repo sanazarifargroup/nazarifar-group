@@ -1,0 +1,265 @@
+const body = document.body;
+const parentSection = body.dataset.parent;
+const parentRoutes = {
+  architecture: "/architecture/",
+  supply: "/supply/",
+  services: "/services/",
+  "custom-machines": "/custom-machines/",
+};
+
+const copy = {
+  fa: {
+    brand: "Nazarifar Group",
+    title: body.dataset.titleFa,
+    numbers: ["۱", "۲", "۳", "۴"],
+    previousProject: "مورد قبلی",
+    nextProject: "مورد بعدی",
+    previousImage: "تصویر قبلی",
+    nextImage: "تصویر بعدی",
+    imageWord: "تصویر",
+    itemWord: parentSection === "architecture" ? "پروژه" : parentSection === "services" ? "خدمت" : parentSection === "custom-machines" ? "دستگاه" : "محصول",
+    navigation: { architecture: "معماری", supply: "تأمین و عرضه", services: "خدمات", "custom-machines": "ماشین‌آلات سفارشی", about: "درباره ما", contact: "تماس" },
+  },
+  en: {
+    brand: "Nazarifar Group",
+    title: body.dataset.titleEn,
+    numbers: ["1", "2", "3", "4"],
+    previousProject: "Previous item",
+    nextProject: "Next item",
+    previousImage: "Previous image",
+    nextImage: "Next image",
+    imageWord: "Image",
+    itemWord: parentSection === "architecture" ? "project" : parentSection === "services" ? "service" : parentSection === "custom-machines" ? "machine" : "product",
+    navigation: { architecture: "Architecture", supply: "Supply", services: "Services", "custom-machines": "Custom Machines", about: "About", contact: "Contact" },
+  },
+};
+
+const imagesBySection = {
+  architecture: [
+    "/assets/hero-renovation-ai-v5.png",
+    "/assets/hero-renovation-ai-v3.png",
+    "/assets/hero-renovation-ai-v2.png",
+    "/assets/architecture-desktop.webp",
+  ],
+  supply: [
+    "/assets/supply-desktop.webp",
+    "/assets/supply-mobile.webp",
+    "/supply.jpg",
+    "/assets/architecture-desktop.webp",
+  ],
+  services: [
+    "/assets/services-desktop.webp",
+    "/assets/services-mobile.webp",
+    "/services.jpg",
+    "/assets/architecture-desktop.webp",
+  ],
+  "custom-machines": [
+    "/assets/custom-machines-approved.b64",
+    "/assets/hero-renovation-ai-v2.png",
+    "/assets/hero-renovation-ai-v3.png",
+    "/assets/architecture-desktop.webp",
+  ],
+};
+
+const baseImages = imagesBySection[parentSection] || imagesBySection.architecture;
+const projectGalleries = Array.from({ length: 4 }, (_, projectIndex) =>
+  Array.from({ length: 3 }, (_, imageIndex) => baseImages[(projectIndex + imageIndex) % baseImages.length]),
+);
+
+body.dataset.showcasePage = "true";
+body.innerHTML = `
+  <header class="hero">
+    <div class="topbar">
+      <a class="brand" href="${parentRoutes[parentSection]}" aria-label="بازگشت">
+        <span class="brand__frame"><img src="/assets/na-logo-transparent.png" alt="NA" /></span>
+        <span class="brand__name" data-copy="brand">Nazarifar Group</span>
+      </a>
+      <button class="language" type="button" data-language>EN</button>
+    </div>
+    <div class="carousel" aria-label="انتخاب مورد" data-carousel tabindex="0">
+      <h1 class="carousel__title" data-copy="title"></h1>
+      <div class="carousel__display">
+        <button class="arrow arrow--previous" type="button" data-previous aria-label="مورد قبلی">&#8592;</button>
+        <div class="number-window"><div class="carousel__track" data-track>
+          <button class="slide" type="button" data-index="0">۱</button>
+          <button class="slide" type="button" data-index="1">۲</button>
+          <button class="slide" type="button" data-index="2">۳</button>
+          <button class="slide" type="button" data-index="3">۴</button>
+        </div></div>
+        <button class="arrow arrow--next" type="button" data-next aria-label="مورد بعدی">&#8594;</button>
+      </div>
+    </div>
+  </header>
+  <main class="viewer" aria-live="polite" data-viewer tabindex="0">
+    <img class="project-image" alt="" data-gallery-image fetchpriority="high" />
+    <button class="viewer__arrow viewer__arrow--previous" type="button" data-image-previous aria-label="تصویر قبلی">&#8592;</button>
+    <button class="viewer__arrow viewer__arrow--next" type="button" data-image-next aria-label="تصویر بعدی">&#8594;</button>
+    <span class="viewer__image-count" data-image-count>۱ / ۳</span>
+    <nav class="viewer__navigation" aria-label="ناوبری اصلی">
+      <a href="/architecture/" data-navigation="architecture"></a>
+      <a href="/supply/" data-navigation="supply"></a>
+      <a href="/services/" data-navigation="services"></a>
+      <a href="/custom-machines/" data-navigation="custom-machines"></a>
+      <a href="/about/" data-navigation="about"></a>
+      <a href="/contact/" data-navigation="contact"></a>
+    </nav>
+  </main>`;
+
+const carousel = document.querySelector("[data-carousel]");
+const track = document.querySelector("[data-track]");
+const slides = [...document.querySelectorAll("[data-index]")];
+const viewer = document.querySelector("[data-viewer]");
+const galleryImage = document.querySelector("[data-gallery-image]");
+const imageCount = document.querySelector("[data-image-count]");
+const imagePreviousButton = document.querySelector("[data-image-previous]");
+const imageNextButton = document.querySelector("[data-image-next]");
+const languageButton = document.querySelector("button[data-language]");
+const previousButton = document.querySelector("[data-previous]");
+const nextButton = document.querySelector("[data-next]");
+const brandFrame = document.querySelector(".brand__frame");
+const brandName = document.querySelector(".brand__name");
+let activeIndex = 0;
+let imageIndex = 0;
+let language = "fa";
+let dragStart = null;
+let imageDragStart = null;
+let wheelLock = false;
+let imageSwapTimer = null;
+let imageRequest = 0;
+
+try {
+  const saved = localStorage.getItem("nazarifar-language");
+  if (saved === "fa" || saved === "en") language = saved;
+} catch {}
+
+function centerActive() {
+  track.style.transform = `translate3d(${-activeIndex * 25}%, 0, 0)`;
+}
+
+function updateImageCount() {
+  imageCount.textContent = `${copy[language].numbers[imageIndex]} / ${copy[language].numbers[2]}`;
+}
+
+async function resolveImage(source) {
+  if (!source.endsWith(".b64")) return source;
+  const response = await fetch(source);
+  if (!response.ok) throw new Error("Image unavailable");
+  return (await response.text()).trim();
+}
+
+function showGalleryImage(animate = true) {
+  const request = ++imageRequest;
+  window.clearTimeout(imageSwapTimer);
+  if (animate) galleryImage.classList.add("is-changing");
+  imageSwapTimer = window.setTimeout(async () => {
+    try {
+      const source = await resolveImage(projectGalleries[activeIndex][imageIndex]);
+      if (request !== imageRequest) return;
+      galleryImage.src = source;
+      galleryImage.alt = language === "fa"
+        ? `${copy.fa.imageWord} ${copy.fa.numbers[imageIndex]} از ${copy.fa.itemWord} ${copy.fa.numbers[activeIndex]}`
+        : `${copy.en.imageWord} ${copy.en.numbers[imageIndex]} of ${copy.en.itemWord} ${copy.en.numbers[activeIndex]}`;
+    } finally {
+      requestAnimationFrame(() => galleryImage.classList.remove("is-changing"));
+    }
+  }, animate ? 170 : 0);
+  updateImageCount();
+}
+
+function selectImage(index) {
+  const total = projectGalleries[activeIndex].length;
+  imageIndex = (index + total) % total;
+  showGalleryImage();
+}
+
+function fitBrandName() {
+  brandName.style.transform = "none";
+  const naturalWidth = brandName.getBoundingClientRect().width;
+  const frameWidth = brandFrame.getBoundingClientRect().width;
+  if (naturalWidth > 0) brandName.style.transform = `scaleX(${frameWidth / naturalWidth})`;
+}
+
+function selectProject(index) {
+  activeIndex = Math.max(0, Math.min(slides.length - 1, index));
+  imageIndex = 0;
+  slides.forEach((slide, itemIndex) => slide.classList.toggle("is-active", itemIndex === activeIndex));
+  centerActive();
+  showGalleryImage();
+}
+
+function applyLanguage() {
+  const current = copy[language];
+  document.documentElement.lang = language;
+  document.documentElement.dir = language === "fa" ? "rtl" : "ltr";
+  body.dataset.language = language;
+  body.dataset.titleSize = current.title.length > 20 ? "long" : "short";
+  document.querySelectorAll("[data-copy]").forEach(element => element.textContent = current[element.dataset.copy]);
+  document.querySelectorAll("[data-navigation]").forEach(element => {
+    element.textContent = current.navigation[element.dataset.navigation];
+    element.classList.toggle("is-active", element.dataset.navigation === parentSection);
+  });
+  slides.forEach((slide, index) => slide.textContent = current.numbers[index]);
+  previousButton.setAttribute("aria-label", current.previousProject);
+  nextButton.setAttribute("aria-label", current.nextProject);
+  imagePreviousButton.setAttribute("aria-label", current.previousImage);
+  imageNextButton.setAttribute("aria-label", current.nextImage);
+  languageButton.textContent = language === "fa" ? "EN" : "FA";
+  document.title = `${current.title} — Nazarifar Group`;
+  requestAnimationFrame(centerActive);
+  requestAnimationFrame(fitBrandName);
+  showGalleryImage(false);
+}
+
+slides.forEach(slide => slide.addEventListener("click", () => selectProject(Number(slide.dataset.index))));
+previousButton.addEventListener("click", () => selectProject(activeIndex - 1));
+nextButton.addEventListener("click", () => selectProject(activeIndex + 1));
+imagePreviousButton.addEventListener("click", () => selectImage(imageIndex - 1));
+imageNextButton.addEventListener("click", () => selectImage(imageIndex + 1));
+
+carousel.addEventListener("wheel", event => {
+  const movement = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+  if (Math.abs(movement) < 6 || wheelLock) return;
+  event.preventDefault();
+  wheelLock = true;
+  selectProject(activeIndex + (movement > 0 ? 1 : -1));
+  window.setTimeout(() => { wheelLock = false; }, 520);
+}, { passive: false });
+
+carousel.addEventListener("pointerdown", event => { dragStart = event.clientX; carousel.setPointerCapture(event.pointerId); });
+carousel.addEventListener("pointerup", event => {
+  if (dragStart === null) return;
+  const movement = event.clientX - dragStart;
+  dragStart = null;
+  if (Math.abs(movement) > 38) selectProject(activeIndex + (movement < 0 ? 1 : -1));
+});
+carousel.addEventListener("keydown", event => {
+  if (event.key === "ArrowRight") selectProject(activeIndex + 1);
+  if (event.key === "ArrowLeft") selectProject(activeIndex - 1);
+});
+
+viewer.addEventListener("pointerdown", event => {
+  if (event.target.closest("button")) return;
+  imageDragStart = event.clientX;
+  viewer.setPointerCapture(event.pointerId);
+});
+viewer.addEventListener("pointerup", event => {
+  if (imageDragStart === null) return;
+  const movement = event.clientX - imageDragStart;
+  imageDragStart = null;
+  if (Math.abs(movement) > 38) selectImage(imageIndex + (movement < 0 ? 1 : -1));
+});
+viewer.addEventListener("keydown", event => {
+  if (event.key === "ArrowRight") selectImage(imageIndex + 1);
+  if (event.key === "ArrowLeft") selectImage(imageIndex - 1);
+});
+
+languageButton.addEventListener("click", () => {
+  language = language === "fa" ? "en" : "fa";
+  try { localStorage.setItem("nazarifar-language", language); } catch {}
+  applyLanguage();
+});
+
+window.addEventListener("resize", () => { centerActive(); fitBrandName(); });
+if (document.fonts?.ready) document.fonts.ready.then(fitBrandName);
+applyLanguage();
+selectProject(0);
