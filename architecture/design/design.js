@@ -1,17 +1,20 @@
 const copy = {
   fa: {
-    brand: "Nazarifar Group", title: "طراحی", numbers: ["۱"], total: "۳۲", previousImage: "تصویر قبلی", nextImage: "تصویر بعدی",
+    brand: "Nazarifar Group", title: "طراحی", numbers: ["۱", "۲", "۳", "۴"], total: "۳", previousImage: "تصویر قبلی", nextImage: "تصویر بعدی",
     navigation: { architecture: "طراحی و دکوراسیون داخلی", supply: "تأمین و عرضه", services: "خدمات", "custom-machines": "ماشین‌آلات سفارشی", about: "درباره ما", contact: "تماس" },
   },
   en: {
-    brand: "Nazarifar Group", title: "Design", numbers: ["1"], total: "32", previousImage: "Previous image", nextImage: "Next image",
+    brand: "Nazarifar Group", title: "Design", numbers: ["1", "2", "3", "4"], total: "3", previousImage: "Previous image", nextImage: "Next image",
     navigation: { architecture: "Interior Design & Decoration", supply: "Supply", services: "Services", "custom-machines": "Custom Machines", about: "About", contact: "Contact" },
   },
 };
 
-const projectGalleries = [[
-  ...Array.from({ length: 32 }, (_, index) => `../../assets/projects/پزشکان/${String(index + 1).padStart(2, "0")}.jpg`),
-]];
+const projectGalleries = [
+  ["../../assets/hero-renovation-ai-v5.png", "../../assets/hero-renovation-ai-v3.png", "../../assets/hero-renovation-ai-v2.png"],
+  ["../../assets/hero-renovation-ai-v3.png", "../../assets/architecture-desktop.png", "../../assets/hero-renovation-ai-v5.png"],
+  ["../../assets/hero-renovation-ai-v2.png", "../../assets/hero-renovation-ai-v5.png", "../../assets/architecture-desktop.png"],
+  ["../../assets/architecture-desktop.png", "../../assets/hero-renovation-ai-v2.png", "../../assets/hero-renovation-ai-v3.png"],
+];
 
 const body = document.body;
 const previewMode = body.dataset.preview || "design";
@@ -47,7 +50,7 @@ try {
 } catch {}
 
 function centerActive() {
-  track.style.transform = `translate3d(${-activeIndex * 100}%, 0, 0)`;
+  track.style.transform = `translate3d(${-activeIndex * 25}%, 0, 0)`;
 }
 
 function updateImageCount() {

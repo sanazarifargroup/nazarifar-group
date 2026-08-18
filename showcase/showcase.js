@@ -62,9 +62,19 @@ const imagesBySection = {
 };
 
 const baseImages = imagesBySection[parentSection] || imagesBySection.architecture;
-const projectGalleries = Array.from({ length: 4 }, (_, projectIndex) =>
-  Array.from({ length: 3 }, (_, imageIndex) => baseImages[(projectIndex + imageIndex) % baseImages.length]),
-);
+const configuredImages = (body.dataset.projectImages || "")
+  .split(",")
+  .map((image) => image.trim())
+  .filter(Boolean);
+const projectGalleries = configuredImages.length
+  ? [configuredImages]
+  : Array.from({ length: 4 }, (_, projectIndex) =>
+    Array.from({ length: 3 }, (_, imageIndex) => baseImages[(projectIndex + imageIndex) % baseImages.length]),
+  );
+const projectCount = projectGalleries.length;
+const slideMarkup = Array.from({ length: projectCount }, (_, index) =>
+  `<button class="slide" type="button" data-index="${index}">${index + 1}</button>`,
+).join("");
 
 body.dataset.showcasePage = "true";
 body.innerHTML = `
@@ -81,10 +91,7 @@ body.innerHTML = `
       <div class="carousel__display">
         <button class="arrow arrow--previous" type="button" data-previous aria-label="مورد قبلی">&#8592;</button>
         <div class="number-window"><div class="carousel__track" data-track>
-          <button class="slide" type="button" data-index="0">۱</button>
-          <button class="slide" type="button" data-index="1">۲</button>
-          <button class="slide" type="button" data-index="2">۳</button>
-          <button class="slide" type="button" data-index="3">۴</button>
+          ${slideMarkup}
         </div></div>
         <button class="arrow arrow--next" type="button" data-next aria-label="مورد بعدی">&#8594;</button>
       </div>
@@ -127,17 +134,29 @@ let wheelLock = false;
 let imageSwapTimer = null;
 let imageRequest = 0;
 
+if (projectCount === 1) {
+  track.style.width = "100%";
+  slides[0].style.flexBasis = "100%";
+  slides[0].style.width = "100%";
+  previousButton.hidden = true;
+  nextButton.hidden = true;
+}
+
 try {
   const saved = localStorage.getItem("nazarifar-language");
   if (saved === "fa" || saved === "en") language = saved;
 } catch {}
 
 function centerActive() {
-  track.style.transform = `translate3d(${-activeIndex * 25}%, 0, 0)`;
+  track.style.transform = `translate3d(${-activeIndex * (100 / projectCount)}%, 0, 0)`;
+}
+
+function numberText(index) {
+  return language === "fa" ? (index + 1).toLocaleString("fa-IR") : String(index + 1);
 }
 
 function updateImageCount() {
-  imageCount.textContent = `${copy[language].numbers[imageIndex]} / ${copy[language].numbers[2]}`;
+  imageCount.textContent = `${numberText(imageIndex)} / ${numberText(projectGalleries[activeIndex].length - 1)}`;
 }
 
 async function resolveImage(source) {
@@ -157,8 +176,8 @@ function showGalleryImage(animate = true) {
       if (request !== imageRequest) return;
       galleryImage.src = source;
       galleryImage.alt = language === "fa"
-        ? `${copy.fa.imageWord} ${copy.fa.numbers[imageIndex]} از ${copy.fa.itemWord} ${copy.fa.numbers[activeIndex]}`
-        : `${copy.en.imageWord} ${copy.en.numbers[imageIndex]} of ${copy.en.itemWord} ${copy.en.numbers[activeIndex]}`;
+        ? `${copy.fa.imageWord} ${numberText(imageIndex)} از ${copy.fa.itemWord} ${numberText(activeIndex)}`
+        : `${copy.en.imageWord} ${numberText(imageIndex)} of ${copy.en.itemWord} ${numberText(activeIndex)}`;
     } finally {
       requestAnimationFrame(() => galleryImage.classList.remove("is-changing"));
     }
@@ -198,7 +217,7 @@ function applyLanguage() {
     element.textContent = current.navigation[element.dataset.navigation];
     element.classList.toggle("is-active", element.dataset.navigation === parentSection);
   });
-  slides.forEach((slide, index) => slide.textContent = current.numbers[index]);
+  slides.forEach((slide, index) => { slide.textContent = numberText(index); });
   previousButton.setAttribute("aria-label", current.previousProject);
   nextButton.setAttribute("aria-label", current.nextProject);
   imagePreviousButton.setAttribute("aria-label", current.previousImage);

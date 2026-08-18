@@ -30,8 +30,8 @@ button { font: inherit; }
 .arrow--previous:hover { transform: translateX(-4px); }
 .arrow--next:hover { transform: translateX(4px); }
 .number-window { width: 1.05em; overflow: hidden; }
-.carousel__track { display: flex; width: 100%; will-change: transform; transition: transform 820ms var(--ease); }
-.slide { flex: 0 0 100%; width: 100%; padding: 0; border: 0; background: transparent; color: rgba(240, 237, 231, .16); cursor: pointer; font: inherit; line-height: 1; text-align: center; transition: color 500ms ease, transform 650ms var(--ease); }
+.carousel__track { display: flex; width: 400%; will-change: transform; transition: transform 820ms var(--ease); }
+.slide { flex: 0 0 25%; width: 25%; padding: 0; border: 0; background: transparent; color: rgba(240, 237, 231, .16); cursor: pointer; font: inherit; line-height: 1; text-align: center; transition: color 500ms ease, transform 650ms var(--ease); }
 .slide.is-active { color: var(--white); transform: scale(1.04); }
 .slide:focus-visible { color: var(--white); outline: 0; }
 .viewer { position: relative; height: 78.3svh; overflow: hidden; background: #15120f; }

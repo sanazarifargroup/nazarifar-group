@@ -1,0 +1,124 @@
+@font-face {
+  font-family: "Nazari Base";
+  src: url("../assets/estedad-arabic-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --black: #090909;
+  --paper: #f0e9df;
+  --muted: rgba(240, 233, 223, .48);
+  --hairline: rgba(240, 233, 223, .16);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  min-height: 100svh;
+  overflow-x: hidden;
+  background: var(--black);
+  color: var(--paper);
+  font-family: "Nazari Base", Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 26px 3.6vw 0;
+  pointer-events: none;
+}
+.brand { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; pointer-events: auto; }
+.brand__frame { position: relative; width: 82px; aspect-ratio: 1.9 / 1; overflow: hidden; }
+.brand__frame img { position: absolute; top: -45%; left: -18%; width: 135%; }
+.brand__name { font-size: 8px; }
+.label { margin: 8px 0 0; color: var(--muted); font-size: 10px; font-weight: 350; }
+
+main { min-height: 100svh; padding: 17svh 3.6vw 7svh; }
+.introduction { display: grid; grid-template-columns: 1fr minmax(280px, 40vw); column-gap: 4vw; align-items: end; margin-bottom: 8svh; }
+.eyebrow { margin: 0; color: var(--muted); font-size: 10px; font-weight: 350; }
+.introduction h1 { grid-column: 2; margin: 0; font-size: clamp(19px, 2vw, 30px); font-weight: 320; line-height: 1.35; }
+.description { grid-column: 2; max-width: 39em; margin: 12px 0 0; color: var(--muted); font-size: clamp(10px, .85vw, 13px); font-weight: 320; line-height: 1.9; }
+
+.specimens { border-top: 1px solid var(--hairline); }
+.specimen {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  min-height: 12svh;
+  border-bottom: 1px solid var(--hairline);
+}
+.number { direction: ltr; color: var(--muted); font-family: Arial, sans-serif; font-size: 9px; letter-spacing: .12em; }
+
+.word {
+  position: relative;
+  justify-self: end;
+  width: max-content;
+  color: transparent;
+  background: linear-gradient(105deg, #fff8ee 0%, #e8d8c9 54%, #fffaf2 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-family: "Nazari Base", Tahoma, sans-serif;
+  font-size: clamp(22px, 2.5vw, 38px);
+  font-variation-settings: "wght" 285;
+  font-weight: 285;
+  line-height: .9;
+  white-space: nowrap;
+  transform: scaleX(1.045);
+  transform-origin: right center;
+  text-rendering: geometricPrecision;
+}
+
+.specimens--english { direction: ltr; }
+.specimens--english .word {
+  justify-self: start;
+  font-family: "Segoe UI Variable Display", "Segoe UI Light", "Avenir Next Ultra Light", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(21px, 2.35vw, 36px);
+  font-weight: 250;
+  letter-spacing: .045em;
+  transform: scaleX(1.025);
+  transform-origin: left center;
+}
+.specimens--english .word::after {
+  display: none;
+}
+
+/* The short diagonal terminal borrows the logo's cut without altering its locked form. */
+.word::after {
+  position: absolute;
+  left: -.02em;
+  bottom: .08em;
+  width: .21em;
+  height: .075em;
+  background: var(--paper);
+  clip-path: polygon(0 0, 100% 0, 72% 100%, 0 100%);
+  transform: rotate(-11deg);
+  transform-origin: left center;
+  content: "";
+  opacity: .96;
+}
+.word--design::after { left: .015em; }
+.word--architecture::after { left: -.035em; width: .18em; }
+.word--renovation::after { left: -.02em; width: .2em; }
+
+@media (max-width: 700px) {
+  .topbar { padding: 20px 5vw 0; }
+  .brand__frame { width: 68px; }
+  .label { margin-top: 5px; font-size: 8px; }
+  main { padding: 16svh 5vw 5svh; }
+  .introduction { display: block; margin-bottom: 7svh; }
+  .eyebrow { margin-bottom: 9px; }
+  .description { max-width: 27em; }
+  .specimen { grid-template-columns: 34px 1fr; min-height: 13svh; }
+  .number { font-size: 8px; }
+  .word { font-size: clamp(21px, 7vw, 32px); transform: scaleX(1.02); }
+  .specimens--english .word { font-size: clamp(20px, 6vw, 28px); letter-spacing: .04em; transform: scaleX(1.015); }
+}
