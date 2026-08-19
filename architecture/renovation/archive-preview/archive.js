@@ -13,7 +13,7 @@ const projects = {
 
 const copy = {
   fa: { back: "معماری", archive: "آرشیو پروژه‌ها", title: "دکوراسیون، بازسازی و تجهیز", residential: "مسکونی", office: "اداری", footer: "پروژه‌های منتخب", view: "مشاهدهٔ پروژه" },
-  en: { back: "Architecture", archive: "Project Archive", title: "Interior Design, Renovation & Fit-Out", residential: "Residential", office: "Office", footer: "Selected Projects", view: "View project" },
+  en: { back: "Architecture", archive: "Project Archive", title: "Decoration, Renovation & Fit-Out", residential: "Residential", office: "Office", footer: "Selected Projects", view: "View project" },
 };
 
 let language = "fa";

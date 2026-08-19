@@ -12,6 +12,7 @@ const copy = {
     brand: "Nazarifar Group",
     title: body.dataset.titleFa,
     itemName: body.dataset.itemNameFa || "",
+    itemNames: (body.dataset.itemNamesFa || body.dataset.itemNameFa || "").split("|").filter(Boolean),
     numbers: ["۱", "۲", "۳", "۴"],
     previousProject: "مورد قبلی",
     nextProject: "مورد بعدی",
@@ -25,6 +26,7 @@ const copy = {
     brand: "Nazarifar Group",
     title: body.dataset.titleEn,
     itemName: body.dataset.itemNameEn || "",
+    itemNames: (body.dataset.itemNamesEn || body.dataset.itemNameEn || "").split("|").filter(Boolean),
     numbers: ["1", "2", "3", "4"],
     previousProject: "Previous item",
     nextProject: "Next item",
@@ -40,7 +42,13 @@ const configuredImages = (body.dataset.projectImages || "")
   .split(",")
   .map((image) => image.trim())
   .filter(Boolean);
-const projectGalleries = configuredImages.length ? [configuredImages] : [];
+const configuredGalleries = (body.dataset.projectGalleries || "")
+  .split("|")
+  .map((gallery) => gallery.split(",").map((image) => image.trim()).filter(Boolean))
+  .filter((gallery) => gallery.length);
+const projectGalleries = configuredGalleries.length
+  ? configuredGalleries
+  : configuredImages.length ? [configuredImages] : [];
 const projectCount = projectGalleries.length;
 const slideMarkup = Array.from({ length: projectCount }, (_, index) =>
   `<button class="slide" type="button" data-index="${index}">${index + 1}</button>`,
@@ -59,7 +67,7 @@ body.innerHTML = `
     </div>
     <div class="carousel" aria-label="انتخاب مورد" data-carousel tabindex="0">
       <h1 class="carousel__title" data-copy="title"></h1>
-      <p class="carousel__item-name" data-item-name${body.dataset.itemNameFa || body.dataset.itemNameEn ? "" : " hidden"}></p>
+      <p class="carousel__item-name" data-item-name${body.dataset.itemNameFa || body.dataset.itemNameEn || body.dataset.itemNamesFa || body.dataset.itemNamesEn ? "" : " hidden"}></p>
       <div class="carousel__display">
         <button class="arrow arrow--previous" type="button" data-previous aria-label="مورد قبلی"${projectCount ? "" : " hidden"}>&#8592;</button>
         <div class="number-window"><div class="carousel__track" data-track>
@@ -107,12 +115,15 @@ let wheelLock = false;
 let imageSwapTimer = null;
 let imageRequest = 0;
 
+if (projectCount) {
+  track.style.width = `${projectCount * 100}%`;
+  slides.forEach((slide) => {
+    slide.style.flexBasis = `${100 / projectCount}%`;
+    slide.style.width = `${100 / projectCount}%`;
+  });
+}
+
 if (projectCount <= 1) {
-  track.style.width = "100%";
-  if (slides[0]) {
-    slides[0].style.flexBasis = "100%";
-    slides[0].style.width = "100%";
-  }
   previousButton.hidden = true;
   nextButton.hidden = true;
 }
@@ -180,11 +191,18 @@ function fitBrandName() {
 
 function selectProject(index) {
   if (!projectCount) return;
-  activeIndex = Math.max(0, Math.min(slides.length - 1, index));
+  activeIndex = (index + projectCount) % projectCount;
   imageIndex = 0;
   slides.forEach((slide, itemIndex) => slide.classList.toggle("is-active", itemIndex === activeIndex));
   centerActive();
+  updateItemName();
   showGalleryImage();
+}
+
+function updateItemName() {
+  if (!itemName) return;
+  const current = copy[language];
+  itemName.textContent = current.itemNames[activeIndex] || current.itemName;
 }
 
 function applyLanguage() {
@@ -194,7 +212,7 @@ function applyLanguage() {
   body.dataset.language = language;
   body.dataset.titleSize = current.title.length > 20 ? "long" : "short";
   document.querySelectorAll("[data-copy]").forEach(element => element.textContent = current[element.dataset.copy]);
-  if (itemName) itemName.textContent = current.itemName;
+  updateItemName();
   document.querySelectorAll("[data-navigation]").forEach(element => {
     element.textContent = current.navigation[element.dataset.navigation];
     element.classList.toggle("is-active", element.dataset.navigation === parentSection);
@@ -226,7 +244,11 @@ carousel.addEventListener("wheel", event => {
   window.setTimeout(() => { wheelLock = false; }, 520);
 }, { passive: false });
 
-carousel.addEventListener("pointerdown", event => { dragStart = event.clientX; carousel.setPointerCapture(event.pointerId); });
+carousel.addEventListener("pointerdown", event => {
+  if (event.target.closest("button")) return;
+  dragStart = event.clientX;
+  carousel.setPointerCapture(event.pointerId);
+});
 carousel.addEventListener("pointerup", event => {
   if (dragStart === null) return;
   const movement = event.clientX - dragStart;

@@ -137,8 +137,8 @@ Object.assign(content.fa, {
 });
 
 Object.assign(content.en, {
-  renovation: "Interior Design, Renovation & Fit-Out",
-  title: "Interior Design, Renovation & Fit-Out",
+  renovation: "Decoration, Renovation & Fit-Out",
+  title: "Decoration, Renovation & Fit-Out",
   approachText: "After reviewing the project conditions, tailored solutions are presented and the 3D design is developed. Once approved, our team manages material procurement and full project execution.",
 });
 
@@ -167,7 +167,7 @@ function applyLanguage() {
 
   document.title = language === "fa"
     ? "دکوراسیون، بازسازی و تجهیز — گروه نظری‌فر"
-    : "Interior Design, Renovation & Fit-Out — Nazarifar Group";
+    : "Decoration, Renovation & Fit-Out — Nazarifar Group";
 
   translatable.forEach((element) => {
     const key = element.dataset.i18n;

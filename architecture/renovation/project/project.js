@@ -11,7 +11,7 @@ const copy = {
     },
   },
   en: {
-    title: "Interior Design, Renovation & Fit-Out",
+    title: "Decoration, Renovation & Fit-Out",
     navigation: {
       architecture: "Interior Design & Decoration",
       supply: "Supply",
