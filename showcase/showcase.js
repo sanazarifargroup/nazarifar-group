@@ -11,6 +11,7 @@ const copy = {
   fa: {
     brand: "Nazarifar Group",
     title: body.dataset.titleFa,
+    itemName: body.dataset.itemNameFa || "",
     numbers: ["۱", "۲", "۳", "۴"],
     previousProject: "مورد قبلی",
     nextProject: "مورد بعدی",
@@ -18,11 +19,12 @@ const copy = {
     nextImage: "تصویر بعدی",
     imageWord: "تصویر",
     itemWord: parentSection === "architecture" ? "پروژه" : parentSection === "services" ? "خدمت" : parentSection === "custom-machines" ? "دستگاه" : "محصول",
-    navigation: { architecture: "معماری", supply: "تأمین و عرضه", services: "خدمات", "custom-machines": "ماشین‌آلات سفارشی", about: "درباره ما", contact: "تماس" },
+    navigation: { architecture: "طراحی و دکوراسیون داخلی", supply: "تأمین و عرضه", services: "خدمات", "custom-machines": "ماشین‌آلات سفارشی", about: "درباره ما", contact: "تماس" },
   },
   en: {
     brand: "Nazarifar Group",
     title: body.dataset.titleEn,
+    itemName: body.dataset.itemNameEn || "",
     numbers: ["1", "2", "3", "4"],
     previousProject: "Previous item",
     nextProject: "Next item",
@@ -30,53 +32,22 @@ const copy = {
     nextImage: "Next image",
     imageWord: "Image",
     itemWord: parentSection === "architecture" ? "project" : parentSection === "services" ? "service" : parentSection === "custom-machines" ? "machine" : "product",
-    navigation: { architecture: "Architecture", supply: "Supply", services: "Services", "custom-machines": "Custom Machines", about: "About", contact: "Contact" },
+    navigation: { architecture: "Interior Design & Decoration", supply: "Supply", services: "Services", "custom-machines": "Custom Machines", about: "About", contact: "Contact" },
   },
 };
 
-const imagesBySection = {
-  architecture: [
-    "/assets/hero-renovation-ai-v5.png",
-    "/assets/hero-renovation-ai-v3.png",
-    "/assets/hero-renovation-ai-v2.png",
-    "/assets/architecture-desktop.webp",
-  ],
-  supply: [
-    "/assets/supply-desktop.webp",
-    "/assets/supply-mobile.webp",
-    "/supply.jpg",
-    "/assets/architecture-desktop.webp",
-  ],
-  services: [
-    "/assets/services-desktop.webp",
-    "/assets/services-mobile.webp",
-    "/services.jpg",
-    "/assets/architecture-desktop.webp",
-  ],
-  "custom-machines": [
-    "/assets/custom-machines-approved.b64",
-    "/assets/hero-renovation-ai-v2.png",
-    "/assets/hero-renovation-ai-v3.png",
-    "/assets/architecture-desktop.webp",
-  ],
-};
-
-const baseImages = imagesBySection[parentSection] || imagesBySection.architecture;
 const configuredImages = (body.dataset.projectImages || "")
   .split(",")
   .map((image) => image.trim())
   .filter(Boolean);
-const projectGalleries = configuredImages.length
-  ? [configuredImages]
-  : Array.from({ length: 4 }, (_, projectIndex) =>
-    Array.from({ length: 3 }, (_, imageIndex) => baseImages[(projectIndex + imageIndex) % baseImages.length]),
-  );
+const projectGalleries = configuredImages.length ? [configuredImages] : [];
 const projectCount = projectGalleries.length;
 const slideMarkup = Array.from({ length: projectCount }, (_, index) =>
   `<button class="slide" type="button" data-index="${index}">${index + 1}</button>`,
 ).join("");
 
 body.dataset.showcasePage = "true";
+body.dataset.hasProjects = projectCount ? "true" : "false";
 body.innerHTML = `
   <header class="hero">
     <div class="topbar">
@@ -88,20 +59,21 @@ body.innerHTML = `
     </div>
     <div class="carousel" aria-label="انتخاب مورد" data-carousel tabindex="0">
       <h1 class="carousel__title" data-copy="title"></h1>
+      <p class="carousel__item-name" data-item-name${body.dataset.itemNameFa || body.dataset.itemNameEn ? "" : " hidden"}></p>
       <div class="carousel__display">
-        <button class="arrow arrow--previous" type="button" data-previous aria-label="مورد قبلی">&#8592;</button>
+        <button class="arrow arrow--previous" type="button" data-previous aria-label="مورد قبلی"${projectCount ? "" : " hidden"}>&#8592;</button>
         <div class="number-window"><div class="carousel__track" data-track>
           ${slideMarkup}
         </div></div>
-        <button class="arrow arrow--next" type="button" data-next aria-label="مورد بعدی">&#8594;</button>
+        <button class="arrow arrow--next" type="button" data-next aria-label="مورد بعدی"${projectCount ? "" : " hidden"}>&#8594;</button>
       </div>
     </div>
   </header>
   <main class="viewer" aria-live="polite" data-viewer tabindex="0">
-    <img class="project-image" alt="" data-gallery-image fetchpriority="high" />
-    <button class="viewer__arrow viewer__arrow--previous" type="button" data-image-previous aria-label="تصویر قبلی">&#8592;</button>
-    <button class="viewer__arrow viewer__arrow--next" type="button" data-image-next aria-label="تصویر بعدی">&#8594;</button>
-    <span class="viewer__image-count" data-image-count>۱ / ۳</span>
+    <img class="project-image" alt="" data-gallery-image fetchpriority="high"${projectCount ? "" : " hidden"} />
+    <button class="viewer__arrow viewer__arrow--previous" type="button" data-image-previous aria-label="تصویر قبلی"${projectCount ? "" : " hidden"}>&#8592;</button>
+    <button class="viewer__arrow viewer__arrow--next" type="button" data-image-next aria-label="تصویر بعدی"${projectCount ? "" : " hidden"}>&#8594;</button>
+    <span class="viewer__image-count" data-image-count${projectCount ? "" : " hidden"}></span>
     <nav class="viewer__navigation" aria-label="ناوبری اصلی">
       <a href="/architecture/" data-navigation="architecture"></a>
       <a href="/supply/" data-navigation="supply"></a>
@@ -121,6 +93,7 @@ const imageCount = document.querySelector("[data-image-count]");
 const imagePreviousButton = document.querySelector("[data-image-previous]");
 const imageNextButton = document.querySelector("[data-image-next]");
 const languageButton = document.querySelector("button[data-language]");
+const itemName = document.querySelector("[data-item-name]");
 const previousButton = document.querySelector("[data-previous]");
 const nextButton = document.querySelector("[data-next]");
 const brandFrame = document.querySelector(".brand__frame");
@@ -134,10 +107,12 @@ let wheelLock = false;
 let imageSwapTimer = null;
 let imageRequest = 0;
 
-if (projectCount === 1) {
+if (projectCount <= 1) {
   track.style.width = "100%";
-  slides[0].style.flexBasis = "100%";
-  slides[0].style.width = "100%";
+  if (slides[0]) {
+    slides[0].style.flexBasis = "100%";
+    slides[0].style.width = "100%";
+  }
   previousButton.hidden = true;
   nextButton.hidden = true;
 }
@@ -148,7 +123,9 @@ try {
 } catch {}
 
 function centerActive() {
-  track.style.transform = `translate3d(${-activeIndex * (100 / projectCount)}%, 0, 0)`;
+  track.style.transform = projectCount
+    ? `translate3d(${-activeIndex * (100 / projectCount)}%, 0, 0)`
+    : "none";
 }
 
 function numberText(index) {
@@ -156,6 +133,7 @@ function numberText(index) {
 }
 
 function updateImageCount() {
+  if (!projectCount) return;
   imageCount.textContent = `${numberText(imageIndex)} / ${numberText(projectGalleries[activeIndex].length - 1)}`;
 }
 
@@ -167,6 +145,7 @@ async function resolveImage(source) {
 }
 
 function showGalleryImage(animate = true) {
+  if (!projectCount) return;
   const request = ++imageRequest;
   window.clearTimeout(imageSwapTimer);
   if (animate) galleryImage.classList.add("is-changing");
@@ -186,6 +165,7 @@ function showGalleryImage(animate = true) {
 }
 
 function selectImage(index) {
+  if (!projectCount) return;
   const total = projectGalleries[activeIndex].length;
   imageIndex = (index + total) % total;
   showGalleryImage();
@@ -199,6 +179,7 @@ function fitBrandName() {
 }
 
 function selectProject(index) {
+  if (!projectCount) return;
   activeIndex = Math.max(0, Math.min(slides.length - 1, index));
   imageIndex = 0;
   slides.forEach((slide, itemIndex) => slide.classList.toggle("is-active", itemIndex === activeIndex));
@@ -213,6 +194,7 @@ function applyLanguage() {
   body.dataset.language = language;
   body.dataset.titleSize = current.title.length > 20 ? "long" : "short";
   document.querySelectorAll("[data-copy]").forEach(element => element.textContent = current[element.dataset.copy]);
+  if (itemName) itemName.textContent = current.itemName;
   document.querySelectorAll("[data-navigation]").forEach(element => {
     element.textContent = current.navigation[element.dataset.navigation];
     element.classList.toggle("is-active", element.dataset.navigation === parentSection);
@@ -281,4 +263,4 @@ languageButton.addEventListener("click", () => {
 window.addEventListener("resize", () => { centerActive(); fitBrandName(); });
 if (document.fonts?.ready) document.fonts.ready.then(fitBrandName);
 applyLanguage();
-selectProject(0);
+if (projectCount) selectProject(0);

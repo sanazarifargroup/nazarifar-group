@@ -23,6 +23,7 @@ button { font: inherit; }
 
 .carousel { position: absolute; inset: 0; overflow: hidden; cursor: ew-resize; outline: 0; touch-action: pan-y; }
 .carousel__title { position: absolute; left: 3.6vw; top: 68%; margin: 0; font-family: "Segoe UI Variable Display", "Segoe UI Light", "Avenir Next Ultra Light", "Helvetica Neue", Arial, sans-serif; font-size: clamp(27px, 4vw, 64px); font-weight: 250; line-height: 1; letter-spacing: .045em; transform: translateY(-50%) scaleX(1.025); transform-origin: left center; white-space: nowrap; }
+.carousel__item-name { position: absolute; top: 68%; right: 3.6vw; margin: 0; color: rgba(240, 237, 231, .84); font-size: clamp(12px, 1.1vw, 17px); font-weight: 350; line-height: 1; letter-spacing: .035em; transform: translateY(-50%); white-space: nowrap; }
 .carousel__display { position: absolute; top: 68%; left: 50%; display: flex; align-items: center; justify-content: center; gap: .5em; font-size: clamp(27px, 4vw, 64px); font-weight: 260; line-height: 1; transform: translate(-50%, -50%); }
 .arrow { display: grid; place-items: center; width: 1.7em; height: 1.7em; padding: 0; border: 0; background: transparent; color: rgba(240, 237, 231, .72); cursor: pointer; font-family: Arial, sans-serif; font-size: .49em; font-weight: 300; text-shadow: 0 2px 12px rgba(0, 0, 0, .48); transition: color 300ms ease, transform 400ms var(--ease); }
 .arrow:hover,
@@ -68,6 +69,7 @@ body[data-language="fa"] .topbar { flex-direction: row; }
 body[data-language="fa"] .brand { direction: ltr; align-items: flex-start; }
 body[data-language="fa"] .brand__name { letter-spacing: .08em; transform-origin: left center; }
 body[data-language="fa"] .carousel__title { right: 3.6vw; left: auto; font-family: "Estedad", "Segoe UI", Tahoma, sans-serif; font-size: clamp(25px, calc(4vw - 2px), 60px); font-weight: 320; letter-spacing: 0; transform: translateY(-50%); transform-origin: right center; }
+body[data-language="fa"] .carousel__item-name { right: auto; left: 3.6vw; font-family: "Estedad", "Segoe UI", Tahoma, sans-serif; font-size: clamp(10px, calc(1.1vw - 2px), 15px); font-weight: 330; letter-spacing: 0; }
 body[data-language="fa"] .carousel__display { direction: ltr; font-size: clamp(25px, calc(4vw - 2px), 60px); }
 body[data-language="fa"] .viewer__image-count { right: auto; left: 3.6vw; letter-spacing: 0; }
 body[data-language="fa"] .viewer__navigation { direction: rtl; justify-content: flex-start; }
@@ -82,7 +84,9 @@ body[data-showcase-page][data-language="fa"][data-title-size="long"] .carousel__
   .brand__frame { width: 68px; }
   .brand__name { font-size: 7px; }
   .carousel__title { left: 5vw; font-size: 28px; }
+  .carousel__item-name { right: 5vw; font-size: 11px; }
   body[data-language="fa"] .carousel__title { right: 5vw; left: auto; font-size: 25px; }
+  body[data-language="fa"] .carousel__item-name { right: auto; left: 5vw; font-size: 9px; }
   .carousel__display { font-size: 30px; }
   body[data-language="fa"] .carousel__display { font-size: 27px; }
   .viewer { height: 79svh; }
