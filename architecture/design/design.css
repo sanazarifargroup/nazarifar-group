@@ -22,7 +22,7 @@ button { font: inherit; }
 .language { min-width: 38px; padding: 7px 10px; border: 1px solid rgba(240, 237, 231, .28); border-radius: 999px; background: transparent; color: var(--white); cursor: pointer; font-size: 9px; letter-spacing: .08em; }
 
 .carousel { position: absolute; inset: 0; overflow: hidden; cursor: ew-resize; outline: 0; touch-action: pan-y; }
-.carousel__title { position: absolute; left: 3.6vw; top: 68%; margin: 0; font-family: "Segoe UI Variable Display", "Segoe UI Light", "Avenir Next Ultra Light", "Helvetica Neue", Arial, sans-serif; font-size: clamp(27px, 4vw, 64px); font-weight: 250; line-height: 1; letter-spacing: .045em; transform: translateY(-50%) scaleX(1.025); transform-origin: left center; white-space: nowrap; }
+.carousel__title { position: absolute; left: 3.6vw; top: 68%; margin: 0; font-family: "Segoe UI Variable Display", "Segoe UI Light", "Avenir Next Ultra Light", "Helvetica Neue", Arial, sans-serif; font-size: clamp(27px, 4vw, 64px); font-weight: 320; line-height: 1; letter-spacing: .045em; transform: translateY(-50%) scaleX(1.025); transform-origin: left center; white-space: nowrap; }
 .carousel__item-name { position: absolute; top: 68%; right: 3.6vw; margin: 0; color: rgba(240, 237, 231, .84); font-size: clamp(12px, 1.1vw, 17px); font-weight: 350; line-height: 1; letter-spacing: .035em; transform: translateY(-50%); white-space: nowrap; }
 .carousel__display { position: absolute; top: 68%; left: 50%; display: flex; align-items: center; justify-content: center; gap: .5em; font-size: clamp(27px, 4vw, 64px); font-weight: 260; line-height: 1; transform: translate(-50%, -50%); }
 .arrow { display: grid; place-items: center; width: 1.7em; height: 1.7em; padding: 0; border: 0; background: transparent; color: rgba(240, 237, 231, .72); cursor: pointer; font-family: Arial, sans-serif; font-size: .49em; font-weight: 300; text-shadow: 0 2px 12px rgba(0, 0, 0, .48); transition: color 300ms ease, transform 400ms var(--ease); }
@@ -78,6 +78,14 @@ body[data-language="fa"] .viewer__navigation a::after { transform-origin: right 
 body[data-showcase-page][data-title-size="long"] .carousel__title { max-width: 38vw; font-size: clamp(20px, 2.6vw, 42px); line-height: 1.14; white-space: normal; }
 body[data-showcase-page][data-language="fa"][data-title-size="long"] .carousel__title { font-size: clamp(18px, calc(2.6vw - 2px), 38px); }
 
+body[data-language="en"] .brand__name { font-size: 6px; }
+body[data-language="en"] .language { font-size: 7px; }
+body[data-language="en"] .carousel__title { font-size: clamp(25px, calc(4vw - 2px), 62px); }
+body[data-language="en"] .carousel__item-name { font-size: clamp(10px, calc(1.1vw - 2px), 15px); }
+body[data-language="en"] .viewer__navigation a { font-size: 9.5px; }
+body[data-language="en"][data-preview="machines"] .viewer__item-name { font-size: 10px; }
+body[data-showcase-page][data-language="en"][data-title-size="long"] .carousel__title { font-size: clamp(18px, calc(2.6vw - 2px), 40px); }
+
 @media (max-width: 700px) {
   .hero { min-height: 21svh; }
   .topbar { padding: max(18px, env(safe-area-inset-top)) 5vw 0; }
@@ -101,8 +109,14 @@ body[data-showcase-page][data-language="fa"][data-title-size="long"] .carousel__
   body[data-language="fa"] .viewer__navigation a { justify-self: start; font-size: 9.5px; }
   body[data-showcase-page][data-title-size="long"] .carousel__title { max-width: 42vw; font-size: 18px; line-height: 1.25; }
   body[data-showcase-page][data-language="fa"][data-title-size="long"] .carousel__title { font-size: 16px; }
+  body[data-language="en"] .brand__name { font-size: 5px; }
+  body[data-language="en"] .carousel__title { font-size: 26px; }
+  body[data-language="en"] .carousel__item-name { font-size: 9px; }
+  body[data-language="en"] .viewer__navigation a { font-size: 8.5px; }
+  body[data-showcase-page][data-language="en"][data-title-size="long"] .carousel__title { font-size: 16px; }
   body[data-preview="machines"] .viewer__navigation { min-height: 104px; padding: 27px 5vw max(7px, env(safe-area-inset-bottom)); }
   body[data-preview="machines"] .viewer__item-name { top: 11px; inset-inline-end: 5vw; font-size: 10px; }
+  body[data-language="en"][data-preview="machines"] .viewer__item-name { font-size: 8px; }
   body[data-preview="machines"] .viewer__arrow { bottom: 104px; }
   body[data-preview="machines"] .viewer__image-count { bottom: calc(104px + 18px); }
   .viewer__arrow { bottom: 86px; }
