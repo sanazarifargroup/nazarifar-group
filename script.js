@@ -10,8 +10,6 @@ const copy = {
     },
     architecture: {
       title: "Interior Design & Decoration",
-      intro:
-        "Every project begins with a precise understanding of space and its needs, then develops into a cohesive result. Design, interior decoration, renovation and fit-out, and bespoke timber elements are coordinated by one specialist team from the first idea through final delivery.",
       items: [
         { label: "Design", level: 0 },
         { label: "Renovation • Fit-Out", level: 0 },
@@ -20,7 +18,6 @@ const copy = {
     },
     supply: {
       title: "Supply",
-      intro: "Supply is managed through precise selection, technical coordination and dependable delivery, with quality and compatibility considered at every stage.",
       items: [
         { label: "Tiles & Flooring", level: 0 },
         { label: "Wood & MDF", level: 0 },
@@ -37,7 +34,6 @@ const copy = {
     },
     services: {
       title: "Services",
-      intro: "Our services bring specialist teams, planned care and responsive support together to protect the quality and continuity of every space.",
       items: [
         { label: "Scheduled Services", level: 0 },
         { label: "Maintenance Contract", level: 0 },
@@ -46,7 +42,6 @@ const copy = {
     },
     "custom-machines": {
       title: "Custom Machines",
-      intro: "Custom machines are developed from a precise understanding of the requirement through engineering, fabrication and testing, with every detail shaped around its intended use.",
       items: [
         { label: "Laboratory Equipment", level: 0 },
         { label: "Vending Machines", level: 0 },
@@ -101,7 +96,6 @@ const copy = {
     },
     supply: {
       title: "تأمین و عرضه",
-      intro: "تأمین و عرضه با انتخاب دقیق، هماهنگی فنی و تحویل مطمئن انجام می‌شود تا کیفیت و تناسب هر محصول با نیاز پروژه در تمام مراحل حفظ شود.",
       items: [
         { label: "سرامیک، اسلب و پوشش‌های کف", level: 0 },
         { label: "چوب و ام‌دی‌اف", level: 0 },
@@ -118,7 +112,6 @@ const copy = {
     },
     services: {
       title: "خدمات",
-      intro: "خدمات ما با تکیه بر تیم‌های تخصصی، برنامه‌ریزی منظم و پاسخ‌گویی دقیق، برای حفظ کیفیت و تداوم عملکرد فضا ارائه می‌شود.",
       items: [
         { label: "سرویس‌های دوره‌ای", level: 0 },
         { label: "قرارداد تعمیر و نگهداری", level: 0 },
@@ -127,7 +120,6 @@ const copy = {
     },
     "custom-machines": {
       title: "\u0645\u0627\u0634\u06cc\u0646\u200c\u0622\u0644\u0627\u062a \u0633\u0641\u0627\u0631\u0634\u06cc",
-      intro: "ماشین‌آلات سفارشی از شناخت دقیق نیاز تا مهندسی، ساخت و آزمون توسعه می‌یابند و هر جزئیات متناسب با کاربرد نهایی شکل می‌گیرد.",
       items: [
         { label: "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647\u06cc", level: 0 },
         { label: "\u062f\u0633\u062a\u06af\u0627\u0647\u200c\u0647\u0627\u06cc \u0641\u0631\u0648\u0634 \u062e\u0648\u062f\u06a9\u0627\u0631", level: 0 },
@@ -172,8 +164,6 @@ const copy = {
     },
   },
 };
-
-copy.fa.architecture.intro = "هر پروژه از شناخت دقیق فضا و نیازهای آن آغاز می‌شود و تا شکل‌گیری نتیجه‌ای یکپارچه ادامه می‌یابد. طراحی، دکوراسیون داخلی، بازسازی و تجهیز و ساخت اجزای چوبی، از نخستین ایده تا اجرای نهایی، با هماهنگی یک تیم تخصصی انجام می‌شود.";
 
 const routeByScene = {
   holding: "/",
