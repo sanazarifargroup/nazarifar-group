@@ -861,7 +861,7 @@ a {
 }
 
 [data-lang="fa"] .contact-label {
-  font-size: 8px;
+  font-size: 10px;
 }
 
 [data-lang="fa"] .scene__picture {
@@ -952,7 +952,7 @@ a {
 }
 
 [data-lang="en"] .contact-label {
-  font-size: 8px;
+  font-size: 10px;
 }
 
 [data-lang="en"] .navigation button:not(.language) {
@@ -1209,11 +1209,11 @@ a {
   }
 
   [data-lang="fa"] .contact-label {
-    font-size: 6.5px;
+    font-size: 8.5px;
   }
 
   [data-lang="en"] .contact-label {
-    font-size: 6.5px;
+    font-size: 8.5px;
   }
 
   .contact-value {
