@@ -50,6 +50,7 @@ const projectGalleries = configuredGalleries.length
   ? configuredGalleries
   : configuredImages.length ? [configuredImages] : [];
 const projectCount = projectGalleries.length;
+const languageAtPageBottom = body.dataset.titlePlacement === "top-opposite";
 const slideMarkup = Array.from({ length: projectCount }, (_, index) =>
   `<button class="slide" type="button" data-index="${index}">${index + 1}</button>`,
 ).join("");
@@ -63,7 +64,7 @@ body.innerHTML = `
         <span class="brand__frame"><img src="/assets/na-logo-transparent.png" alt="NA" /></span>
         <span class="brand__name" data-copy="brand">Nazarifar Group</span>
       </a>
-      <button class="language" type="button" data-language>EN</button>
+      ${languageAtPageBottom ? "" : '<button class="language" type="button" data-language>EN</button>'}
     </div>
     <div class="carousel" aria-label="انتخاب مورد" data-carousel tabindex="0">
       <h1 class="carousel__title" data-copy="title"></h1>
@@ -90,7 +91,8 @@ body.innerHTML = `
       <a href="/about/" data-navigation="about"></a>
       <a href="/contact/" data-navigation="contact"></a>
     </nav>
-  </main>`;
+  </main>
+  ${languageAtPageBottom ? '<button class="language language--page-bottom" type="button" data-language>EN</button>' : ""}`;
 
 const carousel = document.querySelector("[data-carousel]");
 const track = document.querySelector("[data-track]");

@@ -86,6 +86,11 @@ body[data-language="en"][data-preview="machines"] .viewer__item-name { font-size
 body[data-showcase-page][data-language="en"][data-title-size="long"] .carousel__title { font-size: clamp(18px, calc(2.6vw - 2px), 40px); }
 body[data-item-name-size="large"][data-language="fa"] .carousel__item-name,
 body[data-item-name-size="large"][data-language="en"] .carousel__item-name { font-size: clamp(12px, 1.1vw, 17px); }
+body[data-title-placement="top-opposite"] .language { position: fixed; top: auto; right: 3.6vw; bottom: 11px; left: auto; z-index: 20; transform: none; }
+body[data-title-placement="top-opposite"][data-language="fa"] .language { right: auto; left: 3.6vw; }
+body[data-title-placement="top-opposite"] .viewer__navigation { padding-inline-end: calc(3.6vw + 70px); }
+body[data-title-placement="top-opposite"] .carousel__title { top: calc(max(24px, env(safe-area-inset-top)) + 43px); right: 3.6vw; left: auto; z-index: 4; max-width: 40vw; font-size: clamp(14px, 1.25vw, 20px); font-weight: 380; line-height: 1.2; text-align: right; letter-spacing: .04em; transform: none; white-space: nowrap; pointer-events: none; }
+body[data-title-placement="top-opposite"][data-language="fa"] .carousel__title { right: auto; left: 3.6vw; max-width: 40vw; font-size: clamp(13px, calc(1.25vw - 1px), 19px); text-align: left; letter-spacing: 0; transform: none; white-space: nowrap; }
 
 @media (max-width: 700px) {
   .hero { min-height: 21svh; }
@@ -116,6 +121,13 @@ body[data-item-name-size="large"][data-language="en"] .carousel__item-name { fon
   body[data-showcase-page][data-language="en"][data-title-size="long"] .carousel__title { font-size: 16px; }
   body[data-item-name-size="large"][data-language="fa"] .carousel__item-name,
   body[data-item-name-size="large"][data-language="en"] .carousel__item-name { font-size: 11px; }
+  body[data-title-placement="top-opposite"] .language { top: auto; right: 5vw; bottom: max(8px, env(safe-area-inset-bottom)); left: auto; }
+  body[data-title-placement="top-opposite"][data-language="fa"] .language { right: auto; left: 5vw; }
+  body[data-title-placement="top-opposite"] .viewer__navigation { min-height: 112px; padding: 7px 5vw max(32px, calc(env(safe-area-inset-bottom) + 24px)); }
+  body[data-title-placement="top-opposite"] .viewer__arrow { bottom: 112px; }
+  body[data-title-placement="top-opposite"] .viewer__image-count { bottom: calc(112px + 18px); }
+  body[data-title-placement="top-opposite"] .carousel__title { top: calc(max(18px, env(safe-area-inset-top)) + 38px); right: 5vw; left: auto; max-width: 43vw; font-size: 13px; line-height: 1.25; text-align: right; white-space: normal; }
+  body[data-title-placement="top-opposite"][data-language="fa"] .carousel__title { right: auto; left: 5vw; max-width: 43vw; font-size: 12px; text-align: left; white-space: normal; }
   body[data-preview="machines"] .viewer__navigation { min-height: 104px; padding: 27px 5vw max(7px, env(safe-area-inset-bottom)); }
   body[data-preview="machines"] .viewer__item-name { top: 11px; inset-inline-end: 5vw; font-size: 10px; }
   body[data-language="en"][data-preview="machines"] .viewer__item-name { font-size: 8px; }
