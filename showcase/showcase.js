@@ -18,6 +18,7 @@ const copy = {
     nextProject: "مورد بعدی",
     previousImage: "تصویر قبلی",
     nextImage: "تصویر بعدی",
+    loadingImage: "در حال بارگذاری تصویر…",
     imageWord: "تصویر",
     itemWord: parentSection === "architecture" ? "پروژه" : parentSection === "services" ? "خدمت" : parentSection === "custom-machines" ? "دستگاه" : "محصول",
     navigation: { architecture: "طراحی و دکوراسیون داخلی", supply: "تأمین و عرضه", services: "خدمات", "custom-machines": "ماشین‌آلات سفارشی", about: "درباره ما", contact: "تماس" },
@@ -32,6 +33,7 @@ const copy = {
     nextProject: "Next item",
     previousImage: "Previous image",
     nextImage: "Next image",
+    loadingImage: "Loading image…",
     imageWord: "Image",
     itemWord: parentSection === "architecture" ? "project" : parentSection === "services" ? "service" : parentSection === "custom-machines" ? "machine" : "product",
     navigation: { architecture: "Interior Design & Decoration", supply: "Supply", services: "Services", "custom-machines": "Custom Machines", about: "About", contact: "Contact" },
@@ -80,6 +82,10 @@ body.innerHTML = `
   </header>
   <main class="viewer" aria-live="polite" data-viewer tabindex="0">
     <img class="project-image" alt="" data-gallery-image fetchpriority="high"${projectCount ? "" : " hidden"} />
+    <div class="viewer__loading" data-image-loading role="status" aria-live="polite" aria-hidden="true">
+      <span class="viewer__loading-spinner" aria-hidden="true"></span>
+      <span class="viewer__loading-text" data-loading-text></span>
+    </div>
     <button class="viewer__arrow viewer__arrow--previous" type="button" data-image-previous aria-label="تصویر قبلی"${projectCount ? "" : " hidden"}>&#8592;</button>
     <button class="viewer__arrow viewer__arrow--next" type="button" data-image-next aria-label="تصویر بعدی"${projectCount ? "" : " hidden"}>&#8594;</button>
     <span class="viewer__image-count" data-image-count${projectCount ? "" : " hidden"}></span>
@@ -102,6 +108,8 @@ const galleryImage = document.querySelector("[data-gallery-image]");
 const imageCount = document.querySelector("[data-image-count]");
 const imagePreviousButton = document.querySelector("[data-image-previous]");
 const imageNextButton = document.querySelector("[data-image-next]");
+const imageLoadingStatus = document.querySelector("[data-image-loading]");
+const imageLoadingText = document.querySelector("[data-loading-text]");
 const languageButton = document.querySelector("button[data-language]");
 const itemName = document.querySelector("[data-item-name]");
 const previousButton = document.querySelector("[data-previous]");
@@ -116,6 +124,7 @@ let imageDragStart = null;
 let wheelLock = false;
 let imageSwapTimer = null;
 let imageRequest = 0;
+let imageLoading = false;
 
 if (projectCount) {
   track.style.width = `${projectCount * 100}%`;
@@ -157,28 +166,72 @@ async function resolveImage(source) {
   return (await response.text()).trim();
 }
 
+async function loadImage(source) {
+  const resolvedSource = await resolveImage(source);
+  await new Promise((resolve, reject) => {
+    const loader = new Image();
+    loader.decoding = "async";
+    loader.onload = resolve;
+    loader.onerror = reject;
+    loader.src = resolvedSource;
+  });
+  return resolvedSource;
+}
+
+function setImageLoading(loading) {
+  imageLoading = loading;
+  viewer.classList.toggle("is-loading", loading);
+  viewer.setAttribute("aria-busy", String(loading));
+  imageLoadingStatus.setAttribute("aria-hidden", String(!loading));
+  [imagePreviousButton, imageNextButton, previousButton, nextButton, ...slides]
+    .forEach((button) => { button.disabled = loading; });
+}
+
+function preloadAdjacentImages() {
+  const gallery = projectGalleries[activeIndex];
+  if (!gallery || gallery.length < 2) return;
+  const indexes = [
+    (imageIndex - 1 + gallery.length) % gallery.length,
+    (imageIndex + 1) % gallery.length,
+  ];
+  indexes.forEach((index) => {
+    resolveImage(gallery[index]).then((source) => {
+      const image = new Image();
+      image.decoding = "async";
+      image.src = source;
+    }).catch(() => {});
+  });
+}
+
 function showGalleryImage(animate = true) {
   if (!projectCount) return;
   const request = ++imageRequest;
   window.clearTimeout(imageSwapTimer);
+  setImageLoading(true);
   if (animate) galleryImage.classList.add("is-changing");
   imageSwapTimer = window.setTimeout(async () => {
     try {
-      const source = await resolveImage(projectGalleries[activeIndex][imageIndex]);
+      const source = await loadImage(projectGalleries[activeIndex][imageIndex]);
       if (request !== imageRequest) return;
       galleryImage.src = source;
       galleryImage.alt = language === "fa"
         ? `${copy.fa.imageWord} ${numberText(imageIndex)} از ${copy.fa.itemWord} ${numberText(activeIndex)}`
         : `${copy.en.imageWord} ${numberText(imageIndex)} of ${copy.en.itemWord} ${numberText(activeIndex)}`;
+      updateImageCount();
+      preloadAdjacentImages();
+    } catch {
+      if (request === imageRequest) galleryImage.classList.remove("is-changing");
     } finally {
-      requestAnimationFrame(() => galleryImage.classList.remove("is-changing"));
+      if (request === imageRequest) {
+        setImageLoading(false);
+        requestAnimationFrame(() => galleryImage.classList.remove("is-changing"));
+      }
     }
   }, animate ? 170 : 0);
-  updateImageCount();
 }
 
 function selectImage(index) {
-  if (!projectCount) return;
+  if (!projectCount || imageLoading) return;
   const total = projectGalleries[activeIndex].length;
   imageIndex = (index + total) % total;
   showGalleryImage();
@@ -192,7 +245,7 @@ function fitBrandName() {
 }
 
 function selectProject(index) {
-  if (!projectCount) return;
+  if (!projectCount || imageLoading) return;
   activeIndex = (index + projectCount) % projectCount;
   imageIndex = 0;
   slides.forEach((slide, itemIndex) => slide.classList.toggle("is-active", itemIndex === activeIndex));
@@ -224,11 +277,12 @@ function applyLanguage() {
   nextButton.setAttribute("aria-label", current.nextProject);
   imagePreviousButton.setAttribute("aria-label", current.previousImage);
   imageNextButton.setAttribute("aria-label", current.nextImage);
+  imageLoadingText.textContent = current.loadingImage;
   languageButton.textContent = language === "fa" ? "EN" : "FA";
   document.title = `${current.title} — Nazarifar Group`;
   requestAnimationFrame(centerActive);
   requestAnimationFrame(fitBrandName);
-  showGalleryImage(false);
+  updateImageCount();
 }
 
 slides.forEach(slide => slide.addEventListener("click", () => selectProject(Number(slide.dataset.index))));
@@ -263,17 +317,20 @@ carousel.addEventListener("keydown", event => {
 });
 
 viewer.addEventListener("pointerdown", event => {
+  if (imageLoading) return;
   if (event.target.closest("button")) return;
   imageDragStart = event.clientX;
   viewer.setPointerCapture(event.pointerId);
 });
 viewer.addEventListener("pointerup", event => {
+  if (imageLoading) return;
   if (imageDragStart === null) return;
   const movement = event.clientX - imageDragStart;
   imageDragStart = null;
   if (Math.abs(movement) > 38) selectImage(imageIndex + (movement < 0 ? 1 : -1));
 });
 viewer.addEventListener("keydown", event => {
+  if (imageLoading) return;
   if (event.key === "ArrowRight") selectImage(imageIndex + 1);
   if (event.key === "ArrowLeft") selectImage(imageIndex - 1);
 });

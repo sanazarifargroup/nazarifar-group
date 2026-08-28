@@ -38,6 +38,12 @@ button { font: inherit; }
 .viewer { position: relative; height: 78.3svh; overflow: hidden; background: #15120f; }
 .project-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transform: scale(1); transition: opacity 480ms ease, transform 900ms var(--ease); }
 .project-image.is-changing { opacity: .12; transform: scale(1.008); }
+.viewer__loading { position: absolute; inset: 0 0 46px; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: rgba(9, 9, 9, .32); color: rgba(240, 237, 231, .88); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 240ms ease, visibility 240ms ease; }
+.viewer.is-loading .viewer__loading { opacity: 1; visibility: visible; }
+.viewer__loading-spinner { width: 30px; height: 30px; border: 1px solid rgba(240, 237, 231, .24); border-top-color: rgba(240, 237, 231, .92); border-radius: 50%; animation: viewer-loading-spin 850ms linear infinite; }
+.viewer__loading-text { font-size: 10px; font-weight: 350; letter-spacing: .06em; }
+body[data-language="fa"] .viewer__loading-text { font-family: "Estedad", "Segoe UI", Tahoma, sans-serif; letter-spacing: 0; }
+@keyframes viewer-loading-spin { to { transform: rotate(360deg); } }
 .viewer::after { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.08), transparent 30%, rgba(0,0,0,.25)); content: ""; pointer-events: none; }
 .viewer__arrow { position: absolute; top: 0; bottom: 0; z-index: 2; width: 12vw; min-width: 72px; padding: 0; border: 0; background: transparent; color: rgba(240, 237, 231, .68); cursor: pointer; font-family: Arial, sans-serif; font-size: 22px; opacity: .7; text-shadow: 0 2px 14px rgba(0, 0, 0, .58); transition: opacity 320ms ease, color 320ms ease, transform 420ms var(--ease); }
 .viewer__arrow--previous { left: 0; text-align: left; padding-left: 3.6vw; }
@@ -48,6 +54,9 @@ button { font: inherit; }
 .viewer__arrow--previous:hover { transform: translateX(-4px); }
 .viewer__arrow--next:hover { transform: translateX(4px); }
 .viewer__arrow:focus-visible { outline: 0; }
+.viewer__arrow:disabled { color: rgba(240, 237, 231, .18); cursor: wait; opacity: .28; transform: none; }
+.arrow:disabled,
+.slide:disabled { cursor: wait; opacity: .3; transform: none; }
 .viewer__image-count { position: absolute; right: 3.6vw; bottom: 24px; z-index: 2; direction: ltr; font-size: 11px; letter-spacing: .08em; }
 .viewer__navigation { position: absolute; right: 0; bottom: 0; left: 0; z-index: 3; display: flex; align-items: center; gap: clamp(22px, 2.7vw, 46px); min-height: 46px; padding: 0 3.6vw; direction: ltr; background: rgba(9, 9, 9, .97); }
 .viewer__navigation a { position: relative; padding: 16px 0 14px; color: rgba(240, 237, 231, .66); font-size: 11.5px; font-weight: 400; line-height: 1; letter-spacing: .06em; white-space: nowrap; transition: color 300ms ease; }
@@ -105,6 +114,7 @@ body[data-title-placement="top-opposite"][data-language="fa"] .carousel__title {
   body[data-language="fa"] .carousel__display { font-size: 27px; }
   .viewer { height: 79svh; }
   .project-image { object-position: center; }
+  .viewer__loading { inset: 0 0 86px; }
   .viewer__arrow { width: 18vw; min-width: 58px; opacity: .76; font-size: 20px; }
   .viewer__arrow--previous { padding-left: 5vw; }
   .viewer__arrow--next { padding-right: 5vw; }
@@ -125,6 +135,7 @@ body[data-title-placement="top-opposite"][data-language="fa"] .carousel__title {
   body[data-title-placement="top-opposite"][data-language="fa"] .language { right: auto; left: 5vw; }
   body[data-title-placement="top-opposite"] .viewer__navigation { min-height: 112px; padding: 7px 5vw max(32px, calc(env(safe-area-inset-bottom) + 24px)); }
   body[data-title-placement="top-opposite"] .viewer__arrow { bottom: 112px; }
+  body[data-title-placement="top-opposite"] .viewer__loading { inset: 0 0 112px; }
   body[data-title-placement="top-opposite"] .viewer__image-count { bottom: calc(112px + 18px); }
   body[data-title-placement="top-opposite"] .carousel__title { top: calc(max(18px, env(safe-area-inset-top)) + 38px); right: 5vw; left: auto; max-width: 43vw; font-size: 13px; line-height: 1.25; text-align: right; white-space: normal; }
   body[data-title-placement="top-opposite"][data-language="fa"] .carousel__title { right: auto; left: 5vw; max-width: 43vw; font-size: 12px; text-align: left; white-space: normal; }
