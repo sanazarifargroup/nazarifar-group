@@ -318,7 +318,7 @@ carousel.addEventListener("keydown", event => {
 
 viewer.addEventListener("pointerdown", event => {
   if (imageLoading) return;
-  if (event.target.closest("button")) return;
+  if (event.target.closest("button, a")) return;
   imageDragStart = event.clientX;
   viewer.setPointerCapture(event.pointerId);
 });
