@@ -11,7 +11,33 @@
   transform: scale(1.04);
 }
 .project-image { z-index: 1; object-fit: contain; object-position: center; background: transparent; }
+[data-single-image="true"] .arrow,
+[data-single-image="true"] .viewer__arrow,
+[data-single-image="true"] .viewer__image-count { display: none; }
+[data-single-image="true"] .carousel__display { display: none; }
+[data-development="true"] .viewer::before {
+  position: absolute;
+  inset: 0 0 46px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  color: rgba(240, 237, 231, .88);
+  content: "IN DEVELOPMENT";
+  font-size: clamp(34px, 5.5vw, 88px);
+  font-weight: 280;
+  letter-spacing: .12em;
+  text-align: center;
+}
+[data-language="fa"][data-development="true"] .viewer::before {
+  content: "در حال توسعه";
+  font-family: "Estedad", "Segoe UI", Tahoma, sans-serif;
+  font-size: clamp(30px, 5vw, 78px);
+  font-weight: 330;
+  letter-spacing: 0;
+}
 
 @media (max-width: 700px) {
   .project-image { object-position: center; }
+  [data-development="true"] .viewer::before { inset: 0 0 86px; font-size: 30px; }
+  [data-language="fa"][data-development="true"] .viewer::before { font-size: 27px; }
 }
