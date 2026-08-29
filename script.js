@@ -12,8 +12,8 @@ const copy = {
       title: "Interior Design & Decoration",
       items: [
         { label: "Design", level: 0 },
-        { label: "Renovation • Fit-Out", level: 0 },
-        { label: "Wood & MDF", level: 0 },
+        { label: "Renovation", level: 0 },
+        { label: "Fit-Out", level: 0 },
       ],
     },
     supply: {
@@ -90,8 +90,8 @@ const copy = {
       title: "طراحی و دکوراسیون داخلی",
       items: [
         { label: "طراحی", level: 0 },
-        { label: "بازسازی • تجهیز", level: 0 },
-        { label: "سازه‌های چوبی و ام‌دی‌افی", level: 0 },
+        { label: "بازسازی", level: 0 },
+        { label: "تجهیز", level: 0 },
       ],
     },
     supply: {
@@ -203,7 +203,7 @@ const sceneOrder = [
 const architectureItemRoutes = [
   "/architecture/design/",
   "/architecture/renovation/",
-  "/architecture/wood-mdf/",
+  "/architecture/fit-out/",
 ];
 
 const itemRoutes = {
