@@ -52,6 +52,7 @@ const projectGalleries = configuredGalleries.length
   ? configuredGalleries
   : configuredImages.length ? [configuredImages] : [];
 const projectCount = projectGalleries.length;
+const containedImageMode = body.dataset.imageFit === "contained";
 const languageAtPageBottom = body.dataset.titlePlacement === "top-opposite";
 const slideMarkup = Array.from({ length: projectCount }, (_, index) =>
   `<button class="slide" type="button" data-index="${index}">${index + 1}</button>`,
@@ -81,6 +82,7 @@ body.innerHTML = `
     </div>
   </header>
   <main class="viewer" aria-live="polite" data-viewer tabindex="0">
+    ${containedImageMode ? `<img class="viewer__backdrop" alt="" aria-hidden="true" data-gallery-backdrop${projectCount ? "" : " hidden"} />` : ""}
     <img class="project-image" alt="" data-gallery-image fetchpriority="high"${projectCount ? "" : " hidden"} />
     <div class="viewer__loading" data-image-loading role="status" aria-live="polite" aria-hidden="true">
       <span class="viewer__loading-spinner" aria-hidden="true"></span>
@@ -104,6 +106,7 @@ const carousel = document.querySelector("[data-carousel]");
 const track = document.querySelector("[data-track]");
 const slides = [...document.querySelectorAll("[data-index]")];
 const viewer = document.querySelector("[data-viewer]");
+const galleryBackdrop = document.querySelector("[data-gallery-backdrop]");
 const galleryImage = document.querySelector("[data-gallery-image]");
 const imageCount = document.querySelector("[data-image-count]");
 const imagePreviousButton = document.querySelector("[data-image-previous]");
@@ -213,6 +216,7 @@ function showGalleryImage(animate = true) {
     try {
       const source = await loadImage(projectGalleries[activeIndex][imageIndex]);
       if (request !== imageRequest) return;
+      if (galleryBackdrop) galleryBackdrop.src = source;
       galleryImage.src = source;
       galleryImage.alt = language === "fa"
         ? `${copy.fa.imageWord} ${numberText(imageIndex)} از ${copy.fa.itemWord} ${numberText(activeIndex)}`
