@@ -50,11 +50,11 @@ const copy = {
       ],
     },
     about: {
-      title: "Synergy of Expertise",
+      title: "About",
       items: [
         {
           label:
-            "Nazarifar Group is a multidisciplinary group that brings independent expertise together with a long-term perspective to create precise, integrated and enduring solutions.",
+            "Our activities span four areas: Interior Design & Decoration, Supply, Building Services, and Custom Machine Development. Each operates with its own specialist focus and, depending on project requirements, works alongside the others.",
           level: 0,
         },
       ],
@@ -128,11 +128,11 @@ const copy = {
       ],
     },
     about: {
-      title: "هم‌افزایی تخصص‌ها",
+      title: "درباره ما",
       items: [
         {
           label:
-            "\u06af\u0631\u0648\u0647 \u0646\u0638\u0631\u06cc\u200c\u0641\u0631 \u0645\u062c\u0645\u0648\u0639\u0647\u200c\u0627\u06cc \u0686\u0646\u062f\u0631\u0634\u062a\u0647\u200c\u0627\u06cc \u0627\u0633\u062a \u06a9\u0647 \u0628\u0627 \u0646\u06af\u0627\u0647\u06cc \u0628\u0644\u0646\u062f\u0645\u062f\u062a\u060c \u062a\u062e\u0635\u0635\u200c\u0647\u0627\u06cc \u0645\u0633\u062a\u0642\u0644 \u0631\u0627 \u0628\u0631\u0627\u06cc \u062e\u0644\u0642 \u0631\u0627\u0647\u200c\u062d\u0644\u200c\u0647\u0627\u06cc \u062f\u0642\u06cc\u0642\u060c \u06cc\u06a9\u067e\u0627\u0631\u0686\u0647 \u0648 \u0645\u0627\u0646\u062f\u06af\u0627\u0631 \u06a9\u0646\u0627\u0631 \u0647\u0645 \u0642\u0631\u0627\u0631 \u0645\u06cc\u200c\u062f\u0647\u062f.",
+            "فعالیت ما در چهار حوزه شکل گرفته است: طراحی و دکوراسیون داخلی، تأمین و عرضه، خدمات ساختمان و توسعهٔ ماشین‌آلات سفارشی. این بخش‌ها به‌صورت تخصصی فعالیت می‌کنند و بسته به نیاز پروژه‌ها، در کنار یکدیگر قرار می‌گیرند.",
           level: 0,
         },
       ],
@@ -435,4 +435,11 @@ if (activeScene === "holding" && legacyHash && availableScenes.has(legacyHash)) 
 } else {
   renderLanguage();
   showCurrentScene();
+}
+
+if (!document.querySelector('script[data-nf-inquiry-loader]')) {
+  const inquiryScript = document.createElement("script");
+  inquiryScript.src = "/inquiry/inquiry.js?v=5";
+  inquiryScript.dataset.nfInquiryLoader = "true";
+  document.body.append(inquiryScript);
 }
