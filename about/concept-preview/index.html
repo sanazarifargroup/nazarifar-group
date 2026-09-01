@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#090706" />
+    <title>پیش‌نمایش درباره ما</title>
+    <link rel="stylesheet" href="../../style.css?v=20260821-contact-labels" />
+    <link rel="stylesheet" href="preview.css?v=1" />
+  </head>
+  <body>
+    <main class="site" data-page="about" data-lang="fa" aria-live="polite">
+      <section class="scene scene--about is-active" id="about" data-scene="about" aria-hidden="false">
+        <picture class="scene__picture scene__picture--about">
+          <img data-image-source="../../assets/about-approved.b64" alt="" fetchpriority="high" decoding="async" />
+        </picture>
+        <div class="scene__shade scene__shade--about"></div>
+        <div class="section-copy section-copy--about about-preview">
+          <h1 class="section-title" data-title>گروه نظری‌فر</h1>
+          <p class="about-preview__text" data-text></p>
+        </div>
+      </section>
+
+      <a class="brand" href="/" aria-label="صفحه اصلی گروه نظری‌فر">
+        <span class="brand__mark-frame"><img class="brand__mark" src="../../assets/na-logo-transparent.png" alt="NA" /></span>
+        <span class="brand__name">Nazarifar Group</span>
+      </a>
+
+      <nav class="navigation" aria-label="منوی اصلی">
+        <button type="button" data-target="architecture"></button>
+        <button type="button" data-target="supply"></button>
+        <button type="button" data-target="services"></button>
+        <button type="button" data-target="custom-machines"></button>
+        <button class="is-active" type="button" data-target="about"></button>
+        <button type="button" data-target="contact"></button>
+        <button class="language" type="button" data-language>EN</button>
+      </nav>
+
+      <button class="inquiry-trigger" type="button" data-inquiry-open>مشاوره و ثبت درخواست</button>
+
+      <div class="inquiry-shell" data-inquiry-shell aria-hidden="true">
+        <button class="inquiry-shell__backdrop" type="button" data-inquiry-close aria-label="بستن"></button>
+        <section class="inquiry-panel" role="dialog" aria-modal="true" aria-labelledby="inquiry-title">
+          <button class="inquiry-panel__close" type="button" data-inquiry-close aria-label="بستن">×</button>
+          <p class="inquiry-panel__eyebrow" data-inquiry-eyebrow>ارتباط با گروه نظری‌فر</p>
+          <h2 id="inquiry-title" data-inquiry-title>مشاوره و ثبت درخواست</h2>
+          <form class="inquiry-form" data-inquiry-form>
+            <label>
+              <span data-label-name>نام</span>
+              <input name="name" type="text" autocomplete="name" required />
+            </label>
+            <label>
+              <span data-label-phone>شماره تماس</span>
+              <input name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
+            </label>
+            <label>
+              <span data-label-topic>موضوع درخواست</span>
+              <input name="topic" type="text" data-topic-value value="درباره ما" required />
+            </label>
+            <label>
+              <span data-label-message>توضیح کوتاه</span>
+              <textarea name="message" rows="3"></textarea>
+            </label>
+            <button class="inquiry-form__submit" type="submit" data-submit-label>ارسال درخواست</button>
+          </form>
+          <a class="inquiry-panel__call" href="tel:+989177033810" data-call-label>تماس مستقیم با کارشناس</a>
+        </section>
+      </div>
+    </main>
+    <script src="preview.js?v=3"></script>
+  </body>
+</html>

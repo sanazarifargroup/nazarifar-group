@@ -25,17 +25,9 @@
         labels: { fa: "تأمین و عرضه", en: "Supply" },
         route: "/supply/",
         services: [
-          { id: "tiles-flooring", route: "/supply/tiles-flooring/", labels: { fa: "سرامیک، اسلب و پوشش‌های کف", en: "Tiles & Flooring" } },
-          { id: "wood-mdf", route: "/supply/wood-mdf/", labels: { fa: "چوب و ام‌دی‌اف", en: "Wood & MDF" } },
-          { id: "doors", route: "/supply/doors/", labels: { fa: "انواع درب", en: "Doors" } },
-          { id: "curtains", route: "/supply/curtains/", labels: { fa: "پرده", en: "Curtains" } },
-          { id: "electrical-lighting", route: "/supply/electrical-lighting/", labels: { fa: "تجهیزات برقی و روشنایی", en: "Electrical & Lighting" } },
-          { id: "hvac", route: "/supply/hvac/", labels: { fa: "سیستم‌های گرمایش، سرمایش و تهویه", en: "HVAC" } },
-          { id: "smart-systems", route: "/supply/smart-systems/", labels: { fa: "سیستم‌های هوشمند", en: "Smart Systems" } },
-          { id: "kitchen", route: "/supply/kitchen/", labels: { fa: "تجهیزات آشپزخانه", en: "Kitchen" } },
-          { id: "bathroom", route: "/supply/bathroom/", labels: { fa: "تجهیزات سرویس و حمام", en: "Bathroom" } },
-          { id: "furniture", route: "/supply/furniture/", labels: { fa: "مبلمان", en: "Furniture" } },
-          { id: "medical-equipment", route: "/supply/medical-equipment/", labels: { fa: "تجهیزات پزشکی", en: "Medical Equipment" } },
+          { id: "building-materials-equipment", route: "/supply/building-materials-equipment/", labels: { fa: "متریال و تجهیزات ساختمان", en: "Building Materials & Equipment" } },
+          { id: "furniture-interior", route: "/supply/furniture-interior/", labels: { fa: "مبلمان و دکوراسیون داخلی", en: "Furniture & Interior Decoration" } },
+          { id: "custom-wood-mdf", route: "/supply/custom-wood-mdf/", labels: { fa: "سازه‌های سفارشی چوب و ام‌دی‌اف", en: "Custom Wood & MDF Structures" } },
         ],
         questions: [
           { id: "supplyNeed", type: "choice", labels: { fa: "در چه مرحله‌ای به تأمین نیاز دارید؟", en: "At what stage do you need supply support?" }, options: [
@@ -50,9 +42,9 @@
         labels: { fa: "خدمات", en: "Services" },
         route: "/services/",
         services: [
-          { id: "scheduled", route: "/services/scheduled/", labels: { fa: "سرویس‌های دوره‌ای", en: "Scheduled Services" } },
-          { id: "maintenance-contract", route: "/services/maintenance-contract/", labels: { fa: "قرارداد تعمیر و نگهداری", en: "Maintenance Contract" } },
-          { id: "facility-management", route: "/services/facility-management/", labels: { fa: "مدیریت و نگهداری ساختمان", en: "Facility Management" } },
+          { id: "scheduled", route: "/services/scheduled/", labels: { fa: "سرویس‌های دوره‌ای ساختمان", en: "Scheduled Building Services" } },
+          { id: "technical-support", route: "/services/maintenance-contract/", labels: { fa: "پشتیبانی فنی و تعمیرات", en: "Technical Support & Repairs" } },
+          { id: "facility-management", route: "/services/facility-management/", labels: { fa: "مدیریت و نگهداری ساختمان", en: "Building Management & Maintenance" } },
         ],
         questions: [
           { id: "buildingType", type: "choice", labels: { fa: "نوع ساختمان چیست؟", en: "What type of building is it?" }, options: [
@@ -122,6 +114,10 @@
       trello: "ترلو", bale: "بله", previewReady: "آمادهٔ اتصال پس از تأیید", offline: "قطع ارتباط آزمایشی",
       queued: "در صف ارسال مجدد", simulate: "نمایش حالت قطع ارتباط", retry: "تلاش مجدد", close: "بستن",
       previewNote: "این پیش‌نمایش است؛ اطلاعات فقط در همین مرورگر ذخیره می‌شود.", change: "تغییر",
+      sending: "در حال ارسال…", sendFailed: "ارسال انجام نشد؛ اتصال اینترنت را بررسی و دوباره تلاش کنید.",
+      fileLimits: "حداکثر ۳ فایل، هر فایل ۸ مگابایت و مجموعاً ۱۶ مگابایت مجاز است.",
+      liveNote: "درخواست شما برای تیم نظری‌فر ارسال شد.", baleSent: "ارسال شد", trelloSent: "کارت ساخته شد", trelloPending: "در انتظار اتصال", trelloFailed: "ارسال ناموفق؛ در بله ثبت شد",
+      attachmentsSent: "پیوست‌های ارسال‌شده",
     },
     en: {
       trigger: "Consultation & Enquiries", eyebrow: "Nazarifar Group", title: "Consultation & Enquiries",
@@ -136,9 +132,34 @@
       trello: "Trello", bale: "Bale", previewReady: "Ready to connect after approval", offline: "Simulated connection loss",
       queued: "Queued for retry", simulate: "Preview connection error", retry: "Retry", close: "Close",
       previewNote: "This is a preview; data is stored only in this browser.", change: "Change",
+      sending: "Sending…", sendFailed: "Submission failed. Check your connection and try again.",
+      fileLimits: "Up to 3 files, 8 MB each and 16 MB total are allowed.",
+      liveNote: "Your enquiry has been sent to the Nazarifar team.", baleSent: "Sent", trelloSent: "Card created", trelloPending: "Pending connection", trelloFailed: "Failed; saved in Bale",
+      attachmentsSent: "Attachments sent",
     },
   };
 
+  const TRIGGER_COPY = {
+    fa: {
+      architecture: ["برای بررسی پروژه و دریافت پیشنهاد متناسب،", "درخواست خود را ثبت کنید"],
+      supply: ["برای انتخاب و تأمین موارد موردنیاز پروژه،", "درخواست خود را ثبت کنید"],
+      services: ["برای بررسی شرایط ساختمان و انتخاب نوع همکاری،", "درخواست خود را ثبت کنید"],
+      "custom-machines": ["برای بررسی امکان طراحی یا توسعه دستگاه،", "درخواست خود را ثبت کنید"],
+      general: ["برای شروع همکاری،", "درخواست خود را ثبت کنید"],
+    },
+    en: {
+      architecture: ["To review your project and receive a tailored proposal,", "submit your enquiry"],
+      supply: ["To select and source the requirements of your project,", "submit your enquiry"],
+      services: ["To review your building needs and define the right service,", "submit your enquiry"],
+      "custom-machines": ["To assess the design or development of your machine,", "submit your enquiry"],
+      general: ["To begin a conversation,", "submit your enquiry"],
+    },
+  };
+
+  const INQUIRY_ENDPOINT = "https://nazarifar-inquiries.round-dream-81b9.workers.dev/inquiries";
+  const MAX_FILES = 3;
+  const MAX_FILE_BYTES = 8 * 1024 * 1024;
+  const MAX_TOTAL_FILE_BYTES = 16 * 1024 * 1024;
   const runtime = { mounted: false, open: false, language: "fa", steps: [], index: 0, origin: null, files: [], values: {}, completed: false };
 
   function normalizePath(pathname) {
@@ -340,10 +361,18 @@
     const fileInput = document.querySelector('.nf-stage input[type="file"]');
     if (fileInput) fileInput.addEventListener("change", () => {
       const upload = fileInput.closest(".nf-upload");
+      const files = [...fileInput.files];
+      const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
+      if (files.length > MAX_FILES || files.some(file => file.size > MAX_FILE_BYTES) || totalBytes > MAX_TOTAL_FILE_BYTES) {
+        runtime.files = [];
+        fileInput.value = "";
+        document.querySelector("[data-nf-upload-label]").textContent = TEXT[runtime.language].fileLimits;
+        return;
+      }
       upload.classList.add("is-loading");
       document.querySelector("[data-nf-upload-label]").textContent = TEXT[runtime.language].uploadReady;
       window.setTimeout(() => {
-        runtime.files = [...fileInput.files].map(file => ({ name: file.name, size: file.size, type: file.type }));
+        runtime.files = files;
         upload.classList.remove("is-loading");
         document.querySelector("[data-nf-upload-label]").textContent = runtime.files.map(file => file.name).join("، ") || TEXT[runtime.language].upload;
       }, 650);
@@ -386,30 +415,42 @@
     }, 170);
   }
 
-  function trackingNumber() {
-    const now = new Date();
-    const stamp = [String(now.getFullYear()).slice(-2), String(now.getMonth() + 1).padStart(2, "0"), String(now.getDate()).padStart(2, "0")].join("");
-    return `NF-${stamp}-${Math.floor(1000 + Math.random() * 9000)}`;
-  }
-
-  function submitPreview() {
-    const tracking = trackingNumber();
-    const record = { tracking, createdAt: new Date().toISOString(), values: runtime.values, origin: runtime.origin, files: runtime.files, integration: { trello: "preview", bale: "preview" } };
-    try {
-      const records = JSON.parse(localStorage.getItem("nazarifar-inquiries-preview") || "[]");
-      records.push(record);
-      localStorage.setItem("nazarifar-inquiries-preview", JSON.stringify(records.slice(-50)));
-    } catch {}
-    runtime.completed = true;
-    successMarkup(tracking, false);
-  }
-
-  function successMarkup(tracking, offline) {
+  async function submitInquiry() {
     const t = TEXT[runtime.language];
+    const next = document.querySelector("[data-nf-next]");
+    const error = document.querySelector("[data-nf-error]");
+    next.disabled = true;
+    next.textContent = t.sending;
+    if (error) error.textContent = "";
+
+    const body = new FormData();
+    body.append("payload", JSON.stringify({
+      language: runtime.language,
+      website: document.querySelector('[name="website"]')?.value || "",
+      rows: summaryRows().map(([labelText, value]) => ({ label: labelText, value })),
+    }));
+    runtime.files.forEach(file => body.append("files", file, file.name));
+
+    try {
+      const response = await fetch(INQUIRY_ENDPOINT, { method: "POST", body });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.ok || !result.tracking) throw new Error("submission-failed");
+      runtime.completed = true;
+      successMarkup(result.tracking, Number(result.attachments || 0), result.trello || {});
+    } catch {
+      if (error) error.textContent = t.sendFailed;
+      next.disabled = false;
+      next.textContent = t.submit;
+    }
+  }
+
+  function successMarkup(tracking, attachmentCount, trello) {
+    const t = TEXT[runtime.language];
+    const trelloText = trello.ok ? t.trelloSent : (trello.configured ? t.trelloFailed : t.trelloPending);
+    const trelloClass = trello.ok ? "" : " is-pending";
     document.querySelector("[data-nf-progress]").style.width = "100%";
-    document.querySelector("[data-nf-stage]").innerHTML = `<div class="nf-success"><div class="nf-success__mark">✓</div><h3>${t.success}</h3><p class="nf-success__tracking">${t.tracking}: ${tracking}</p><p class="nf-hint">${t.previewNote}</p><div class="nf-statuses"><div class="nf-status"><i></i><span>${t.stored}</span><span>${t.completed}</span></div><div class="nf-status ${offline ? "is-pending" : ""}"><i></i><span>${t.trello}</span><span>${offline ? t.queued : t.previewReady}</span></div><div class="nf-status ${offline ? "is-pending" : ""}"><i></i><span>${t.bale}</span><span>${offline ? t.queued : t.previewReady}</span></div></div><div class="nf-success__tools"><button type="button" data-nf-offline>${offline ? t.retry : t.simulate}</button><button type="button" data-nf-finish>${t.close}</button></div></div>`;
+    document.querySelector("[data-nf-stage]").innerHTML = `<div class="nf-success"><div class="nf-success__mark">✓</div><h3>${t.success}</h3><p class="nf-success__tracking">${t.tracking}: ${tracking}</p><p class="nf-hint">${t.liveNote}</p><div class="nf-statuses"><div class="nf-status"><i></i><span>${t.bale}</span><span>${t.baleSent}</span></div><div class="nf-status"><i></i><span>${t.attachmentsSent}</span><span>${attachmentCount}</span></div><div class="nf-status${trelloClass}"><i></i><span>${t.trello}</span><span>${trelloText}</span></div></div><div class="nf-success__tools"><button type="button" data-nf-finish>${t.close}</button></div></div>`;
     document.querySelector(".nf-actions").hidden = true;
-    document.querySelector("[data-nf-offline]").addEventListener("click", () => successMarkup(tracking, !offline));
     document.querySelector("[data-nf-finish]").addEventListener("click", close);
   }
 
@@ -434,7 +475,23 @@
 
   function updateTrigger() {
     const button = document.querySelector("[data-nf-open]");
-    if (button) button.textContent = TEXT[language()].trigger;
+    if (!button) return;
+    const lang = language();
+    const origin = detectOrigin();
+    const [lead, action] = TRIGGER_COPY[lang][origin.categoryId] || TRIGGER_COPY[lang].general;
+    button.innerHTML = `<span class="nf-inquiry-trigger__lead">${escapeHtml(lead)}</span><span class="nf-inquiry-trigger__action">${escapeHtml(action)}</span>`;
+
+    const section = origin.categoryId
+      ? document.querySelector(`[data-copy="${origin.categoryId}"]`)
+      : document.querySelector(".scene.is-active .section-copy") || document.querySelector(".section-copy");
+    const list = section?.querySelector(".section-list");
+    if (list) {
+      list.insertAdjacentElement("afterend", button);
+      button.classList.add("nf-inquiry-trigger--in-section");
+    } else {
+      document.body.insertBefore(button, document.querySelector("[data-nf-inquiry]"));
+      button.classList.remove("nf-inquiry-trigger--in-section");
+    }
   }
 
   function mount() {
@@ -442,17 +499,25 @@
     runtime.mounted = true;
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "/inquiry/inquiry.css?v=3";
+    link.href = "/inquiry/inquiry.css?v=6";
     document.head.append(link);
-    document.body.insertAdjacentHTML("beforeend", `<button class="nf-inquiry-trigger" type="button" data-nf-open></button><div class="nf-inquiry" data-nf-inquiry aria-hidden="true"><button class="nf-inquiry__backdrop" type="button" data-nf-close aria-label="Close"></button><section class="nf-inquiry__panel" role="dialog" aria-modal="true" aria-labelledby="nf-inquiry-title"><button class="nf-inquiry__close" type="button" data-nf-close aria-label="Close">×</button><header class="nf-inquiry__heading"><p class="nf-inquiry__eyebrow" data-nf-eyebrow></p><h1 class="nf-inquiry__title" id="nf-inquiry-title" data-nf-title></h1></header><div class="nf-inquiry__context" data-nf-context></div><div class="nf-progress"><span class="nf-progress__count"><b data-nf-current>1</b> / <span data-nf-total>1</span></span><span class="nf-progress__track"><i data-nf-progress></i></span></div><form class="nf-inquiry__form" novalidate><div class="nf-stage" data-nf-stage></div><footer class="nf-actions"><button class="nf-actions__back" type="button" data-nf-back></button><button class="nf-actions__next" type="button" data-nf-next></button></footer></form></section></div>`);
+    document.body.insertAdjacentHTML("beforeend", `<button class="nf-inquiry-trigger" type="button" data-nf-open></button><div class="nf-inquiry" data-nf-inquiry aria-hidden="true"><button class="nf-inquiry__backdrop" type="button" data-nf-close aria-label="Close"></button><section class="nf-inquiry__panel" role="dialog" aria-modal="true" aria-labelledby="nf-inquiry-title"><button class="nf-inquiry__close" type="button" data-nf-close aria-label="Close">×</button><header class="nf-inquiry__heading"><p class="nf-inquiry__eyebrow" data-nf-eyebrow></p><h1 class="nf-inquiry__title" id="nf-inquiry-title" data-nf-title></h1></header><div class="nf-inquiry__context" data-nf-context></div><div class="nf-progress"><span class="nf-progress__count"><b data-nf-current>1</b> / <span data-nf-total>1</span></span><span class="nf-progress__track"><i data-nf-progress></i></span></div><form class="nf-inquiry__form" novalidate><input class="nf-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" /><div class="nf-stage" data-nf-stage></div><footer class="nf-actions"><button class="nf-actions__back" type="button" data-nf-back></button><button class="nf-actions__next" type="button" data-nf-next></button></footer></form></section></div>`);
     updateTrigger();
-    document.querySelector("[data-nf-open]").addEventListener("click", open);
-    document.querySelectorAll("[data-nf-close]").forEach(button => button.addEventListener("click", close));
+    document.querySelector("[data-nf-open]").addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      open();
+    });
+    document.querySelectorAll("[data-nf-close]").forEach(button => button.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      close();
+    }));
     document.querySelector("[data-nf-next]").addEventListener("click", () => {
       if (!validate()) return;
       const currentType = runtime.steps[runtime.index].type;
       if (currentType === "summary") {
-        submitPreview();
+        submitInquiry();
       } else if (currentType === "category") {
         buildSteps("service");
         render();

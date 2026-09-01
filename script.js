@@ -19,25 +19,17 @@ const copy = {
     supply: {
       title: "Supply",
       items: [
-        { label: "Tiles & Flooring", level: 0 },
-        { label: "Wood & MDF", level: 0 },
-        { label: "Doors", level: 0 },
-        { label: "Curtains", level: 0 },
-        { label: "Electrical & Lighting", level: 0 },
-        { label: "HVAC", level: 0 },
-        { label: "Smart Systems", level: 0 },
-        { label: "Kitchen", level: 0 },
-        { label: "Bathroom", level: 0 },
-        { label: "Furniture", level: 0 },
-        { label: "Medical Equipment", level: 0 },
+        { label: "Building Materials & Equipment", level: 0, description: "Building materials and equipment are selected and proposed in accordance with the project design and your personal preferences. Following final approval, we undertake the supply of tiles and slabs, doors, lighting, heating, cooling and ventilation systems, smart systems, and kitchen and bathroom equipment." },
+        { label: "Furniture & Interior Decoration", level: 0, description: "Furniture and interior elements are selected and proposed to complement the design language and your personal preferences. Following final approval, we undertake the supply of furniture, curtains and decorative accessories." },
+        { label: "Custom Wood & MDF Structures", level: 0, description: "Custom wood and MDF structures are designed and proposed around the dimensions of the space, the project design and your requirements. Following final approval, our team undertakes the fabrication and installation of cabinetry, wardrobes, desks, counters, TV walls, vanities and other bespoke elements." },
       ],
     },
     services: {
       title: "Services",
       items: [
-        { label: "Scheduled Services", level: 0 },
-        { label: "Maintenance Contract", level: 0 },
-        { label: "Facility Management", level: 0 },
+        { label: "Scheduled Building Services", level: 0, description: "Maintenance contracts include periodic inspection of electrical and mechanical systems and building equipment, with checklists, servicing, condition records and repair notices." },
+        { label: "Technical Support & Repairs", level: 0, description: "Follow-up of fault requests, diagnostics, specialist dispatch, parts sourcing and repairs." },
+        { label: "Building Management & Maintenance", level: 0, description: "Planning building cleaning, coordinating cleaning staff, overseeing landscaping and common areas, coordinating grounds personnel and providing regular reports on the building’s technical condition." },
       ],
     },
     "custom-machines": {
@@ -97,25 +89,17 @@ const copy = {
     supply: {
       title: "تأمین و عرضه",
       items: [
-        { label: "سرامیک، اسلب و پوشش‌های کف", level: 0 },
-        { label: "چوب و ام‌دی‌اف", level: 0 },
-        { label: "انواع درب", level: 0 },
-        { label: "پرده", level: 0 },
-        { label: "تجهیزات برقی و روشنایی", level: 0 },
-        { label: "سیستم‌های گرمایش، سرمایش و تهویه", level: 0 },
-        { label: "سیستم‌های هوشمند", level: 0 },
-        { label: "تجهیزات آشپزخانه", level: 0 },
-        { label: "تجهیزات سرویس و حمام", level: 0 },
-        { label: "مبلمان", level: 0 },
-        { label: "تجهیزات پزشکی", level: 0 },
+        { label: "متریال و تجهیزات ساختمان", level: 0, description: "متریال و تجهیزات ساختمان، متناسب با طرح پروژه و سلیقهٔ شخصی شما انتخاب و پیشنهاد می‌شوند. پس از تأیید نهایی، تأمین سرامیک و اسلب، انواع درب، تجهیزات روشنایی، سیستم‌های گرمایش، سرمایش و تهویه، هوشمندسازی و تجهیزات آشپزخانه و سرویس توسط ما انجام خواهد شد." },
+        { label: "مبلمان و دکوراسیون داخلی", level: 0, description: "مبلمان و عناصر دکوراسیون داخلی، متناسب با سبک طراحی و سلیقهٔ شخصی شما انتخاب و پیشنهاد می‌شوند. پس از تأیید نهایی، تأمین مبلمان، پرده و اکسسوری‌های دکوراتیو توسط ما انجام خواهد شد." },
+        { label: "سازه‌های سفارشی چوب و ام‌دی‌اف", level: 0, description: "سازه‌های سفارشی چوب و ام‌دی‌اف، بر اساس ابعاد فضا، طرح پروژه و نیازهای شما طراحی و پیشنهاد می‌شوند. پس از تأیید نهایی، ساخت و اجرای کابینت، کمد، میز، کانتر، دیوار تلویزیون، روشویی و سایر اجزای سفارشی توسط تیم ما انجام خواهد شد." },
       ],
     },
     services: {
       title: "خدمات",
       items: [
-        { label: "سرویس‌های دوره‌ای", level: 0 },
-        { label: "قرارداد تعمیر و نگهداری", level: 0 },
-        { label: "مدیریت و نگهداری ساختمان", level: 0 },
+        { label: "سرویس‌های دوره‌ای ساختمان", level: 0, description: "قراردادهای تعمیر و نگهداری شامل بازدید دوره‌ای تأسیسات برقی، مکانیکی و تجهیزات ساختمان؛ همراه با چک‌لیست، سرویس، ثبت وضعیت و اعلام موارد نیازمند تعمیر." },
+        { label: "پشتیبانی فنی و تعمیرات", level: 0, description: "پیگیری درخواست خرابی، عیب‌یابی، اعزام نیروی تخصصی، تأمین قطعه و انجام تعمیرات." },
+        { label: "مدیریت و نگهداری ساختمان", level: 0, description: "تنظیم برنامهٔ نظافت ساختمان و هماهنگی با نیروهای نظافت، کنترل و رسیدگی به فضای سبز و مشاعات و هماهنگی با مسئول فضای سبز، ارائهٔ گزارش منظم از وضعیت فنی ساختمان." },
       ],
     },
     "custom-machines": {
@@ -257,7 +241,31 @@ function renderSection(sectionName) {
     row.style.setProperty("--item-index", index);
 
     const itemRoute = itemRoutes[sectionName]?.[index];
-    if (itemRoute) {
+    if (item.description) {
+      const button = document.createElement("button");
+      const description = document.createElement("p");
+      row.classList.add("section-accordion__item");
+      if (index === 0) row.classList.add("is-open");
+      button.className = "section-accordion__button";
+      button.type = "button";
+      button.textContent = item.label;
+      button.setAttribute("aria-expanded", String(index === 0));
+      description.className = "section-accordion__description";
+      description.textContent = item.description;
+      button.addEventListener("click", () => {
+        const willOpen = !row.classList.contains("is-open");
+        list.querySelectorAll(".section-accordion__item").forEach(itemRow => {
+          itemRow.classList.remove("is-open");
+          itemRow.querySelector("button")?.setAttribute("aria-expanded", "false");
+        });
+        if (willOpen) {
+          row.classList.add("is-open");
+          button.setAttribute("aria-expanded", "true");
+        }
+      });
+      row.append(button, description);
+      list.classList.add("section-list--accordion");
+    } else if (itemRoute) {
       const link = document.createElement("a");
       link.textContent = item.label;
       link.href = itemRoute;
@@ -355,7 +363,7 @@ document.addEventListener("click", (event) => {
     return;
   }
 
-  if (event.target.closest("[data-language]")) {
+  if (event.target.closest("button[data-language]")) {
     language = language === "en" ? "fa" : "en";
     try {
       window.localStorage.setItem("nazarifar-language", language);
@@ -439,7 +447,7 @@ if (activeScene === "holding" && legacyHash && availableScenes.has(legacyHash)) 
 
 if (!document.querySelector('script[data-nf-inquiry-loader]')) {
   const inquiryScript = document.createElement("script");
-  inquiryScript.src = "/inquiry/inquiry.js?v=5";
+  inquiryScript.src = "/inquiry/inquiry.js?v=11";
   inquiryScript.dataset.nfInquiryLoader = "true";
   document.body.append(inquiryScript);
 }

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#090706" />
+    <title>پیش‌نمایش فرم ثبت درخواست</title>
+    <link rel="stylesheet" href="../../style.css?v=20260821-contact-labels" />
+    <link rel="stylesheet" href="form.css?v=1" />
+  </head>
+  <body>
+    <main class="request-preview">
+      <picture class="request-preview__picture" aria-hidden="true">
+        <source media="(max-width: 700px)" srcset="../../assets/supply-mobile.webp" />
+        <img src="../../assets/supply-desktop.webp" alt="" />
+      </picture>
+      <div class="request-preview__shade"></div>
+
+      <a class="brand" href="../" aria-label="صفحهٔ تأمین و عرضه">
+        <span class="brand__mark-frame"><img class="brand__mark" src="../../assets/na-logo-transparent.png" alt="NA" /></span>
+        <span class="brand__name">Nazarifar Group</span>
+      </a>
+
+      <section class="request-card" aria-labelledby="request-title">
+        <header class="request-card__header">
+          <div>
+            <p class="request-card__eyebrow">گروه نظری‌فر</p>
+            <h1 id="request-title">مشاوره و ثبت درخواست</h1>
+          </div>
+          <a class="request-card__close" href="../" aria-label="بستن">×</a>
+        </header>
+
+        <div class="request-progress" aria-label="میزان تکمیل فرم">
+          <span class="request-progress__number"><b data-step-current>۱</b> / <span data-step-total>۶</span></span>
+          <span class="request-progress__track"><i data-progress></i></span>
+        </div>
+
+        <form class="request-form" data-request-form novalidate>
+          <div class="request-stage" data-stage></div>
+          <footer class="request-actions">
+            <button class="request-actions__back" type="button" data-back>بازگشت</button>
+            <button class="request-actions__next" type="button" data-next>ادامه</button>
+          </footer>
+        </form>
+      </section>
+    </main>
+    <script src="form.js?v=1"></script>
+  </body>
+</html>
