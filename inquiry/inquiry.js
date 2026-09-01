@@ -436,7 +436,7 @@
       const result = await response.json().catch(() => ({}));
       if (!response.ok || !result.ok || !result.tracking) throw new Error("submission-failed");
       runtime.completed = true;
-      successMarkup(result.tracking, Number(result.attachments || 0), result.trello || {});
+      successMarkup(result.tracking);
     } catch {
       if (error) error.textContent = t.sendFailed;
       next.disabled = false;
@@ -444,12 +444,10 @@
     }
   }
 
-  function successMarkup(tracking, attachmentCount, trello) {
+  function successMarkup(tracking) {
     const t = TEXT[runtime.language];
-    const trelloText = trello.ok ? t.trelloSent : (trello.configured ? t.trelloFailed : t.trelloPending);
-    const trelloClass = trello.ok ? "" : " is-pending";
     document.querySelector("[data-nf-progress]").style.width = "100%";
-    document.querySelector("[data-nf-stage]").innerHTML = `<div class="nf-success"><div class="nf-success__mark">✓</div><h3>${t.success}</h3><p class="nf-success__tracking">${t.tracking}: ${tracking}</p><p class="nf-hint">${t.liveNote}</p><div class="nf-statuses"><div class="nf-status"><i></i><span>${t.bale}</span><span>${t.baleSent}</span></div><div class="nf-status"><i></i><span>${t.attachmentsSent}</span><span>${attachmentCount}</span></div><div class="nf-status${trelloClass}"><i></i><span>${t.trello}</span><span>${trelloText}</span></div></div><div class="nf-success__tools"><button type="button" data-nf-finish>${t.close}</button></div></div>`;
+    document.querySelector("[data-nf-stage]").innerHTML = `<div class="nf-success"><div class="nf-success__mark">✓</div><h3>${t.success}</h3><p class="nf-success__tracking">${t.tracking}: ${tracking}</p><p class="nf-hint">${t.liveNote}</p><div class="nf-success__tools"><button type="button" data-nf-finish>${t.close}</button></div></div>`;
     document.querySelector(".nf-actions").hidden = true;
     document.querySelector("[data-nf-finish]").addEventListener("click", close);
   }
@@ -479,6 +477,7 @@
     const lang = language();
     const origin = detectOrigin();
     button.hidden = origin.id === "home";
+    button.style.display = button.hidden ? "none" : "";
     if (button.hidden) return;
     const [lead, action] = TRIGGER_COPY[lang][origin.categoryId] || TRIGGER_COPY[lang].general;
     button.innerHTML = `<span class="nf-inquiry-trigger__lead">${escapeHtml(lead)}</span><span class="nf-inquiry-trigger__action">${escapeHtml(action)}</span>`;
