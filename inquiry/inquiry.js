@@ -478,6 +478,8 @@
     if (!button) return;
     const lang = language();
     const origin = detectOrigin();
+    button.hidden = origin.id === "home";
+    if (button.hidden) return;
     const [lead, action] = TRIGGER_COPY[lang][origin.categoryId] || TRIGGER_COPY[lang].general;
     button.innerHTML = `<span class="nf-inquiry-trigger__lead">${escapeHtml(lead)}</span><span class="nf-inquiry-trigger__action">${escapeHtml(action)}</span>`;
 
