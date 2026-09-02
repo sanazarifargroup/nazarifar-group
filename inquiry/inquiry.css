@@ -10,7 +10,7 @@
   position: fixed;
   z-index: 34;
   right: 4.2%;
-  bottom: 5.2%;
+  bottom: 13%;
   display: flex;
   max-width: min(440px, 42vw);
   align-items: baseline;
@@ -631,11 +631,15 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   .nf-inquiry-trigger,
   html[dir="rtl"] .nf-inquiry-trigger {
     right: 50%;
-    bottom: calc(22px + env(safe-area-inset-bottom));
+    bottom: calc(186px + env(safe-area-inset-bottom));
     left: auto;
-    max-width: 86%;
+    max-width: 78%;
     justify-content: center;
-    font-size: 8px;
+    padding: 8px 12px;
+    border: 1px solid rgba(215, 196, 170, 0.22);
+    background: rgba(9, 8, 7, 0.62);
+    backdrop-filter: blur(10px);
+    font-size: 9px;
     text-align: center;
     transform: translateX(50%);
   }

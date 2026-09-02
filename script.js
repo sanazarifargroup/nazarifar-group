@@ -250,7 +250,10 @@ function renderSection(sectionName) {
       row.classList.add("section-accordion__item");
       button.className = "section-accordion__button";
       button.type = "button";
-      button.textContent = item.label;
+      const label = document.createElement("span");
+      label.className = "section-accordion__label";
+      label.textContent = item.label;
+      button.append(label);
       button.setAttribute("aria-expanded", "false");
       description.className = "section-accordion__description";
       description.textContent = item.description;
@@ -395,7 +398,7 @@ document.addEventListener("keydown", (event) => {
 window.addEventListener(
   "wheel",
   (event) => {
-    if (event.ctrlKey || event.metaKey || event.target.closest?.("[data-nf-inquiry]")) return;
+    if (event.ctrlKey || event.metaKey || event.target.closest?.("[data-nf-inquiry], .section-list--accordion")) return;
     if (Math.abs(event.deltaY) < 20 || scrollLocked) return;
     event.preventDefault();
     stepScene(event.deltaY > 0 ? 1 : -1);
@@ -410,7 +413,7 @@ window.addEventListener(
 window.addEventListener(
   "touchstart",
   (event) => {
-    touchGestureEligible = event.touches.length === 1 && !event.target.closest?.("button, a, input, textarea, select, label, [data-nf-inquiry], .carousel, .viewer");
+    touchGestureEligible = event.touches.length === 1 && !event.target.closest?.("button, a, input, textarea, select, label, [data-nf-inquiry], .section-list--accordion, .carousel, .viewer");
     if (!touchGestureEligible) return;
     touchStartX = event.touches[0].clientX;
     touchStartY = event.touches[0].clientY;
@@ -470,7 +473,7 @@ if (activeScene === "holding" && legacyHash && availableScenes.has(legacyHash)) 
 
 if (!document.querySelector('script[data-nf-inquiry-loader]')) {
   const inquiryScript = document.createElement("script");
-  inquiryScript.src = "/inquiry/inquiry.js?v=13";
+  inquiryScript.src = "/inquiry/inquiry.js?v=14";
   inquiryScript.dataset.nfInquiryLoader = "true";
   document.body.append(inquiryScript);
 }

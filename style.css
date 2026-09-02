@@ -505,6 +505,11 @@ a {
   transition: color 320ms ease;
 }
 
+.section-accordion__label {
+  display: inline-block;
+  max-width: 100%;
+}
+
 .section-accordion__button:hover,
 .section-accordion__button:focus-visible,
 .section-accordion__item.is-open .section-accordion__button {
@@ -540,8 +545,9 @@ a {
 }
 
 .section-copy--architecture {
-  top: 21%;
+  top: 50%;
   width: min(45.8vw, 720px);
+  transform: translateY(-50%);
   pointer-events: auto;
 }
 
@@ -1144,9 +1150,9 @@ a {
   }
 
   .section-copy--architecture {
-    top: 18%;
+    top: 50%;
     width: 91%;
-    transform: none;
+    transform: translateY(-50%);
   }
 
   .section-copy--architecture .section-title {
@@ -1236,7 +1242,7 @@ a {
 
   .section-copy--supply {
     top: 50%;
-    width: min(76vw, 320px);
+    width: min(68vw, 280px);
   }
 
   .section-copy--supply .section-list {
@@ -1245,7 +1251,7 @@ a {
 
   .section-copy--services {
     top: 50%;
-    width: min(76vw, 320px);
+    width: min(68vw, 280px);
     transform: translateY(-50%);
   }
 
@@ -1253,6 +1259,32 @@ a {
   .section-copy--services::before {
     inset: -9% -12% -12%;
     background: radial-gradient(ellipse at center, rgba(6, 5, 4, 0.72) 0%, rgba(6, 5, 4, 0.5) 56%, rgba(6, 5, 4, 0.18) 76%, transparent 92%);
+  }
+
+  .section-copy--supply .section-list--accordion,
+  .section-copy--services .section-list--accordion {
+    max-height: 33svh;
+    padding-inline-end: 8px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-color: rgba(215, 196, 170, 0.44) transparent;
+    scrollbar-width: thin;
+  }
+
+  .section-list--accordion .section-accordion__item,
+  .section-list--accordion .section-accordion__item.is-open {
+    border-bottom: 0;
+  }
+
+  .section-accordion__label {
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 251, 245, 0.36);
+    transition: border-color 320ms ease;
+  }
+
+  .section-accordion__item.is-open .section-accordion__label {
+    border-color: rgba(255, 251, 245, 0.84);
   }
 
   .section-copy--custom-machines {
