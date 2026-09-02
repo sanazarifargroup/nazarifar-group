@@ -123,7 +123,9 @@ let activeIndex = 0;
 let imageIndex = 0;
 let language = "fa";
 let dragStart = null;
+let dragStartY = null;
 let imageDragStart = null;
+let imageDragStartY = null;
 let wheelLock = false;
 let imageSwapTimer = null;
 let imageRequest = 0;
@@ -296,6 +298,7 @@ imagePreviousButton.addEventListener("click", () => selectImage(imageIndex - 1))
 imageNextButton.addEventListener("click", () => selectImage(imageIndex + 1));
 
 carousel.addEventListener("wheel", event => {
+  if (event.ctrlKey || event.metaKey) return;
   const movement = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
   if (Math.abs(movement) < 6 || wheelLock) return;
   event.preventDefault();
@@ -306,15 +309,28 @@ carousel.addEventListener("wheel", event => {
 
 carousel.addEventListener("pointerdown", event => {
   if (event.target.closest("button")) return;
+  if (!event.isPrimary || Math.abs((window.visualViewport?.scale || 1) - 1) > 0.01) {
+    dragStart = null;
+    dragStartY = null;
+    return;
+  }
   dragStart = event.clientX;
+  dragStartY = event.clientY;
   carousel.setPointerCapture(event.pointerId);
 });
 carousel.addEventListener("pointerup", event => {
-  if (dragStart === null) return;
+  if (!event.isPrimary || dragStart === null || dragStartY === null || Math.abs((window.visualViewport?.scale || 1) - 1) > 0.01) {
+    dragStart = null;
+    dragStartY = null;
+    return;
+  }
   const movement = event.clientX - dragStart;
+  const verticalMovement = event.clientY - dragStartY;
   dragStart = null;
-  if (Math.abs(movement) > 38) selectProject(activeIndex + (movement < 0 ? 1 : -1));
+  dragStartY = null;
+  if (Math.abs(movement) > 44 && Math.abs(movement) > Math.abs(verticalMovement) * 1.2) selectProject(activeIndex + (movement < 0 ? 1 : -1));
 });
+carousel.addEventListener("pointercancel", () => { dragStart = null; dragStartY = null; });
 carousel.addEventListener("keydown", event => {
   if (event.key === "ArrowRight") selectProject(activeIndex + 1);
   if (event.key === "ArrowLeft") selectProject(activeIndex - 1);
@@ -323,16 +339,29 @@ carousel.addEventListener("keydown", event => {
 viewer.addEventListener("pointerdown", event => {
   if (imageLoading) return;
   if (event.target.closest("button, a")) return;
+  if (!event.isPrimary || Math.abs((window.visualViewport?.scale || 1) - 1) > 0.01) {
+    imageDragStart = null;
+    imageDragStartY = null;
+    return;
+  }
   imageDragStart = event.clientX;
+  imageDragStartY = event.clientY;
   viewer.setPointerCapture(event.pointerId);
 });
 viewer.addEventListener("pointerup", event => {
   if (imageLoading) return;
-  if (imageDragStart === null) return;
+  if (!event.isPrimary || imageDragStart === null || imageDragStartY === null || Math.abs((window.visualViewport?.scale || 1) - 1) > 0.01) {
+    imageDragStart = null;
+    imageDragStartY = null;
+    return;
+  }
   const movement = event.clientX - imageDragStart;
+  const verticalMovement = event.clientY - imageDragStartY;
   imageDragStart = null;
-  if (Math.abs(movement) > 38) selectImage(imageIndex + (movement < 0 ? 1 : -1));
+  imageDragStartY = null;
+  if (Math.abs(movement) > 44 && Math.abs(movement) > Math.abs(verticalMovement) * 1.2) selectImage(imageIndex + (movement < 0 ? 1 : -1));
 });
+viewer.addEventListener("pointercancel", () => { imageDragStart = null; imageDragStartY = null; });
 viewer.addEventListener("keydown", event => {
   if (imageLoading) return;
   if (event.key === "ArrowRight") selectImage(imageIndex + 1);
@@ -352,7 +381,7 @@ if (projectCount) selectProject(0);
 
 if (!document.querySelector('script[data-nf-inquiry-loader]')) {
   const inquiryScript = document.createElement("script");
-  inquiryScript.src = "/inquiry/inquiry.js?v=12";
+  inquiryScript.src = "/inquiry/inquiry.js?v=13";
   inquiryScript.dataset.nfInquiryLoader = "true";
   document.body.append(inquiryScript);
 }

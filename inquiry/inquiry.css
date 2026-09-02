@@ -1,9 +1,9 @@
 :root {
   --nf-ivory: #f6f1e8;
-  --nf-muted: rgba(246, 241, 232, 0.58);
+  --nf-muted: rgba(246, 241, 232, 0.7);
   --nf-line: rgba(219, 198, 170, 0.24);
   --nf-accent: #d7c4aa;
-  --nf-bg: rgba(10, 9, 8, 0.96);
+  --nf-bg: rgba(14, 12, 10, 0.97);
 }
 
 .nf-inquiry-trigger {
@@ -107,7 +107,9 @@ html[dir="rtl"] .nf-inquiry-trigger--in-section {
   padding: clamp(34px, 5vw, 68px) clamp(30px, 6vw, 76px) clamp(26px, 4vw, 48px);
   overflow: hidden auto;
   border-left: 1px solid rgba(215, 196, 170, 0.16);
-  background: var(--nf-bg);
+  background:
+    radial-gradient(circle at 82% 12%, rgba(215, 196, 170, 0.08), transparent 34%),
+    var(--nf-bg);
   box-shadow: -36px 0 100px rgba(0, 0, 0, 0.42);
   transform: translateX(100%);
   transition: transform 660ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -152,7 +154,11 @@ html[dir="rtl"] .nf-inquiry__panel {
   position: absolute;
   top: 4.5%;
   right: 7%;
-  padding: 6px;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  place-items: center;
   border: 0;
   background: transparent;
   color: rgba(246, 241, 232, 0.6);
@@ -182,7 +188,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
 
 .nf-inquiry__title {
   margin: 0;
-  font-size: clamp(20px, 2.3vw, 29px);
+  font-size: clamp(24px, 2.5vw, 32px);
   font-weight: 340;
   line-height: 1.5;
 }
@@ -209,13 +215,14 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
 .nf-category-tab {
   position: relative;
   min-width: 0;
-  padding: 10px 7px 12px;
+  min-height: 44px;
+  padding: 11px 8px 12px;
   overflow: hidden;
   border: 0;
   background: transparent;
   color: rgba(246, 241, 232, 0.43);
   font: inherit;
-  font-size: 7.2px;
+  font-size: 10.5px;
   line-height: 1.55;
   text-overflow: ellipsis;
   cursor: pointer;
@@ -245,7 +252,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
 }
 
 .nf-inquiry[data-language="fa"] .nf-category-tab {
-  font-size: 6.8px;
+  font-size: 10px;
 }
 
 .nf-service-context {
@@ -260,7 +267,8 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   background: rgba(215, 196, 170, 0.04);
   color: rgba(246, 241, 232, 0.76);
   font: inherit;
-  font-size: 8px;
+  min-height: 40px;
+  font-size: 10.5px;
   cursor: pointer;
 }
 
@@ -280,7 +288,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
 .nf-progress__count {
   min-width: 34px;
   color: var(--nf-muted);
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .nf-progress__count b {
@@ -326,7 +334,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
 
 .nf-question {
   margin: 0 0 8px;
-  font-size: clamp(14px, 1.35vw, 18px);
+  font-size: clamp(17px, 1.55vw, 22px);
   font-weight: 380;
   line-height: 1.8;
 }
@@ -334,7 +342,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
 .nf-hint {
   margin: 0 0 26px;
   color: var(--nf-muted);
-  font-size: 8.5px;
+  font-size: 11.5px;
   line-height: 1.9;
 }
 
@@ -346,13 +354,13 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
 .nf-option {
   position: relative;
   display: flex;
-  min-height: 47px;
+  min-height: 52px;
   align-items: center;
   padding: 11px 0;
   border-bottom: 1px solid var(--nf-line);
   color: rgba(246, 241, 232, 0.72);
   cursor: pointer;
-  font-size: 9.5px;
+  font-size: 12.5px;
   transition: color 220ms ease, border-color 220ms ease;
 }
 
@@ -384,7 +392,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   display: grid;
   gap: 9px;
   color: var(--nf-muted);
-  font-size: 8.5px;
+  font-size: 11.5px;
 }
 
 .nf-field input,
@@ -398,7 +406,8 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   background: transparent;
   color: var(--nf-ivory);
   font: inherit;
-  font-size: 11px;
+  font-size: 15px;
+  line-height: 1.7;
   resize: vertical;
 }
 
@@ -415,7 +424,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   border: 1px dashed rgba(215, 196, 170, 0.34);
   color: rgba(246, 241, 232, 0.68);
   cursor: pointer;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 2;
   text-align: center;
 }
@@ -456,7 +465,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   gap: 16px;
   padding: 9px 0;
   border-bottom: 1px solid var(--nf-line);
-  font-size: 9px;
+  font-size: 11.5px;
   line-height: 1.85;
 }
 
@@ -474,7 +483,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   min-height: 21px;
   margin: 14px 0 0;
   color: #d9a99d;
-  font-size: 8.5px;
+  font-size: 11px;
 }
 
 .nf-actions {
@@ -485,11 +494,16 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   gap: 16px;
 }
 
+.nf-actions[hidden] {
+  display: none !important;
+}
+
 .nf-actions button {
-  min-width: 100px;
-  padding: 10px 18px;
+  min-width: 110px;
+  min-height: 44px;
+  padding: 11px 18px;
   font: inherit;
-  font-size: 9px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -536,7 +550,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
 
 .nf-success h3 {
   margin: 0 0 9px;
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 350;
 }
 
@@ -560,7 +574,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   align-items: center;
   gap: 10px;
   color: var(--nf-muted);
-  font-size: 8.5px;
+  font-size: 11px;
 }
 
 .nf-status i {
@@ -585,13 +599,14 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
 }
 
 .nf-success__tools button {
-  padding: 7px 0;
+  min-height: 44px;
+  padding: 10px 0;
   border: 0;
   border-bottom: 1px solid var(--nf-line);
   background: transparent;
   color: var(--nf-muted);
   font: inherit;
-  font-size: 8px;
+  font-size: 11px;
   cursor: pointer;
 }
 
@@ -652,7 +667,7 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
     right: 0;
     left: 0;
     width: 100%;
-    padding: 38px 7% calc(24px + env(safe-area-inset-bottom));
+    padding: 48px 7% calc(24px + env(safe-area-inset-bottom));
     border: 0;
   }
 
@@ -682,7 +697,18 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   .nf-category-tab {
     flex: 0 0 auto;
     min-width: max-content;
-    padding-inline: 13px;
+    padding-inline: 15px;
+    font-size: 11.5px;
+  }
+
+  .nf-inquiry[data-language="fa"] .nf-category-tab {
+    font-size: 11.5px;
+  }
+
+  .nf-field input,
+  .nf-field textarea {
+    font-size: 16px;
+    line-height: 1.65;
   }
 
   .nf-review__row {

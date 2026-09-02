@@ -309,7 +309,6 @@
     shell.setAttribute("dir", runtime.language === "fa" ? "rtl" : "ltr");
     shell.dataset.language = runtime.language;
     document.querySelector("[data-nf-title]").textContent = t.title;
-    document.querySelector("[data-nf-eyebrow]").textContent = t.eyebrow;
     document.querySelector("[data-nf-current]").textContent = runtime.index + 1;
     document.querySelector("[data-nf-total]").textContent = runtime.steps.length;
     document.querySelector("[data-nf-progress]").style.width = `${((runtime.index + 1) / runtime.steps.length) * 100}%`;
@@ -448,7 +447,9 @@
     const t = TEXT[runtime.language];
     document.querySelector("[data-nf-progress]").style.width = "100%";
     document.querySelector("[data-nf-stage]").innerHTML = `<div class="nf-success"><div class="nf-success__mark">✓</div><h3>${t.success}</h3><p class="nf-success__tracking">${t.tracking}: ${tracking}</p><p class="nf-hint">${t.liveNote}</p><div class="nf-success__tools"><button type="button" data-nf-finish>${t.close}</button></div></div>`;
-    document.querySelector(".nf-actions").hidden = true;
+    const actions = document.querySelector(".nf-actions");
+    actions.hidden = true;
+    actions.style.display = "none";
     document.querySelector("[data-nf-finish]").addEventListener("click", close);
   }
 
@@ -459,7 +460,9 @@
     shell.classList.add("is-open");
     shell.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-    document.querySelector(".nf-actions").hidden = false;
+    const actions = document.querySelector(".nf-actions");
+    actions.hidden = false;
+    actions.style.removeProperty("display");
     render();
   }
 
@@ -476,7 +479,7 @@
     if (!button) return;
     const lang = language();
     const origin = detectOrigin();
-    button.hidden = origin.id === "home";
+    button.hidden = origin.path !== "/contact/";
     button.style.display = button.hidden ? "none" : "";
     if (button.hidden) return;
     const [lead, action] = TRIGGER_COPY[lang][origin.categoryId] || TRIGGER_COPY[lang].general;
@@ -500,9 +503,9 @@
     runtime.mounted = true;
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "/inquiry/inquiry.css?v=6";
+    link.href = "/inquiry/inquiry.css?v=7";
     document.head.append(link);
-    document.body.insertAdjacentHTML("beforeend", `<button class="nf-inquiry-trigger" type="button" data-nf-open></button><div class="nf-inquiry" data-nf-inquiry aria-hidden="true"><button class="nf-inquiry__backdrop" type="button" data-nf-close aria-label="Close"></button><section class="nf-inquiry__panel" role="dialog" aria-modal="true" aria-labelledby="nf-inquiry-title"><button class="nf-inquiry__close" type="button" data-nf-close aria-label="Close">×</button><header class="nf-inquiry__heading"><p class="nf-inquiry__eyebrow" data-nf-eyebrow></p><h1 class="nf-inquiry__title" id="nf-inquiry-title" data-nf-title></h1></header><div class="nf-inquiry__context" data-nf-context></div><div class="nf-progress"><span class="nf-progress__count"><b data-nf-current>1</b> / <span data-nf-total>1</span></span><span class="nf-progress__track"><i data-nf-progress></i></span></div><form class="nf-inquiry__form" novalidate><input class="nf-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" /><div class="nf-stage" data-nf-stage></div><footer class="nf-actions"><button class="nf-actions__back" type="button" data-nf-back></button><button class="nf-actions__next" type="button" data-nf-next></button></footer></form></section></div>`);
+    document.body.insertAdjacentHTML("beforeend", `<button class="nf-inquiry-trigger" type="button" data-nf-open></button><div class="nf-inquiry" data-nf-inquiry aria-hidden="true"><button class="nf-inquiry__backdrop" type="button" data-nf-close aria-label="Close"></button><section class="nf-inquiry__panel" role="dialog" aria-modal="true" aria-labelledby="nf-inquiry-title"><button class="nf-inquiry__close" type="button" data-nf-close aria-label="Close">×</button><header class="nf-inquiry__heading"><h1 class="nf-inquiry__title" id="nf-inquiry-title" data-nf-title></h1></header><div class="nf-inquiry__context" data-nf-context></div><div class="nf-progress"><span class="nf-progress__count"><b data-nf-current>1</b> / <span data-nf-total>1</span></span><span class="nf-progress__track"><i data-nf-progress></i></span></div><form class="nf-inquiry__form" novalidate><input class="nf-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" /><div class="nf-stage" data-nf-stage></div><footer class="nf-actions"><button class="nf-actions__back" type="button" data-nf-back></button><button class="nf-actions__next" type="button" data-nf-next></button></footer></form></section></div>`);
     updateTrigger();
     document.querySelector("[data-nf-open]").addEventListener("click", event => {
       event.preventDefault();

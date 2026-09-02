@@ -170,7 +170,10 @@ try {
 } catch {}
 let activeScene = site.dataset.page || "holding";
 let scrollLocked = false;
+let touchStartX = 0;
 let touchStartY = 0;
+let touchStartTime = 0;
+let touchGestureEligible = false;
 let parallaxFrame = 0;
 let parallaxResetTimer = 0;
 let navigationLocked = false;
@@ -245,11 +248,10 @@ function renderSection(sectionName) {
       const button = document.createElement("button");
       const description = document.createElement("p");
       row.classList.add("section-accordion__item");
-      if (index === 0) row.classList.add("is-open");
       button.className = "section-accordion__button";
       button.type = "button";
       button.textContent = item.label;
-      button.setAttribute("aria-expanded", String(index === 0));
+      button.setAttribute("aria-expanded", "false");
       description.className = "section-accordion__description";
       description.textContent = item.description;
       button.addEventListener("click", () => {
@@ -379,6 +381,7 @@ window.addEventListener("hashchange", () => {
 
 document.addEventListener("keydown", (event) => {
   if (event.repeat) return;
+  if (event.target.closest?.("button, a, input, textarea, select, [contenteditable]")) return;
   if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "PageDown") {
     event.preventDefault();
     stepScene(1);
@@ -392,6 +395,7 @@ document.addEventListener("keydown", (event) => {
 window.addEventListener(
   "wheel",
   (event) => {
+    if (event.ctrlKey || event.metaKey || event.target.closest?.("[data-nf-inquiry]")) return;
     if (Math.abs(event.deltaY) < 20 || scrollLocked) return;
     event.preventDefault();
     stepScene(event.deltaY > 0 ? 1 : -1);
@@ -406,7 +410,19 @@ window.addEventListener(
 window.addEventListener(
   "touchstart",
   (event) => {
-    touchStartY = event.changedTouches[0].clientY;
+    touchGestureEligible = event.touches.length === 1 && !event.target.closest?.("button, a, input, textarea, select, label, [data-nf-inquiry], .carousel, .viewer");
+    if (!touchGestureEligible) return;
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+    touchStartTime = performance.now();
+  },
+  { passive: true },
+);
+
+window.addEventListener(
+  "touchmove",
+  (event) => {
+    if (event.touches.length !== 1) touchGestureEligible = false;
   },
   { passive: true },
 );
@@ -414,13 +430,20 @@ window.addEventListener(
 window.addEventListener(
   "touchend",
   (event) => {
-    const distance = touchStartY - event.changedTouches[0].clientY;
-    if (Math.abs(distance) >= 45) {
-      stepScene(distance > 0 ? 1 : -1);
+    const eligible = touchGestureEligible && event.changedTouches.length === 1;
+    touchGestureEligible = false;
+    if (!eligible || Math.abs((window.visualViewport?.scale || 1) - 1) > 0.01) return;
+    const distanceX = touchStartX - event.changedTouches[0].clientX;
+    const distanceY = touchStartY - event.changedTouches[0].clientY;
+    const duration = performance.now() - touchStartTime;
+    if (duration <= 700 && Math.abs(distanceY) >= 70 && Math.abs(distanceY) > Math.abs(distanceX) * 1.25) {
+      stepScene(distanceY > 0 ? 1 : -1);
     }
   },
   { passive: true },
 );
+
+window.addEventListener("touchcancel", () => { touchGestureEligible = false; }, { passive: true });
 
 if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
   window.addEventListener(
@@ -447,7 +470,7 @@ if (activeScene === "holding" && legacyHash && availableScenes.has(legacyHash)) 
 
 if (!document.querySelector('script[data-nf-inquiry-loader]')) {
   const inquiryScript = document.createElement("script");
-  inquiryScript.src = "/inquiry/inquiry.js?v=12";
+  inquiryScript.src = "/inquiry/inquiry.js?v=13";
   inquiryScript.dataset.nfInquiryLoader = "true";
   document.body.append(inquiryScript);
 }
