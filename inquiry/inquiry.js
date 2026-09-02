@@ -504,7 +504,7 @@
     runtime.mounted = true;
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "/inquiry/inquiry.css?v=8";
+    link.href = "/inquiry/inquiry.css?v=9";
     document.head.append(link);
     document.body.insertAdjacentHTML("beforeend", `<button class="nf-inquiry-trigger" type="button" data-nf-open></button><div class="nf-inquiry" data-nf-inquiry aria-hidden="true"><button class="nf-inquiry__backdrop" type="button" data-nf-close aria-label="Close"></button><section class="nf-inquiry__panel" role="dialog" aria-modal="true" aria-labelledby="nf-inquiry-title"><button class="nf-inquiry__close" type="button" data-nf-close aria-label="Close">×</button><header class="nf-inquiry__heading"><h1 class="nf-inquiry__title" id="nf-inquiry-title" data-nf-title></h1></header><div class="nf-inquiry__context" data-nf-context></div><div class="nf-progress"><span class="nf-progress__count"><b data-nf-current>1</b> / <span data-nf-total>1</span></span><span class="nf-progress__track"><i data-nf-progress></i></span></div><form class="nf-inquiry__form" novalidate><input class="nf-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" /><div class="nf-stage" data-nf-stage></div><footer class="nf-actions"><button class="nf-actions__back" type="button" data-nf-back></button><button class="nf-actions__next" type="button" data-nf-next></button></footer></form></section></div>`);
     updateTrigger();

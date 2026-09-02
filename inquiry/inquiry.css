@@ -10,23 +10,27 @@
   position: fixed;
   z-index: 34;
   right: 4.2%;
-  bottom: 13%;
+  bottom: 5.2%;
   display: flex;
   max-width: min(440px, 42vw);
   align-items: baseline;
   gap: 5px;
   padding: 8px 0;
   border: 0;
+  border-radius: 0;
+  outline: 0;
   background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
   color: rgba(255, 251, 245, 0.94);
   font: inherit;
   font-size: 8.5px;
   font-weight: 410;
   cursor: pointer;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.72);
+  text-shadow: none;
   line-height: 1.9;
   text-align: start;
-  transition: color 260ms ease, opacity 260ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: none;
 }
 
 html[dir="rtl"] .nf-inquiry-trigger {
@@ -43,8 +47,8 @@ html[dir="rtl"] .nf-inquiry-trigger {
 
 .nf-inquiry-trigger__action {
   flex: 0 0 auto;
-  padding-bottom: 2px;
-  border-bottom: 1px solid rgba(215, 196, 170, 0.72);
+  padding-bottom: 0;
+  border: 0;
   color: rgba(255, 251, 245, 0.96);
 }
 
@@ -611,14 +615,9 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nf-inquiry-trigger:hover,
   .nf-option:hover {
     border-color: var(--nf-accent);
     color: #fff;
-  }
-
-  .nf-inquiry-trigger:hover {
-    transform: translateY(-1px);
   }
 
   .nf-actions__next:hover {
@@ -631,15 +630,11 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
   .nf-inquiry-trigger,
   html[dir="rtl"] .nf-inquiry-trigger {
     right: 50%;
-    bottom: calc(186px + env(safe-area-inset-bottom));
+    bottom: calc(22px + env(safe-area-inset-bottom));
     left: auto;
-    max-width: 78%;
+    max-width: 86%;
     justify-content: center;
-    padding: 8px 12px;
-    border: 1px solid rgba(215, 196, 170, 0.22);
-    background: rgba(9, 8, 7, 0.62);
-    backdrop-filter: blur(10px);
-    font-size: 9px;
+    font-size: 8px;
     text-align: center;
     transform: translateX(50%);
   }

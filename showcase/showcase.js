@@ -381,7 +381,7 @@ if (projectCount) selectProject(0);
 
 if (!document.querySelector('script[data-nf-inquiry-loader]')) {
   const inquiryScript = document.createElement("script");
-  inquiryScript.src = "/inquiry/inquiry.js?v=16";
+  inquiryScript.src = "/inquiry/inquiry.js?v=17";
   inquiryScript.dataset.nfInquiryLoader = "true";
   document.body.append(inquiryScript);
 }
