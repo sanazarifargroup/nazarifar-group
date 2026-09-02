@@ -479,13 +479,24 @@
     if (!button) return;
     const lang = language();
     const origin = detectOrigin();
-    button.hidden = false;
-    button.style.display = "";
+    const isHome = origin.path === "/" || origin.path === "/index.html/";
+    button.hidden = isHome;
+    button.style.display = isHome ? "none" : "";
+    if (isHome) return;
     const [lead, action] = TRIGGER_COPY[lang][origin.categoryId] || TRIGGER_COPY[lang].general;
     button.innerHTML = `<span class="nf-inquiry-trigger__lead">${escapeHtml(lead)}</span><span class="nf-inquiry-trigger__action">${escapeHtml(action)}</span>`;
 
-    document.body.insertBefore(button, document.querySelector("[data-nf-inquiry]"));
-    button.classList.remove("nf-inquiry-trigger--in-section");
+    const section = origin.categoryId
+      ? document.querySelector(`[data-copy="${origin.categoryId}"]`)
+      : document.querySelector(".scene.is-active .section-copy") || document.querySelector(".section-copy");
+    const list = section?.querySelector(".section-list");
+    if (list) {
+      list.insertAdjacentElement("afterend", button);
+      button.classList.add("nf-inquiry-trigger--in-section");
+    } else {
+      document.body.insertBefore(button, document.querySelector("[data-nf-inquiry]"));
+      button.classList.remove("nf-inquiry-trigger--in-section");
+    }
   }
 
   function mount() {
