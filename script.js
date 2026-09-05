@@ -1,7 +1,7 @@
 const copy = {
   en: {
     navigation: {
-      architecture: "Interior Design & Decoration",
+      architecture: "Interior Decoration",
       supply: "Supply",
       services: "Services",
       "custom-machines": "Custom Machines",
@@ -9,7 +9,7 @@ const copy = {
       contact: "Contact",
     },
     architecture: {
-      title: "Interior Design & Decoration",
+      title: "Interior Decoration",
       items: [
         { label: "Design", level: 0 },
         { label: "Renovation", level: 0 },
@@ -71,7 +71,7 @@ const copy = {
   },
   fa: {
     navigation: {
-      architecture: "طراحی و دکوراسیون داخلی",
+      architecture: "دکوراسیون داخلی",
       supply: "تأمین و عرضه",
       services: "خدمات",
       "custom-machines": "ماشین‌آلات سفارشی",
@@ -79,7 +79,7 @@ const copy = {
       contact: "تماس",
     },
     architecture: {
-      title: "طراحی و دکوراسیون داخلی",
+      title: "دکوراسیون داخلی",
       items: [
         { label: "طراحی", level: 0 },
         { label: "بازسازی", level: 0 },
