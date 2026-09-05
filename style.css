@@ -134,14 +134,24 @@ a {
 }
 
 .scene__picture--custom-machines img {
-  object-position: center;
-  filter: saturate(0.9) contrast(1.03) brightness(0.97);
+  object-position: 72% center;
+  filter: saturate(0.88) contrast(1.06) brightness(0.86);
 }
 
 .scene__shade--machine {
   z-index: 2;
   background:
-    linear-gradient(90deg, rgba(5, 4, 3, 0.65) 0%, rgba(5, 4, 3, 0.3) 36%, transparent 64%),
+    linear-gradient(90deg, rgba(5, 4, 3, 0.82) 0%, rgba(5, 4, 3, 0.58) 34%, rgba(5, 4, 3, 0.14) 59%, transparent 74%),
+    linear-gradient(180deg, rgba(5, 4, 3, 0.1), transparent 48%, rgba(5, 4, 3, 0.52));
+}
+
+[data-lang="fa"] .scene__picture--custom-machines img {
+  object-position: 28% center;
+}
+
+[data-lang="fa"] .scene__shade--machine {
+  background:
+    linear-gradient(270deg, rgba(5, 4, 3, 0.82) 0%, rgba(5, 4, 3, 0.58) 34%, rgba(5, 4, 3, 0.14) 59%, transparent 74%),
     linear-gradient(180deg, rgba(5, 4, 3, 0.1), transparent 48%, rgba(5, 4, 3, 0.52));
 }
 
@@ -150,13 +160,23 @@ a {
 }
 
 .scene__picture--about img {
-  object-position: center;
-  filter: saturate(0.88) contrast(1.03) brightness(0.98);
+  object-position: 72% center;
+  filter: saturate(0.86) contrast(1.06) brightness(0.86);
 }
 
 .scene__shade--about {
   background:
-    linear-gradient(90deg, rgba(4, 3, 2, 0.48) 0%, rgba(4, 3, 2, 0.24) 42%, transparent 70%),
+    linear-gradient(90deg, rgba(4, 3, 2, 0.8) 0%, rgba(4, 3, 2, 0.56) 34%, rgba(4, 3, 2, 0.14) 59%, transparent 74%),
+    linear-gradient(180deg, rgba(4, 3, 2, 0.12), transparent 46%, rgba(4, 3, 2, 0.62));
+}
+
+[data-lang="fa"] .scene__picture--about img {
+  object-position: 28% center;
+}
+
+[data-lang="fa"] .scene__shade--about {
+  background:
+    linear-gradient(270deg, rgba(4, 3, 2, 0.8) 0%, rgba(4, 3, 2, 0.56) 34%, rgba(4, 3, 2, 0.14) 59%, transparent 74%),
     linear-gradient(180deg, rgba(4, 3, 2, 0.12), transparent 46%, rgba(4, 3, 2, 0.62));
 }
 
@@ -531,6 +551,20 @@ a {
   transition: max-height 560ms var(--ease-luxury), padding 560ms var(--ease-luxury), opacity 300ms ease, transform 560ms var(--ease-luxury);
 }
 
+.section-accordion__description p {
+  margin: 0;
+}
+
+.section-accordion__link {
+  display: inline-block;
+  margin-top: 9px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(215, 196, 170, 0.62);
+  color: #d7c4aa;
+  font-size: 0.96em;
+  text-decoration: none;
+}
+
 .section-accordion__item.is-open .section-accordion__description {
   max-height: 190px;
   padding: 0 0 14px;
@@ -688,7 +722,9 @@ a {
 }
 
 .section-copy--supply .section-list--accordion,
-.section-copy--services .section-list--accordion {
+.section-copy--services .section-list--accordion,
+.section-copy--architecture .section-list--accordion,
+.section-copy--custom-machines .section-list--accordion {
   width: 100%;
   max-width: 500px;
 }
@@ -1278,7 +1314,9 @@ a {
   }
 
   .section-copy--supply .section-list--accordion,
-  .section-copy--services .section-list--accordion {
+  .section-copy--services .section-list--accordion,
+  .section-copy--architecture .section-list--accordion,
+  .section-copy--custom-machines .section-list--accordion {
     max-height: 33svh;
     padding-inline-end: 8px;
     overflow-x: hidden;
@@ -1398,14 +1436,21 @@ a {
   }
 
   .scene__picture--about img {
-    object-position: 72% center;
-    filter: saturate(0.86) contrast(1.03) brightness(0.88);
+    object-position: 74% center;
+    filter: saturate(0.84) contrast(1.06) brightness(0.82);
   }
 
   .scene__shade--about {
     background:
-      linear-gradient(180deg, rgba(5, 4, 3, 0.34), rgba(5, 4, 3, 0.24) 42%, rgba(5, 4, 3, 0.62)),
-      linear-gradient(90deg, rgba(5, 4, 3, 0.12), rgba(5, 4, 3, 0.04));
+      linear-gradient(90deg, rgba(5, 4, 3, 0.84) 0%, rgba(5, 4, 3, 0.58) 45%, rgba(5, 4, 3, 0.12) 68%, transparent 82%),
+      linear-gradient(180deg, rgba(5, 4, 3, 0.24), transparent 42%, rgba(5, 4, 3, 0.62));
+  }
+
+  [data-lang="fa"] .scene__picture--about img { object-position: 26% center; }
+  [data-lang="fa"] .scene__shade--about {
+    background:
+      linear-gradient(270deg, rgba(5, 4, 3, 0.84) 0%, rgba(5, 4, 3, 0.58) 45%, rgba(5, 4, 3, 0.12) 68%, transparent 82%),
+      linear-gradient(180deg, rgba(5, 4, 3, 0.24), transparent 42%, rgba(5, 4, 3, 0.62));
   }
 
   .scene__picture--contact img {
@@ -1450,12 +1495,20 @@ a {
 
   .scene__shade--machine {
     background:
-      linear-gradient(180deg, rgba(5, 4, 3, 0.34), rgba(5, 4, 3, 0.26) 42%, rgba(5, 4, 3, 0.58));
+      linear-gradient(90deg, rgba(5, 4, 3, 0.86) 0%, rgba(5, 4, 3, 0.6) 45%, rgba(5, 4, 3, 0.12) 68%, transparent 82%),
+      linear-gradient(180deg, rgba(5, 4, 3, 0.24), transparent 42%, rgba(5, 4, 3, 0.58));
   }
 
   .scene__picture--custom-machines img {
-    object-position: 69% center;
-    filter: saturate(0.86) contrast(1.03) brightness(0.88);
+    object-position: 74% center;
+    filter: saturate(0.84) contrast(1.06) brightness(0.82);
+  }
+
+  [data-lang="fa"] .scene__picture--custom-machines img { object-position: 26% center; }
+  [data-lang="fa"] .scene__shade--machine {
+    background:
+      linear-gradient(270deg, rgba(5, 4, 3, 0.86) 0%, rgba(5, 4, 3, 0.6) 45%, rgba(5, 4, 3, 0.12) 68%, transparent 82%),
+      linear-gradient(180deg, rgba(5, 4, 3, 0.24), transparent 42%, rgba(5, 4, 3, 0.58));
   }
 
   .section-copy--custom-machines .section-list {

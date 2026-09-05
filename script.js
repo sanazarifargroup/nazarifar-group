@@ -10,10 +10,11 @@ const copy = {
     },
     architecture: {
       title: "Decoration",
+      viewLabel: "View projects",
       items: [
-        { label: "Design", level: 0 },
-        { label: "Renovation", level: 0 },
-        { label: "Fit-Out", level: 0 },
+        { label: "Design", level: 0, description: "We begin by studying the space, your needs and the project constraints, then develop the spatial concept, plans and design direction. The approved design becomes the clear reference for the next stages of the project." },
+        { label: "Renovation", level: 0, description: "The existing space is assessed to identify its possibilities and technical limitations. We then plan and carry out the required architectural, installation and finishing changes with coordinated execution." },
+        { label: "Fit-Out", level: 0, description: "The approved design is translated into a coordinated built result through procurement, fabrication, installation and supervision. Materials, details and specialist teams are managed to protect the intended quality of the project." },
       ],
     },
     supply: {
@@ -34,11 +35,12 @@ const copy = {
     },
     "custom-machines": {
       title: "Custom Machines",
+      viewLabel: "View machine",
       items: [
-        { label: "Laboratory Equipment", level: 0 },
-        { label: "Vending Machines", level: 0 },
-        { label: "Amalgam Recycling Machine", level: 0 },
-        { label: "3D Scanner", level: 0 },
+        { label: "Laboratory Equipment", level: 0, description: "Purpose-built laboratory equipment is developed around the required process, dimensions, safety considerations and operating conditions, from the initial concept through fabrication and testing." },
+        { label: "Vending Machines", level: 0, description: "Vending machines are configured for the intended product, capacity and operating environment, with attention to the enclosure, internal mechanism, user access and maintainability." },
+        { label: "Amalgam Recycling Machine", level: 0, description: "This machine is developed for the controlled collection and recycling of dental amalgam waste, with a compact structure and a workflow designed around safe, practical operation." },
+        { label: "3D Scanner", level: 0, description: "The 3D scanner is being developed as an integrated hardware and software system for accurate object capture and the production of usable digital models." },
       ],
     },
     about: {
@@ -80,10 +82,11 @@ const copy = {
     },
     architecture: {
       title: "دکوراسیون",
+      viewLabel: "مشاهده پروژه‌ها",
       items: [
-        { label: "طراحی", level: 0 },
-        { label: "بازسازی", level: 0 },
-        { label: "تجهیز", level: 0 },
+        { label: "طراحی", level: 0, description: "کار با شناخت فضا، نیازهای شما و محدودیت‌های پروژه آغاز می‌شود و سپس ایدهٔ فضایی، نقشه‌ها و مسیر طراحی شکل می‌گیرد. طرح تأییدشده، مرجع روشن مراحل بعدی پروژه خواهد بود." },
+        { label: "بازسازی", level: 0, description: "فضای موجود برای شناخت ظرفیت‌ها و محدودیت‌های فنی بررسی می‌شود. سپس تغییرات معماری، تأسیساتی و نازک‌کاری موردنیاز، به‌صورت هماهنگ برنامه‌ریزی و اجرا خواهند شد." },
+        { label: "تجهیز", level: 0, description: "طرح تأییدشده از مسیر تأمین، ساخت، نصب و نظارت به نتیجه‌ای یکپارچه تبدیل می‌شود. متریال، جزئیات اجرایی و تیم‌های تخصصی برای حفظ کیفیت موردنظر پروژه هماهنگ خواهند شد." },
       ],
     },
     supply: {
@@ -104,11 +107,12 @@ const copy = {
     },
     "custom-machines": {
       title: "\u0645\u0627\u0634\u06cc\u0646\u200c\u0622\u0644\u0627\u062a \u0633\u0641\u0627\u0631\u0634\u06cc",
+      viewLabel: "مشاهده دستگاه",
       items: [
-        { label: "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647\u06cc", level: 0 },
-        { label: "\u062f\u0633\u062a\u06af\u0627\u0647\u200c\u0647\u0627\u06cc \u0641\u0631\u0648\u0634 \u062e\u0648\u062f\u06a9\u0627\u0631", level: 0 },
-        { label: "\u062f\u0633\u062a\u06af\u0627\u0647 \u0628\u0627\u0632\u06cc\u0627\u0641\u062a \u0622\u0645\u0627\u0644\u06af\u0627\u0645", level: 0 },
-        { label: "\u062f\u0633\u062a\u06af\u0627\u0647 \u0627\u0633\u06a9\u0646\u0631 \u0633\u0647\u200c\u0628\u0639\u062f\u06cc", level: 0 },
+        { label: "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647\u06cc", level: 0, description: "تجهیزات آزمایشگاهی متناسب با فرایند موردنظر، ابعاد، الزامات ایمنی و شرایط بهره‌برداری طراحی می‌شوند و مسیر توسعه از ایدهٔ اولیه تا ساخت و آزمون ادامه پیدا می‌کند." },
+        { label: "\u062f\u0633\u062a\u06af\u0627\u0647\u200c\u0647\u0627\u06cc \u0641\u0631\u0648\u0634 \u062e\u0648\u062f\u06a9\u0627\u0631", level: 0, description: "دستگاه فروش خودکار بر اساس نوع محصول، ظرفیت و محیط بهره‌برداری پیکربندی می‌شود؛ بدنه، سازوکار داخلی، دسترسی کاربر و امکان نگهداری در طراحی آن در نظر گرفته خواهند شد." },
+        { label: "\u062f\u0633\u062a\u06af\u0627\u0647 \u0628\u0627\u0632\u06cc\u0627\u0641\u062a \u0622\u0645\u0627\u0644\u06af\u0627\u0645", level: 0, description: "این دستگاه برای جمع‌آوری و بازیافت کنترل‌شدهٔ پسماند آمالگام دندان‌پزشکی توسعه یافته است و ساختاری فشرده با فرایندی ایمن و کاربردی دارد." },
+        { label: "\u062f\u0633\u062a\u06af\u0627\u0647 \u0627\u0633\u06a9\u0646\u0631 \u0633\u0647\u200c\u0628\u0639\u062f\u06cc", level: 0, description: "اسکنر سه‌بعدی به‌عنوان یک سامانهٔ یکپارچهٔ سخت‌افزاری و نرم‌افزاری برای برداشت دقیق از اشیا و تولید مدل‌های دیجیتال قابل‌استفاده در حال توسعه است." },
       ],
     },
     about: {
@@ -246,7 +250,7 @@ function renderSection(sectionName) {
     const itemRoute = itemRoutes[sectionName]?.[index];
     if (item.description) {
       const button = document.createElement("button");
-      const description = document.createElement("p");
+      const description = document.createElement("div");
       row.classList.add("section-accordion__item");
       button.className = "section-accordion__button";
       button.type = "button";
@@ -256,7 +260,16 @@ function renderSection(sectionName) {
       button.append(label);
       button.setAttribute("aria-expanded", "false");
       description.className = "section-accordion__description";
-      description.textContent = item.description;
+      const descriptionText = document.createElement("p");
+      descriptionText.textContent = item.description;
+      description.append(descriptionText);
+      if (itemRoute && section.viewLabel && ["architecture", "custom-machines"].includes(sectionName)) {
+        const viewLink = document.createElement("a");
+        viewLink.className = "section-accordion__link";
+        viewLink.href = itemRoute;
+        viewLink.textContent = section.viewLabel;
+        description.append(viewLink);
+      }
       button.addEventListener("click", () => {
         const willOpen = !row.classList.contains("is-open");
         list.querySelectorAll(".section-accordion__item").forEach(itemRow => {
@@ -305,12 +318,17 @@ function renderLanguage() {
   document.documentElement.lang = language;
   site.dataset.lang = language;
 
+  const inquiryTrigger = document.querySelector("[data-nf-open]");
+  const inquiryShell = document.querySelector("[data-nf-inquiry]");
+  if (inquiryTrigger && inquiryShell) document.body.insertBefore(inquiryTrigger, inquiryShell);
+
   navigationButtons.forEach((button) => {
     button.textContent = copy[language].navigation[button.dataset.target];
   });
 
   scenes.forEach((scene) => renderSection(scene.dataset.scene));
   languageButton.textContent = language === "en" ? "FA" : "EN";
+  window.NazarifarInquiry?.refresh?.();
 }
 
 async function loadSceneImage(scene) {
@@ -473,7 +491,7 @@ if (activeScene === "holding" && legacyHash && availableScenes.has(legacyHash)) 
 
 if (!document.querySelector('script[data-nf-inquiry-loader]')) {
   const inquiryScript = document.createElement("script");
-  inquiryScript.src = "/inquiry/inquiry.js?v=18";
+  inquiryScript.src = "/inquiry/inquiry.js?v=19";
   inquiryScript.dataset.nfInquiryLoader = "true";
   document.body.append(inquiryScript);
 }
