@@ -12,9 +12,9 @@ const copy = {
       title: "Decoration",
       viewLabel: "View projects",
       items: [
-        { label: "Design", level: 0, description: "We begin by studying the space, your needs and the project constraints, then develop the spatial concept, plans and design direction. The approved design becomes the clear reference for the next stages of the project." },
-        { label: "Renovation", level: 0, description: "The existing space is assessed to identify its possibilities and technical limitations. We then plan and carry out the required architectural, installation and finishing changes with coordinated execution." },
-        { label: "Fit-Out", level: 0, description: "The approved design is translated into a coordinated built result through procurement, fabrication, installation and supervision. Materials, details and specialist teams are managed to protect the intended quality of the project." },
+        { label: "Design", level: 0, description: "Design is an independent service for shaping the concept, layout, plans and visual direction of a space before execution. The resulting design package may be executed by our team or handed over for implementation by a team selected by the client." },
+        { label: "Renovation", level: 0, description: "Renovation is intended for an existing, previously used space that requires repair, alteration or a new architectural identity. The current condition is assessed and the necessary demolition, technical modifications, finishes and rebuilding are planned and executed." },
+        { label: "Fit-Out", level: 0, description: "Fit-out is intended for a bare or unfinished residential, office or commercial space. Starting from the empty shell, the required building services, partitions, ceilings, floors, fixed elements and final finishes are completed to make the space ready for use." },
       ],
     },
     supply: {
@@ -84,9 +84,9 @@ const copy = {
       title: "دکوراسیون",
       viewLabel: "مشاهده پروژه‌ها",
       items: [
-        { label: "طراحی", level: 0, description: "کار با شناخت فضا، نیازهای شما و محدودیت‌های پروژه آغاز می‌شود و سپس ایدهٔ فضایی، نقشه‌ها و مسیر طراحی شکل می‌گیرد. طرح تأییدشده، مرجع روشن مراحل بعدی پروژه خواهد بود." },
-        { label: "بازسازی", level: 0, description: "فضای موجود برای شناخت ظرفیت‌ها و محدودیت‌های فنی بررسی می‌شود. سپس تغییرات معماری، تأسیساتی و نازک‌کاری موردنیاز، به‌صورت هماهنگ برنامه‌ریزی و اجرا خواهند شد." },
-        { label: "تجهیز", level: 0, description: "طرح تأییدشده از مسیر تأمین، ساخت، نصب و نظارت به نتیجه‌ای یکپارچه تبدیل می‌شود. متریال، جزئیات اجرایی و تیم‌های تخصصی برای حفظ کیفیت موردنظر پروژه هماهنگ خواهند شد." },
+        { label: "طراحی", level: 0, description: "طراحی یک خدمت مستقل برای شکل‌دادن ایده، چیدمان، نقشه‌ها و ظاهر نهایی فضا پیش از اجراست. فایل و مدارک طراحی می‌توانند برای اجرا به تیم انتخابی کارفرما تحویل شوند یا اجرای همان طرح نیز به تیم ما سپرده شود." },
+        { label: "بازسازی", level: 0, description: "بازسازی مخصوص فضای موجود و استفاده‌شده‌ای است که به تعمیر، تغییر یا هویت معماری تازه نیاز دارد. وضعیت فعلی بررسی می‌شود و تخریب‌های لازم، اصلاحات فنی، نازک‌کاری و اجرای مجدد بخش‌های موردنیاز برنامه‌ریزی و انجام می‌گیرند." },
+        { label: "تجهیز", level: 0, description: "تجهیز مخصوص فضای مسکونی، اداری یا تجاریِ لخت، صفر و ناتمام است. فضا از پوستهٔ خام تحویل گرفته می‌شود و تأسیسات، تقسیم‌بندی، سقف، کف، اجزای ثابت و پرداخت‌های نهایی تا رسیدن به فضای آمادهٔ بهره‌برداری اجرا خواهند شد." },
       ],
     },
     supply: {
