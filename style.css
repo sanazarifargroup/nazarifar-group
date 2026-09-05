@@ -526,8 +526,8 @@ a {
 .section-accordion__button {
   display: block;
   width: 100%;
-  min-height: 38px;
-  padding: 8px 0 7px;
+  min-height: 34px;
+  padding: 5px 0 4px;
   border: 0;
   background: transparent;
   color: rgba(255, 251, 245, 0.9);
@@ -770,6 +770,17 @@ a {
   width: min(38%, 520px);
   transform: translateY(-50%);
   pointer-events: auto;
+}
+
+/* Keep every section heading on one visual baseline below the brand. */
+.section-copy--architecture,
+.section-copy--supply,
+.section-copy--services,
+.section-copy--custom-machines,
+.section-copy--about,
+.section-copy--contact {
+  top: 29%;
+  transform: none;
 }
 
 .section-copy--contact .section-title {
@@ -1263,8 +1274,8 @@ a {
   }
 
   .section-accordion__button {
-    min-height: 42px;
-    padding: 8px 0 7px;
+    min-height: 36px;
+    padding: 5px 0 4px;
   }
 
   .section-accordion__description {
@@ -1564,6 +1575,16 @@ a {
   [data-lang="fa"] .section-copy {
     right: 4.5%;
     left: auto;
+  }
+
+  .section-copy--architecture,
+  .section-copy--supply,
+  .section-copy--services,
+  .section-copy--custom-machines,
+  .section-copy--about,
+  .section-copy--contact {
+    top: 24%;
+    transform: none;
   }
 
   .section-copy--services .section-title {
