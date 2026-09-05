@@ -49,7 +49,7 @@ html[dir="rtl"] .nf-inquiry-trigger {
   flex: 0 0 auto;
   padding-bottom: 0;
   border: 0;
-  color: rgba(255, 251, 245, 0.96);
+  color: var(--nf-accent);
 }
 
 .nf-inquiry-trigger--in-section,

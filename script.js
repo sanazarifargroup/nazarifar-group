@@ -1,7 +1,7 @@
 const copy = {
   en: {
     navigation: {
-      architecture: "Interior Decoration",
+      architecture: "Decoration",
       supply: "Supply",
       services: "Services",
       "custom-machines": "Custom Machines",
@@ -9,7 +9,7 @@ const copy = {
       contact: "Contact",
     },
     architecture: {
-      title: "Interior Decoration",
+      title: "Decoration",
       items: [
         { label: "Design", level: 0 },
         { label: "Renovation", level: 0 },
@@ -71,7 +71,7 @@ const copy = {
   },
   fa: {
     navigation: {
-      architecture: "دکوراسیون داخلی",
+      architecture: "دکوراسیون",
       supply: "تأمین و عرضه",
       services: "خدمات",
       "custom-machines": "ماشین‌آلات سفارشی",
@@ -79,7 +79,7 @@ const copy = {
       contact: "تماس",
     },
     architecture: {
-      title: "دکوراسیون داخلی",
+      title: "دکوراسیون",
       items: [
         { label: "طراحی", level: 0 },
         { label: "بازسازی", level: 0 },
@@ -473,7 +473,7 @@ if (activeScene === "holding" && legacyHash && availableScenes.has(legacyHash)) 
 
 if (!document.querySelector('script[data-nf-inquiry-loader]')) {
   const inquiryScript = document.createElement("script");
-  inquiryScript.src = "/inquiry/inquiry.js?v=17";
+  inquiryScript.src = "/inquiry/inquiry.js?v=18";
   inquiryScript.dataset.nfInquiryLoader = "true";
   document.body.append(inquiryScript);
 }
