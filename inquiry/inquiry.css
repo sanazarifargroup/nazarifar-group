@@ -661,6 +661,16 @@ html[dir="rtl"] .nf-inquiry__eyebrow {
     left: auto;
   }
 
+  html[dir="rtl"] .nf-inquiry-trigger.nf-inquiry-trigger--in-section {
+    right: auto;
+    left: auto;
+    margin-right: 0;
+    margin-left: auto;
+    justify-content: flex-start;
+    text-align: right;
+    transform: none;
+  }
+
   .nf-inquiry__panel,
   html[dir="rtl"] .nf-inquiry__panel {
     right: 0;

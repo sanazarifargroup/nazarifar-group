@@ -867,7 +867,7 @@ a {
 
 .section-copy--services .section-list li {
   line-height: 1.35;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .section-list li[data-level="1"] {
@@ -1712,6 +1712,25 @@ a {
     font-size: 9px;
   }
 
+}
+
+@media (max-width: 700px) {
+  .section-copy--services {
+    top: 16%;
+  }
+
+  .section-copy--services .section-list--accordion {
+    max-height: min(48svh, 360px);
+  }
+
+  .section-copy--services .section-accordion__description {
+    font-size: 9.5px;
+    line-height: 1.65;
+  }
+
+  .section-copy--services .section-accordion__item.is-open .section-accordion__description {
+    max-height: 320px;
+  }
 }
 
 @media (max-width: 700px) and (max-height: 700px) {
