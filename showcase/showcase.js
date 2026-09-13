@@ -384,7 +384,7 @@ if (projectCount) selectProject(0);
 // pages consistent with the main section pages.
 if (!document.querySelector("script[data-nf-inquiry-loader]")) {
   const inquiryScript = document.createElement("script");
-  inquiryScript.src = "/inquiry/inquiry.js?v=21";
+  inquiryScript.src = "/inquiry/inquiry.js?v=22";
   inquiryScript.dataset.nfInquiryLoader = "true";
   document.body.append(inquiryScript);
 }

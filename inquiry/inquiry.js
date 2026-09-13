@@ -544,6 +544,11 @@
     const observer = new MutationObserver(updateTrigger);
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["lang", "dir"] });
     observer.observe(document.body, { attributes: true, attributeFilter: ["data-language"] });
+
+    const directRequest = new URLSearchParams(window.location.search).get("inquiry");
+    if (["1", "open", "true"].includes(directRequest) || window.location.hash === "#inquiry") {
+      window.requestAnimationFrame(open);
+    }
   }
 
   window.NazarifarInquiry = { mount, open, refresh: updateTrigger, config: CONFIG };

@@ -172,6 +172,8 @@ try {
   const savedLanguage = window.localStorage.getItem("nazarifar-language");
   if (savedLanguage === "fa" || savedLanguage === "en") language = savedLanguage;
 } catch {}
+const linkedLanguage = new URLSearchParams(window.location.search).get("lang");
+if (linkedLanguage === "fa" || linkedLanguage === "en") language = linkedLanguage;
 let activeScene = site.dataset.page || "holding";
 let scrollLocked = false;
 let touchStartX = 0;
@@ -497,7 +499,7 @@ if (activeScene === "holding" && legacyHash && availableScenes.has(legacyHash)) 
 
 if (!document.querySelector('script[data-nf-inquiry-loader]')) {
   const inquiryScript = document.createElement("script");
-  inquiryScript.src = "/inquiry/inquiry.js?v=21";
+  inquiryScript.src = "/inquiry/inquiry.js?v=22";
   inquiryScript.dataset.nfInquiryLoader = "true";
   document.body.append(inquiryScript);
 }
