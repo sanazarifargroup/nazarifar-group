@@ -484,9 +484,10 @@
     const lang = language();
     const origin = detectOrigin();
     const isHome = origin.path === "/" || origin.path === "/index.html/";
-    button.hidden = isHome;
-    button.style.display = isHome ? "none" : "";
-    if (isHome) return;
+    const isShowcase = document.body.dataset.showcasePage === "true";
+    button.hidden = isHome || isShowcase;
+    button.style.display = isHome || isShowcase ? "none" : "";
+    if (isHome || isShowcase) return;
     const [lead, action] = TRIGGER_COPY[lang][origin.categoryId] || TRIGGER_COPY[lang].general;
     button.innerHTML = `<span class="nf-inquiry-trigger__lead">${escapeHtml(lead)}</span><span class="nf-inquiry-trigger__action">${escapeHtml(action)}</span>`;
 
