@@ -251,9 +251,11 @@ function renderSection(sectionName) {
 
     const itemRoute = itemRoutes[sectionName]?.[index];
     if (item.description) {
+      const header = document.createElement("div");
       const button = document.createElement("button");
       const description = document.createElement("div");
       row.classList.add("section-accordion__item");
+      header.className = "section-accordion__header";
       button.className = "section-accordion__button";
       button.type = "button";
       const label = document.createElement("span");
@@ -265,7 +267,16 @@ function renderSection(sectionName) {
       const descriptionText = document.createElement("p");
       descriptionText.textContent = item.description;
       description.append(descriptionText);
-      if (itemRoute && section.viewLabel && ["architecture", "custom-machines"].includes(sectionName)) {
+      if (itemRoute && section.viewLabel && sectionName === "architecture") {
+        const viewLink = document.createElement("a");
+        viewLink.className = "section-accordion__link section-accordion__link--beside-title";
+        viewLink.href = itemRoute;
+        viewLink.textContent = section.viewLabel;
+        header.append(button, viewLink);
+      } else {
+        header.append(button);
+      }
+      if (itemRoute && section.viewLabel && sectionName === "custom-machines") {
         const viewLink = document.createElement("a");
         viewLink.className = "section-accordion__link";
         viewLink.href = itemRoute;
@@ -283,7 +294,7 @@ function renderSection(sectionName) {
           button.setAttribute("aria-expanded", "true");
         }
       });
-      row.append(button, description);
+      row.append(header, description);
       list.classList.add("section-list--accordion");
     } else if (itemRoute) {
       const link = document.createElement("a");
