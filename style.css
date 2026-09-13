@@ -616,7 +616,8 @@ a {
 .section-copy--architecture,
 .section-copy--supply,
 .section-copy--services,
-.section-copy--custom-machines { pointer-events: auto; }
+.section-copy--custom-machines,
+.section-copy--about { pointer-events: auto; }
 
 .section-copy--architecture .section-list a,
 .section-copy--supply .section-list a,
@@ -895,37 +896,37 @@ a {
   direction: ltr;
 }
 
-.navigation button:nth-child(1) {
+.navigation [data-target]:nth-child(1) {
   grid-column: 1;
   grid-row: 1;
 }
 
-.navigation button:nth-child(2) {
+.navigation [data-target]:nth-child(2) {
   grid-column: 2;
   grid-row: 1;
 }
 
-.navigation button:nth-child(3) {
+.navigation [data-target]:nth-child(3) {
   grid-column: 3;
   grid-row: 1;
 }
 
-.navigation button:nth-child(4) {
+.navigation [data-target]:nth-child(4) {
   grid-column: 4;
   grid-row: 1;
 }
 
-.navigation button:nth-child(5) {
+.navigation [data-target]:nth-child(5) {
   grid-column: 5;
   grid-row: 1;
 }
 
-.navigation button:nth-child(6) {
+.navigation [data-target]:nth-child(6) {
   grid-column: 6;
   grid-row: 1;
 }
 
-.navigation button {
+.navigation > :is(a, button) {
   position: relative;
   padding: 10px 0 9px;
   border: 0;
@@ -937,6 +938,7 @@ a {
   line-height: 1.15;
   letter-spacing: 0.075em;
   text-align: left;
+  text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   text-shadow: 0 2px 16px rgba(0, 0, 0, 0.66);
@@ -946,7 +948,7 @@ a {
     transform 450ms var(--ease-luxury);
 }
 
-.navigation button::after {
+.navigation > :is(a, button)::after {
   position: absolute;
   right: 0;
   bottom: 3px;
@@ -960,11 +962,11 @@ a {
   transition: transform 520ms var(--ease-luxury);
 }
 
-.navigation button.is-active {
+.navigation [data-target].is-active {
   color: var(--ivory);
 }
 
-.navigation button.is-active::after {
+.navigation [data-target].is-active::after {
   transform: scaleX(1);
 }
 
@@ -997,7 +999,7 @@ a {
 }
 
 [data-lang="fa"] .section-copy,
-[data-lang="fa"] .navigation button:not(.language) {
+[data-lang="fa"] .navigation [data-target] {
   font-family: "Estedad", "Segoe UI", Tahoma, sans-serif;
   letter-spacing: 0;
 }
@@ -1093,12 +1095,12 @@ a {
   text-align: right;
 }
 
-[data-lang="fa"] .navigation button {
+[data-lang="fa"] .navigation > :is(a, button) {
   direction: rtl;
   text-align: right;
 }
 
-[data-lang="fa"] .navigation button:not(.language) {
+[data-lang="fa"] .navigation [data-target] {
   font-size: 10.5px;
 }
 
@@ -1122,7 +1124,7 @@ a {
   font-size: 10px;
 }
 
-[data-lang="en"] .navigation button:not(.language) {
+[data-lang="en"] .navigation [data-target] {
   font-size: 10.5px;
 }
 
@@ -1136,12 +1138,12 @@ a {
     transform: translate3d(0, -2px, 0);
   }
 
-  .navigation button:hover {
+  .navigation > :is(a, button):hover {
     color: var(--ivory);
     transform: translate3d(0, -1px, 0);
   }
 
-  .navigation button:hover::after {
+  .navigation > :is(a, button):hover::after {
     transform: scaleX(1);
   }
 
@@ -1630,7 +1632,7 @@ a {
     gap: 0 14px;
   }
 
-  .navigation button {
+  .navigation > :is(a, button) {
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
@@ -1645,7 +1647,7 @@ a {
     text-shadow: 0 2px 16px rgba(0, 0, 0, 0.66);
   }
 
-  [data-lang="fa"] .navigation button:not(.language) {
+  [data-lang="fa"] .navigation [data-target] {
     direction: rtl;
     font-size: 11.5px;
     font-weight: 320;
@@ -1653,36 +1655,36 @@ a {
     justify-content: flex-start;
   }
 
-  [data-lang="en"] .navigation button:not(.language) {
+  [data-lang="en"] .navigation [data-target] {
     font-size: 11px;
   }
 
-  .navigation button:nth-child(1),
-  .navigation button:nth-child(3) {
+  .navigation [data-target]:nth-child(1),
+  .navigation [data-target]:nth-child(3) {
     grid-column: 1 / span 3;
   }
 
-  .navigation button:nth-child(2),
-  .navigation button:nth-child(4) {
+  .navigation [data-target]:nth-child(2),
+  .navigation [data-target]:nth-child(4) {
     grid-column: 4 / span 3;
   }
 
-  .navigation button:nth-child(1),
-  .navigation button:nth-child(2) {
+  .navigation [data-target]:nth-child(1),
+  .navigation [data-target]:nth-child(2) {
     grid-row: 1;
   }
 
-  .navigation button:nth-child(3),
-  .navigation button:nth-child(4) {
+  .navigation [data-target]:nth-child(3),
+  .navigation [data-target]:nth-child(4) {
     grid-row: 2;
   }
 
-  .navigation button:nth-child(5) {
+  .navigation [data-target]:nth-child(5) {
     grid-column: 1 / span 2;
     grid-row: 3;
   }
 
-  .navigation button:nth-child(6) {
+  .navigation [data-target]:nth-child(6) {
     grid-column: 4 / span 2;
     grid-row: 3;
   }

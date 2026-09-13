@@ -25,9 +25,9 @@
         labels: { fa: "تأمین و عرضه", en: "Supply" },
         route: "/supply/",
         services: [
-          { id: "building-materials-equipment", route: "/supply/building-materials-equipment/", labels: { fa: "متریال و تجهیزات ساختمان", en: "Building Materials & Equipment" } },
-          { id: "furniture-interior", route: "/supply/furniture-interior/", labels: { fa: "مبلمان و دکوراسیون داخلی", en: "Furniture & Interior Decoration" } },
-          { id: "custom-wood-mdf", route: "/supply/custom-wood-mdf/", labels: { fa: "سازه‌های سفارشی چوب و ام‌دی‌اف", en: "Custom Wood & MDF Structures" } },
+          { id: "building-materials-equipment", route: "/supply/building-materials-equipment/", aliases: ["/supply/tiles-flooring/", "/supply/doors/", "/supply/electrical-lighting/", "/supply/hvac/", "/supply/smart-systems/", "/supply/kitchen/", "/supply/bathroom/"], labels: { fa: "متریال و تجهیزات ساختمان", en: "Building Materials & Equipment" } },
+          { id: "furniture-interior", route: "/supply/furniture-interior/", aliases: ["/supply/furniture/", "/supply/curtains/"], labels: { fa: "مبلمان و دکوراسیون داخلی", en: "Furniture & Interior Decoration" } },
+          { id: "custom-wood-mdf", route: "/supply/custom-wood-mdf/", aliases: ["/supply/wood-mdf/"], labels: { fa: "سازه‌های سفارشی چوب و ام‌دی‌اف", en: "Custom Wood & MDF Structures" } },
         ],
         questions: [
           { id: "supplyNeed", type: "choice", labels: { fa: "در چه مرحله‌ای به تأمین نیاز دارید؟", en: "At what stage do you need supply support?" }, options: [
@@ -43,8 +43,8 @@
         route: "/services/",
         services: [
           { id: "scheduled", route: "/services/scheduled/", labels: { fa: "سرویس‌های دوره‌ای ساختمان", en: "Scheduled Building Services" } },
-          { id: "technical-support", route: "/services/maintenance-contract/", labels: { fa: "پشتیبانی فنی و تعمیرات", en: "Technical Support & Repairs" } },
-          { id: "facility-management", route: "/services/facility-management/", labels: { fa: "مدیریت و نگهداری ساختمان", en: "Building Management & Maintenance" } },
+          { id: "technical-support", route: "/services/maintenance-contract/", aliases: ["/services/electrical-lighting/", "/services/hvac/", "/services/smart-systems/", "/services/kitchen/", "/services/bathroom/", "/services/doors/", "/services/wood-mdf/", "/services/medical-equipment/"], labels: { fa: "پشتیبانی فنی و تعمیرات", en: "Technical Support & Repairs" } },
+          { id: "facility-management", route: "/services/facility-management/", aliases: ["/services/cleaning/"], labels: { fa: "مدیریت و نگهداری ساختمان", en: "Building Management & Maintenance" } },
         ],
         questions: [
           { id: "buildingType", type: "choice", labels: { fa: "نوع ساختمان چیست؟", en: "What type of building is it?" }, options: [
@@ -182,7 +182,11 @@
     for (const [id, category] of Object.entries(CONFIG.categories)) {
       if (path === category.route || path.startsWith(category.route)) {
         categoryId = id;
-        const service = category.services.find(item => path === item.route || path.startsWith(item.route));
+        const service = category.services.find(item =>
+          path === item.route
+          || path.startsWith(item.route)
+          || item.aliases?.some(alias => path === alias || path.startsWith(alias)),
+        );
         if (service) serviceId = service.id;
         break;
       }

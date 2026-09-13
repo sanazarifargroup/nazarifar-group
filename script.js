@@ -316,6 +316,7 @@ function renderSection(sectionName) {
 
 function renderLanguage() {
   document.documentElement.lang = language;
+  document.documentElement.dir = language === "fa" ? "rtl" : "ltr";
   site.dataset.lang = language;
 
   const inquiryTrigger = document.querySelector("[data-nf-open]");
@@ -382,7 +383,12 @@ function stepScene(direction) {
 document.addEventListener("click", (event) => {
   const navigationButton = event.target.closest("[data-target]");
   if (navigationButton) {
-    navigateToScene(navigationButton.dataset.target);
+    // Main navigation is made of real links so it still works before this
+    // script finishes loading or if JavaScript is interrupted. Only the old
+    // button markup needs the scripted fallback.
+    if (navigationButton.tagName !== "A") {
+      navigateToScene(navigationButton.dataset.target);
+    }
     return;
   }
 
@@ -491,7 +497,7 @@ if (activeScene === "holding" && legacyHash && availableScenes.has(legacyHash)) 
 
 if (!document.querySelector('script[data-nf-inquiry-loader]')) {
   const inquiryScript = document.createElement("script");
-  inquiryScript.src = "/inquiry/inquiry.js?v=19";
+  inquiryScript.src = "/inquiry/inquiry.js?v=21";
   inquiryScript.dataset.nfInquiryLoader = "true";
   document.body.append(inquiryScript);
 }

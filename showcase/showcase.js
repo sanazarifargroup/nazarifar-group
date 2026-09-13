@@ -378,3 +378,13 @@ window.addEventListener("resize", () => { centerActive(); fitBrandName(); });
 if (document.fonts?.ready) document.fonts.ready.then(fitBrandName);
 applyLanguage();
 if (projectCount) selectProject(0);
+
+// Load the same enquiry experience on every project, service, product and
+// machine detail page. Keeping this here makes the dynamically-built showcase
+// pages consistent with the main section pages.
+if (!document.querySelector("script[data-nf-inquiry-loader]")) {
+  const inquiryScript = document.createElement("script");
+  inquiryScript.src = "/inquiry/inquiry.js?v=21";
+  inquiryScript.dataset.nfInquiryLoader = "true";
+  document.body.append(inquiryScript);
+}
